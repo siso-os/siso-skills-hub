@@ -22,6 +22,7 @@
 
 | Skill | Description | Source |
 |---|---|---|
+| adhd-agent-output | The standard way every SISO agent writes to Shaan: next action first, numbered steps, state restated as X of Y, concrete time estimates, verified wins, at most 5 items, no preamble/recap/closers. | bundled |
 | agent-commander | Create workspaces, start agents, and communicate with them via CMUX | bundled |
 | cli-runner | Run SISO CLI commands and interact with agents | bundled |
 | meta-commander | Communicate with META agents in the SISO ecosystem | bundled |
@@ -57,6 +58,7 @@
 | estate-keeper | Keep Shaan's laptop estate clean while working: look before making anything, put new things in their district, one command per move, keys and big files out of git, other agents' work untouched, and report messes to the Estate Manager's inbox. | bundled |
 | jev-judgment | Optional intent, completion and progress checks; eligible model/skill/tool selection; bounded Camofox search/navigation; and shadow-only context relevance through the existing OpenRouter transport. | independent |
 | laptop-health | Diagnose and fix a slow or overloaded MacBook with the laptop-health command: power and Low Power Mode first, then CPU speed, RAM, who makes the load, what keeps spawning processes, and leftover servers and browsers. Never kills agents. | bundled |
+| machine-reach | Reach any SISO machine over ssh by the right alias, with fallbacks in order (Tailscale, home LAN, Cloudflare WARP) and a debug ladder when one is down. | bundled |
 | os-database | Core Agent OS Database for telemetry, tasks, and timeline tracking | bundled |
 | owner-handoff | Use the owning Playbook's preservation, cold-read and single-writer handoff gate. | bundled |
 | owner-writeback | Persist owned material state and append an index pointer through the consuming project's existing adapter. | bundled |
@@ -97,6 +99,6 @@
 
 ---
 
-**Total: 51 skills**
+**Total: 53 skills**
 
 Use `python3 scripts/skills list`, `search <query>`, or `info <skill>` to explore.

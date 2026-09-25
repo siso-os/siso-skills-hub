@@ -997,6 +997,22 @@
           "observed_at": "2026-10-02"
         }
       ]
+    },
+    {
+      "skill_id": "adhd-agent-output",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "registry/skills/communication/adhd-agent-output",
+      "reason": "Explicit request from Shaan (2026-09-25): a standardized output skill so every agent writes to him in the ADHD shape. Pure instructions, no credentials or machine bindings; shaan-report uses it as its closing shape.",
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "registry/skills/communication/adhd-agent-output/SKILL.md",
+          "observed_at": "2026-09-25"
+        }
+      ],
+      "blockers": []
     }
   ],
   "evidence": [

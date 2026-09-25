@@ -1999,6 +1999,43 @@
         "consumer": "every agent on Shaan's laptop",
         "source_of_rules": "SISO_Agents/laptop-health (HEALTH owns machine health)"
       }
+    },
+    {
+      "skill_id": "adhd-agent-output",
+      "name": "ADHD Agent Output",
+      "description": "The standard way every SISO agent writes to Shaan: next action first, numbered steps, state restated as X of Y, concrete time estimates, verified wins, at most 5 items, no preamble/recap/closers.",
+      "category": "communication",
+      "tags": [
+        "output-style",
+        "reporting",
+        "adhd"
+      ],
+      "version": "1.1.0",
+      "author": "SISO Team",
+      "repo_url": null,
+      "commit_hash": null,
+      "remote_url": null,
+      "published_at": null,
+      "dependencies": {
+        "skills": [
+          "shaan-report"
+        ],
+        "packages": []
+      },
+      "install_commands": {
+        "system": "echo 'No system setup required'",
+        "skill": "echo 'No additional setup required'"
+      },
+      "files": {
+        "required": [
+          "SKILL.md"
+        ],
+        "optional": []
+      },
+      "metadata": {
+        "user_invocable": true,
+        "status": "stable"
+      }
     }
   ]
 }
