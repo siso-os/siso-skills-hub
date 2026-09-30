@@ -1883,6 +1883,42 @@
         "consumer": "every agent on Shaan's laptop (Claude, Codex, omp)",
         "source_of_rules": "SISO_Agents/siso-estate (AGENTS.md, docs/adr)"
       }
+    },
+    {
+      "skill_id": "halo-batch-qa",
+      "name": "HALO batch QA",
+      "description": "Discover the HALO-owned two-pass error sweep and executable browser verification workflow.",
+      "category": "testing",
+      "tags": [
+        "halo",
+        "testing",
+        "release",
+        "vps"
+      ],
+      "version": "0.1.0",
+      "author": "SISO Team",
+      "repo_url": null,
+      "remote_url": null,
+      "commit_hash": null,
+      "published_at": null,
+      "dependencies": {
+        "skills": [],
+        "packages": []
+      },
+      "install_commands": {
+        "system": "node --version",
+        "skill": "No additional setup for this discovery adapter"
+      },
+      "files": {
+        "required": [
+          "SKILL.md"
+        ],
+        "optional": []
+      },
+      "metadata": {
+        "user_invocable": true,
+        "status": "experimental"
+      }
     }
   ]
 }

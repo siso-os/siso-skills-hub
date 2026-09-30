@@ -90,11 +90,12 @@
 
 | Skill | Description | Source |
 |---|---|---|
+| halo-batch-qa | Discover the HALO-owned two-pass error sweep and executable browser verification workflow. | bundled |
 | playwright | Automated browser testing for SISO Internal Lab | bundled |
 | verify_story | Verify a story implementation meets acceptance criteria | bundled |
 
 ---
 
-**Total: 49 skills**
+**Total: 50 skills**
 
 Use `python3 scripts/skills list`, `search <query>`, or `info <skill>` to explore.
