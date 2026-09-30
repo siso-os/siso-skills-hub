@@ -945,6 +945,22 @@
           "observed_at": "2026-09-25"
         }
       ]
+    },
+    {
+      "skill_id": "halo-batch-qa",
+      "capability_kind": "tool_adapter",
+      "recommendation": "keep_thin_adapter",
+      "decision_status": "accepted",
+      "target": "HALO-AGENCY/halocrm / .agents/skills/halo-batch-qa",
+      "reason": "HALO owns its private QA workflow and executable harness. The Hub carries only discovery instructions, preserving consumer source ownership and preventing copied credentials or machine bindings.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "registry/skills/testing/halo-batch-qa/SKILL.md",
+          "observed_at": "2026-09-30"
+        }
+      ]
     }
   ],
   "evidence": [
