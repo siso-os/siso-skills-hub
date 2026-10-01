@@ -961,6 +961,24 @@
           "observed_at": "2026-09-30"
         }
       ]
+    },
+    {
+      "skill_id": "self-compact",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Skills Hub / global / self-compact",
+      "reason": "Thin skill over the self-compact CLI in siso-harness-lab, which owns the waiter, refusals and log. Built for siso-request R-0007 (1 Oct 2026); exercised end to end on a scratch Claude pane.",
+      "blockers": [
+        "Only proven on Claude Code panes in herdr; Codex and omp panes are not handled."
+      ],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "registry/skills/global/self-compact/SKILL.md",
+          "observed_at": "2026-10-01"
+        }
+      ]
     }
   ],
   "evidence": [
