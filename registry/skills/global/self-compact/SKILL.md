@@ -1,6 +1,6 @@
 ---
 name: self-compact
-description: Compact your own context and carry on without anyone typing for you. Use when you are a long-running Claude agent in a herdr pane and `self-compact check` shows about 40% context, or earlier at a clean break before a big new phase; also when asked to "checkpoint and compact", "self-compact", or run forever. You write the checkpoint, tell who should know, arm the waiter with `self-compact go`, and end your turn. Not for Agent Zero (Shaan compacts it himself).
+description: Compact your own context and carry on without anyone typing for you. Use when the context ping asks you to compact (a "Time to compact at your next clean break" note after a tool call) and you are at a clean break, or earlier at a natural seam before a big new phase; also when Shaan or Agent Zero asks you to "checkpoint and compact" or "self-compact". Defer instead when you are mid-conversation with Shaan or mid-critical reasoning. You write the checkpoint, tell who should know, arm the waiter with `self-compact go`, and end your turn. Not for Agent Zero (Shaan compacts it himself).
 ---
 
 # Self-compact
@@ -10,16 +10,29 @@ Claude Code will not let you run `/compact` on yourself, but herdr can type into
 `/compact <focus>` when your pane goes idle, waits until the context has dropped, types your resume prompt, and exits.
 You come back with a fresh window and a pointer to your own checkpoint.
 
-The built-in net stays underneath: `claude-siso-3` auto-compacts at 45% and the PreCompact hook writes a template
-checkpoint to `<repo>/.claude/session-context/`. Those keep you alive; this keeps your thread, because you choose
-the moment and you write the checkpoint yourself.
+Only Claude Code's own auto-compact (about 95%) sits underneath as a last-resort net, with the PreCompact hook
+writing a template checkpoint to `<repo>/.claude/session-context/`. Nothing compacts you earlier: on 1 Oct an agent
+was auto-compacted mid-conversation with Shaan at a forced 45%, and he reversed it: "we kind of want to leave the
+reasoning up to the agents". You choose the moment and you write the checkpoint yourself.
 
 ## When
 
-- Run `self-compact check` at each milestone. It prints `NN% ctx` from your pane footer.
-- At about 40%, compact at the next clean break. Earlier is fine at a natural seam before a big new phase.
-- Never mid-edit, mid-test, or while a worker you must read is still running and unread.
-- No hook nags you about this. You decide (DECISIONS.md, 4 Sep: no context-size hooks).
+The context ping (`hooks/context-ping.mjs` in siso-harness-lab) adds two gentle notes to your context after a tool
+call. It never compacts, blocks or repeats itself beyond this (DECISIONS.md, 1 Oct):
+
+1. **Heads-up** at about 35%: the ask comes within about 100k tokens. Keep your checkpoint current and look for a
+   clean break.
+2. **Ask**, about 100k tokens later: compact at your next clean break. It repeats every ~50k tokens while you defer.
+
+On the ask, decide:
+
+- **Compact** at a clean break: a milestone is done, nothing is half-edited or half-tested, no worker result is
+  waiting to be read. Earlier is fine at a natural seam before a big new phase.
+- **Defer** when you are mid-conversation with Shaan or in the middle of reasoning that matters. Say so in one line
+  ("Deferring compaction: mid-conversation with Shaan") and carry on; you will be asked again in ~50k tokens.
+- **Anyone who tells you wins.** If Shaan or Agent Zero says compact, or says don't, do that instead of either rule.
+
+`self-compact check` prints `NN% ctx` from your pane footer whenever you want the number.
 
 ## The four steps
 
@@ -56,6 +69,6 @@ the moment and you write the checkpoint yourself.
 - It only ever types into `$HERDR_PANE_ID`, your own pane. Never point it, or `herdr pane send-text`, at another
   agent's pane.
 - If the pane is replaced, the waiter's timeout passes (`--timeout`, default 45 minutes), or the context never drops,
-  the waiter logs `failed` and exits without typing the resume prompt. Then the 45% auto-compact net still holds.
+  the waiter logs `failed` and exits without typing the resume prompt. Claude Code's ~95% auto-compact still holds.
 - Everything it does is logged to `~/.local/state/self-compact/log.jsonl` (`armed`, `compact-typed`, `resumed` with
   context before and after, `refused`, `failed`).
