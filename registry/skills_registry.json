@@ -1793,6 +1793,46 @@
         "consumer": "every agent on Shaan's laptop (Claude, Codex, omp)",
         "source_of_rules": "SISO_Agents/siso-estate (AGENTS.md, docs/adr)"
       }
+    },
+    {
+      "skill_id": "machine-reach",
+      "name": "Machine Reach",
+      "description": "Reach any SISO machine over ssh by the right alias, with fallbacks in order (Tailscale, home LAN, Cloudflare WARP) and a debug ladder when one is down.",
+      "category": "global",
+      "tags": [
+        "ssh",
+        "network",
+        "tailscale",
+        "fleet",
+        "machines"
+      ],
+      "version": "1.0.0",
+      "author": "SISO Team",
+      "repo_url": null,
+      "commit_hash": null,
+      "remote_url": null,
+      "published_at": null,
+      "dependencies": {
+        "skills": [],
+        "packages": []
+      },
+      "install_commands": {
+        "system": "echo 'Uses ~/.ssh/config aliases on Shaan's laptop'",
+        "skill": "echo 'No additional setup required'"
+      },
+      "files": {
+        "required": [
+          "SKILL.md"
+        ],
+        "optional": []
+      },
+      "metadata": {
+        "user_invocable": false,
+        "status": "stable",
+        "ownership": "canonical-hub",
+        "consumer": "every agent on Shaan's laptop",
+        "source_of_rules": "SISO_Agents/laptop-health (HEALTH owns machine health)"
+      }
     }
   ]
 }
