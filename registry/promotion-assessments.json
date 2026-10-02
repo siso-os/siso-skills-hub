@@ -979,6 +979,24 @@
           "observed_at": "2026-10-01"
         }
       ]
+    },
+    {
+      "skill_id": "machine-reach",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Skills Hub / global / machine-reach",
+      "reason": "Reference skill over ~/.ssh/config: every alias tested 2 Oct 2026 (halo-vps, siso-vps, mac-mini, camron-siso ok); mini fallback order and the dead WARP route measured.",
+      "blockers": [
+        "Aliases and addresses change (the mini's DHCP address moved .100 -> .182); HEALTH keeps it current."
+      ],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "registry/skills/global/machine-reach/SKILL.md",
+          "observed_at": "2026-10-02"
+        }
+      ]
     }
   ],
   "evidence": [
