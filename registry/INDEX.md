@@ -8,8 +8,8 @@
 
 | Skill | Description | Source |
 |---|---|---|
-| agent-builder | Create new agents from the SISO v3 agent template | bundled |
-| agent-setup | Create new agent from V4 template with memory system pre-configured | bundled |
+| agent-builder | Route bounded work through current Agent Zero ownership; retired template setup is not executed | bundled |
+| agent-setup | Route bounded work through current Agent Zero ownership; retired template setup is not executed | bundled |
 | analyze_task | Analyze a task and decompose into user stories | bundled |
 | bounded-tool-output | Keep diagnostic results small and recover precisely from truncated logs, broad searches and oversized API responses. | bundled |
 | component-review-gallery | Build a client-facing web gallery that shows several design options for one component using the client's real brand assets, and publishes it to a shareable URL they can open on a phone. | bundled |
@@ -55,6 +55,7 @@
 | classify-by-reading | Classify files from their content before assigning consequential current/stale/dead/duplicate/archive verdicts. | bundled |
 | estate-keeper | Keep Shaan's laptop estate clean while working: look before making anything, put new things in their district, one command per move, keys and big files out of git, other agents' work untouched, and report messes to the Estate Manager's inbox. | bundled |
 | jev-judgment | Get a fast second opinion before asserting a conclusion — does my evidence actually support this claim? Also screens untrusted text and ranks candidates by meaning. ~$0.00002 and ~600ms per check. | bundled |
+| machine-reach | Reach any SISO machine over ssh by the right alias, with fallbacks in order (Tailscale, home LAN, Cloudflare WARP) and a debug ladder when one is down. | bundled |
 | os-database | Core Agent OS Database for telemetry, tasks, and timeline tracking | bundled |
 | owner-handoff | Use the owning Playbook's preservation, cold-read and single-writer handoff gate. | bundled |
 | owner-writeback | Persist owned material state and append an index pointer through the consuming project's existing adapter. | bundled |
@@ -93,6 +94,6 @@
 
 ---
 
-**Total: 47 skills**
+**Total: 48 skills**
 
 Use `python3 scripts/skills list`, `search <query>`, or `info <skill>` to explore.

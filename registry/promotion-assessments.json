@@ -125,21 +125,24 @@
     },
     {
       "skill_id": "agent-builder",
-      "capability_kind": "environment_recipe",
-      "recommendation": "retire_or_replace",
-      "decision_status": "provisional",
-      "target": "Project OS or Runtime-owned agent scaffolding",
-      "reason": "The current V3 template recipe points at an obsolete private workspace shape and has no independently versioned template payload.",
+      "capability_kind": "deprecated_adapter",
+      "recommendation": "keep_thin_adapter",
+      "decision_status": "accepted",
+      "target": "Agent Zero coordination and Harness Lab execution",
+      "reason": "Retired V3/V4 template entry replaced with current owner routing; V4 command refuses all setup before mutation.",
       "blockers": [
-        "compare V3 and V4 successors",
-        "publish template contract",
-        "remove private workspace assumptions"
+        "Persistent agent scaffolding requires an owning project contract; no replacement template is bundled."
       ],
       "evidence": [
         {
           "kind": "source_review",
           "reference": "registry/skills/code/agent-builder/SKILL.md",
           "observed_at": "2026-07-30"
+        },
+        {
+          "kind": "source_review",
+          "reference": "registry/skills/code/agent-builder/SKILL.md",
+          "observed_at": "2026-10-06"
         }
       ]
     },
@@ -529,21 +532,24 @@
     },
     {
       "skill_id": "agent-setup",
-      "capability_kind": "environment_recipe",
-      "recommendation": "retire_or_replace",
-      "decision_status": "provisional",
-      "target": "Project OS or Runtime-owned agent scaffolding",
-      "reason": "The V4 setup recipe installs a specific memory system and absolute hooks, while agent-builder documents V3; neither exposes a current portable template contract.",
+      "capability_kind": "deprecated_adapter",
+      "recommendation": "keep_thin_adapter",
+      "decision_status": "accepted",
+      "target": "Agent Zero coordination and Harness Lab execution",
+      "reason": "Retired V3/V4 template entry replaced with current owner routing; V4 command refuses all setup before mutation.",
       "blockers": [
-        "reconcile V3/V4 template generations",
-        "remove absolute hook generation",
-        "publish fixture-tested scaffold"
+        "Persistent agent scaffolding requires an owning project contract; no replacement template is bundled."
       ],
       "evidence": [
         {
           "kind": "source_review",
           "reference": "registry/skills/code/agent-setup/SKILL.md",
           "observed_at": "2026-07-30"
+        },
+        {
+          "kind": "source_review",
+          "reference": "registry/skills/code/agent-setup/SKILL.md",
+          "observed_at": "2026-10-06"
         }
       ]
     },

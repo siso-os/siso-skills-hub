@@ -1,54 +1,40 @@
 ---
 name: agent-setup
-description: Create a new agent from the V4 template with memory system pre-configured
-version: 1.0.0
+description: Route agent setup to current Agent Zero ownership; safely refuse the retired V4 memory installer.
+version: 1.1.0
 tags:
   - agent-management
   - setup
-  - template
+  - routing
 ---
 
-# Agent Setup Skill
+# Agent Setup
 
-Create a new agent from the V4 template with memory system pre-configured.
+The V4 template and central `claude-mem-lite` setup recipe are retired. Its
+`agent_os` source paths no longer exist. Do not recreate that tree, copy old
+hooks, initialize a memory database, or overwrite an existing agent directory.
 
-## What It Does
+For a bounded job, follow the installed `agent-builder` skill (canonical Hub
+source: `registry/skills/code/agent-builder/SKILL.md`). It routes to Agent Zero's
+current `AGENTS.md`, `routing.json`, job brief, and existing `soul` / `codex-run`
+commands. Inspect current ownership and reuse an existing integrating owner.
+A persistent agent or memory integration needs the owning project's current
+contract; this entry does not promise a replacement scaffold.
 
-1. Copies the latest V4 agent template
-2. Sets up claude-mem-lite memory system
-3. Configures hooks.json with absolute paths
-4. Creates .mcp.json for MCP server
-5. Initializes the memory database
+## Legacy command behavior
 
-## Usage
+`scripts/setup.sh <agent_dir> <agent_name>` now exits **2** with migration
+instructions before touching any target, including an existing directory.
+`--help` exits **0** and prints the same routing instructions. Neither invocation
+launches an agent, installs hooks, writes credentials, or creates runtime state.
 
-```bash
-${SISO_WORKSPACE}/agent_os/skills_hub/registry/skills/agent-setup/scripts/setup.sh <agent_dir> <agent_name>
+## Verification and provenance
 
-# Example: Create Developer_Agent
-${SISO_WORKSPACE}/agent_os/skills_hub/registry/skills/agent-setup/scripts/setup.sh \
-    "${SISO_WORKSPACE}/agent_os/agents/Developer_Agent" \
-    Developer_Agent
-```
+Run `python3 scripts/test_retired_setup.py` from this skill directory. It checks
+help, missing arguments, a new target, and an existing target collision using
+only a disposable fixture. No real agent is launched.
 
-## Output
-
-Creates agent with:
-```
-<agent_dir>/
-├── .claude/
-│   ├── claude-mem-lite/   # Memory system
-│   ├── hooks/hooks.json   # Hook config
-│   └── memory/            # Memory DB
-├── .mcp.json             # MCP config
-├── identity.yaml          # Edit this!
-├── inbox/                # Task inbox
-├── outbox/               # Task outbox
-└── workspace/            # Working directory
-```
-
-## After Setup
-
-1. Edit `identity.yaml` with agent details
-2. Start Claude Code in the agent folder
-3. Run `/mcp` to verify mem shows ✅ connected
+Replaced on 2026-10-06 after direct source review of Agent Zero `bin/soul` and
+Harness Lab `bin/codex-run`. The original V4 recipe remains in Git history;
+Skills Hub owns this compatibility entry, while the runtime owners retain
+creation, launch, and memory behavior.
