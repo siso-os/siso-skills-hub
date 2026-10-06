@@ -1013,6 +1013,30 @@
         }
       ],
       "blockers": []
+    },
+    {
+      "skill_id": "agent-widgets",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Skills Hub / code / agent-widgets",
+      "reason": "One bounded Agent Base data publication capability with existing transport and renderers.",
+      "blockers": [
+        "Natural producer adoption and the current fallback posting owner/cadence are not yet verified.",
+        "Live inbox actions await the reviewed item-safe consumer release; first publication is data-only."
+      ],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "registry/skills/code/agent-widgets/SKILL.md",
+          "observed_at": "2026-10-06"
+        },
+        {
+          "kind": "bounded_workflow_exercise",
+          "reference": "Disposable installer dry-run, byte-identical copy, unchanged replay, collision refusal; A0 producer 8 fixtures, Agent Base fake-inbox migration 8 checks and desktop/phone UI acceptance. No consumer installation or live publication.",
+          "observed_at": "2026-10-06"
+        }
+      ]
     }
   ],
   "evidence": [

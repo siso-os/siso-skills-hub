@@ -2036,6 +2036,39 @@
         "user_invocable": true,
         "status": "stable"
       }
+    },
+    {
+      "skill_id": "agent-widgets",
+      "name": "Agent widgets",
+      "description": "Publish bounded data-only agent widgets from explicit operational sources and verify same-data fallback migration.",
+      "category": "code",
+      "tags": [
+        "agent-base",
+        "widgets",
+        "migration"
+      ],
+      "version": "0.1.0",
+      "author": "SISO Team",
+      "repo_url": null,
+      "remote_url": null,
+      "commit_hash": null,
+      "published_at": null,
+      "dependencies": {
+        "skills": [],
+        "packages": []
+      },
+      "install_commands": {},
+      "files": {
+        "required": [
+          "SKILL.md"
+        ],
+        "optional": []
+      },
+      "metadata": {
+        "user_invocable": true,
+        "status": "experimental",
+        "ownership": "canonical-hub"
+      }
     }
   ]
 }

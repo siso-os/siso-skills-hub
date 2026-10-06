@@ -10,6 +10,7 @@
 |---|---|---|
 | agent-builder | Create new agents from the SISO v3 agent template | bundled |
 | agent-setup | Create new agent from V4 template with memory system pre-configured | bundled |
+| agent-widgets | Publish bounded data-only agent widgets from explicit operational sources and verify same-data fallback migration. | bundled |
 | analyze_task | Analyze a task and decompose into user stories | bundled |
 | bounded-tool-output | Keep diagnostic results small and recover precisely from truncated logs, broad searches and oversized API responses. | bundled |
 | component-review-gallery | Build a client-facing web gallery that shows several design options for one component using the client's real brand assets, and publishes it to a shareable URL they can open on a phone. | bundled |
@@ -99,6 +100,6 @@
 
 ---
 
-**Total: 53 skills**
+**Total: 54 skills**
 
 Use `python3 scripts/skills list`, `search <query>`, or `info <skill>` to explore.
