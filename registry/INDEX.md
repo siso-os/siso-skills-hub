@@ -8,8 +8,8 @@
 
 | Skill | Description | Source |
 |---|---|---|
-| agent-builder | Create new agents from the SISO v3 agent template | bundled |
-| agent-setup | Create new agent from V4 template with memory system pre-configured | bundled |
+| agent-builder | Route bounded work through current Agent Zero ownership; retired template setup is not executed | bundled |
+| agent-setup | Route bounded work through current Agent Zero ownership; retired template setup is not executed | bundled |
 | agent-widgets | Publish bounded data-only agent widgets from explicit operational sources and verify same-data fallback migration. | bundled |
 | analyze_task | Analyze a task and decompose into user stories | bundled |
 | bounded-tool-output | Keep diagnostic results small and recover precisely from truncated logs, broad searches and oversized API responses. | bundled |

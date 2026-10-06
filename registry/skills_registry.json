@@ -74,15 +74,14 @@
     {
       "skill_id": "agent-builder",
       "name": "Agent Builder",
-      "description": "Create new agents from the SISO v3 agent template",
+      "description": "Route bounded work through current Agent Zero ownership; retired template setup is not executed",
       "category": "code",
       "tags": [
         "agent",
-        "template",
-        "scaffold",
-        "creation"
+        "routing",
+        "compatibility"
       ],
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": "SISO Team",
       "repo_url": null,
       "commit_hash": null,
@@ -107,7 +106,7 @@
       },
       "metadata": {
         "user_invocable": true,
-        "status": "stable"
+        "status": "deprecated_adapter"
       }
     },
     {
@@ -877,16 +876,14 @@
     {
       "skill_id": "agent-setup",
       "name": "Agent Setup",
-      "description": "Create new agent from V4 template with memory system pre-configured",
+      "description": "Route bounded work through current Agent Zero ownership; retired template setup is not executed",
       "category": "code",
       "tags": [
         "agent",
-        "setup",
-        "template",
-        "memory",
-        "configuration"
+        "routing",
+        "compatibility"
       ],
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": "SISO Team",
       "repo_url": null,
       "commit_hash": null,
@@ -910,7 +907,7 @@
       },
       "metadata": {
         "user_invocable": true,
-        "status": "stable"
+        "status": "deprecated_adapter"
       }
     },
     {
