@@ -2,9 +2,8 @@
    all. Replace this file with the real component: copy the client's logo,
    artwork and copy in, then swap the text mark below for their logo image.
 
-   The reference for a finished component is assets/examples/footer.js in the
-   skill that generated this folder, and references/writing-variants.md next to
-   its SKILL.md. */
+   How to write the variants: references/writing-variants.md next to the SKILL.md
+   of the skill that generated this folder. */
 
 import { BRAND, componentFurniture } from './shared.js';
 
