@@ -6,8 +6,8 @@ description: Design and build a premium, alive, state-driven UI asset that feels
 # Living asset: a face that feels alive, in SVG + CSS
 
 Built from Halo's face (HALO, 1 Oct 2026). Shaan approved each round, and after round 5 he called the
-point "diminishing returns". The reference engine is in `reference/halo-face.{js,css}`. The worked
-example with all five rounds is the HALO lane `partners/halo/.agents/lanes/2026-10-01-halo-face/`
+point "diminishing returns". The reference engine is HALO's, so it stays in its private lane, with the worked
+example with all five rounds: `partners/halo/.agents/lanes/2026-10-01-halo-face/`
 (`RETURN.md`, `round4/`, `round5/`).
 
 ## 1. Shape of the work: rounds, not one shot
