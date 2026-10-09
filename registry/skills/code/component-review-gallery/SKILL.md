@@ -25,8 +25,9 @@ provides:
 - `scripts/shots.mjs` renders every option at 1440x900 and 390x844 and reports failures
 - `deploy.sh` publishes `site/` to its own Cloudflare Pages project
 
-`assets/examples/footer.js` is a full worked example: six variants, each carrying the same
-real content, differing only in arrangement, weight and how much artwork shows.
+A finished component has six variants, each carrying the same real content, differing only in
+arrangement, weight and how much artwork shows. (Our worked example came from a client job, so it
+stays out of this public repo; `references/writing-variants.md` has the method.)
 
 ## Workflow
 
