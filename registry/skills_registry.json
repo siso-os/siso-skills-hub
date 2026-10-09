@@ -1409,7 +1409,6 @@
       "files": {
         "required": [
           "SKILL.md",
-          "assets/examples/footer.js",
           "assets/template/deploy.sh",
           "assets/template/gallery.config.json",
           "assets/template/scripts/check.mjs",
