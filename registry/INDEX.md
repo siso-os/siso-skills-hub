@@ -32,6 +32,7 @@
 
 | Skill | Description | Source |
 |---|---|---|
+| client-pack | Build a bilingual client research pack (company, competitors with a page each, open source, APIs, build vs base, first principles, plan) as a SISO-landing-styled static site behind a per-client login at research.sisolabs.space, plus agent-readable JSON; reuse its components on other static sites. | independent |
 | multisearch | Run web, GitHub, and X searches in parallel for comprehensive research | bundled |
 | websearch | Search the web using Perplexity Sonar via OpenRouter | bundled |
 | xsearch | Search X (Twitter) for discussions, opinions, and latest updates | bundled |
@@ -100,6 +101,6 @@
 
 ---
 
-**Total: 54 skills**
+**Total: 55 skills**
 
 Use `python3 scripts/skills list`, `search <query>`, or `info <skill>` to explore.

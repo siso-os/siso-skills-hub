@@ -2065,6 +2065,46 @@
         "status": "experimental",
         "ownership": "canonical-hub"
       }
+    },
+    {
+      "skill_id": "client-pack",
+      "name": "Client research pack",
+      "description": "Build a bilingual client research pack (company, competitors with a page each, open source, APIs, build vs base, first principles, plan) as a SISO-landing-styled static site behind a per-client login at research.sisolabs.space, plus agent-readable JSON; reuse its components on other static sites.",
+      "category": "data",
+      "tags": [
+        "client-research",
+        "static-site",
+        "cloudflare-pages",
+        "i18n",
+        "haiku-fanout",
+        "login"
+      ],
+      "version": "2.0.0",
+      "author": "SISO Team",
+      "repo_url": "https://github.com/sisodias/siso-client-pack",
+      "remote_url": "https://github.com/sisodias/siso-client-pack.git",
+      "commit_hash": "c0cd74a11dd4386975e9fd6e3d4158b7b6f1b804",
+      "published_at": "2026-10-12",
+      "dependencies": {
+        "skills": [
+          "superapp-forge",
+          "camofox"
+        ],
+        "packages": []
+      },
+      "install_commands": {},
+      "files": {
+        "required": [
+          "SKILL.md"
+        ],
+        "optional": [
+          "COMPONENTS.md"
+        ]
+      },
+      "metadata": {
+        "user_invocable": true,
+        "status": "experimental"
+      }
     }
   ]
 }
