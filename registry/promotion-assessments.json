@@ -1043,6 +1043,29 @@
           "observed_at": "2026-10-06"
         }
       ]
+    },
+    {
+      "skill_id": "client-pack",
+      "capability_kind": "atomic_skill",
+      "recommendation": "promoted",
+      "decision_status": "provisional",
+      "target": "sisodias/siso-client-pack (pinned c0cd74a)",
+      "reason": "The skill is the front door of its own repository (method, prompts, generator, template, login layer, packs); the Hub pins a reviewed commit and carries a SKILL.md + COMPONENTS.md snapshot.",
+      "blockers": [
+        "One pack so far (donga-haus); a second industry pack is the adoption evidence."
+      ],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "siso-client-pack@c0cd74a SKILL.md, COMPONENTS.md",
+          "observed_at": "2026-10-12"
+        },
+        {
+          "kind": "bounded_workflow_exercise",
+          "reference": "new-pack.sh skeleton built 11 pages in a disposable pack; donga-haus 161 pages EN+VI check.py 0 problems; research.sisolabs.space 197/197 files 200 with login, 401/302 without.",
+          "observed_at": "2026-10-12"
+        }
+      ]
     }
   ],
   "evidence": [

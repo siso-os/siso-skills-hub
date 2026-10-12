@@ -18,7 +18,6 @@
 </p>
 
 <!-- /siso-os:header -->
-
 Central registry, CLI, dependency graph, templates, pipelines, and bundled source snapshots for SISO agent skills. `registry/skills_registry.json` is the current catalog; installed harness directories are projections, not competing authoring homes.
 
 For one tested author/register/install workflow, read
