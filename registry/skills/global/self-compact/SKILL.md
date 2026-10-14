@@ -5,10 +5,16 @@ description: Compact your own context and carry on without anyone typing for you
 
 # Self-compact
 
-Claude Code will not let you run `/compact` on yourself, but herdr can type into your own pane once you are idle.
-`self-compact` (source `SISO_Agents/siso-harness-lab/bin/self-compact`) does that: one detached waiter per call types
-`/compact <focus>` when your pane goes idle, waits until the context has dropped, types your resume prompt, and exits.
-You come back with a fresh window and a pointer to your own checkpoint.
+Claude Code will not let you run `/compact` on yourself, so `self-compact` (source
+`SISO_Agents/siso-harness-lab/bin/self-compact`) has it done for you once your turn ends. It picks the path itself:
+
+- **In a SISO Code thread** (most seats now): it asks SISO Code to queue `/compact` behind your current turn, then your
+  resume prompt, on your own thread. That is the same compaction the composer's Compact button runs.
+- **In a herdr pane:** one detached waiter types `/compact <focus>` when your pane goes idle, waits until the context
+  has dropped, types your resume prompt, and exits.
+
+Either way you come back with a fresh window and a pointer to your own checkpoint. When Shaan says "compact
+yourself", that is the ask: do the four steps below.
 
 Only Claude Code's own auto-compact (about 95%) sits underneath as a last-resort net, with the PreCompact hook
 writing a template checkpoint to `<repo>/.claude/session-context/`. Nothing compacts you earlier: on 1 Oct an agent
@@ -32,7 +38,8 @@ On the ask, decide:
   ("Deferring compaction: mid-conversation with Shaan") and carry on; you will be asked again in ~50k tokens.
 - **Anyone who tells you wins.** If Shaan or Agent Zero says compact, or says don't, do that instead of either rule.
 
-`self-compact check` prints `NN% ctx` from your pane footer whenever you want the number.
+`self-compact check` prints `NN% ctx` from your pane footer whenever you want the number (in SISO Code, the
+context meter beside the composer shows it).
 
 ## The four steps
 
@@ -44,7 +51,7 @@ On the ask, decide:
    - **Key paths:** the files, briefs, receipts and commands you will need first.
    - **Shaan's words:** the ask in his words, so the goal survives the summary.
 2. **Tell who should know.** Append one line to Agent Zero's inbox:
-   `echo "$(date +%H:%M) <YOUR-NAME>: compacting at NN%; checkpoint <path>; next: <one line>" >> ~/SISO_Workspace/SISO_Agents/agent-zero/siso-firstmate/.agents/a0/inbox.log`.
+   `echo "$(date +%H:%M) <YOUR-NAME>: compacting at NN%; checkpoint <path>; next: <one line>" >> ~/SISO_Workspace/SISO_Agents/agent-zero/siso-agent-zero/.agents/a0/inbox.log`.
    If the project has a Work page, also `siso-work checkin "compacting; next: <one line>"`.
 3. **Arm the waiter.**
    ```bash
@@ -52,21 +59,24 @@ On the ask, decide:
      --focus "<what the summary must keep: goal, current step, open threads>" \
      [--resume "<first prompt after; default: Compacted. Read <path> and continue.>"]
    ```
-   It returns at once with `armed (pid N)`.
-4. **End your turn immediately.** Do not call another tool. The waiter only types once your pane is idle, and text
-   typed into a busy pane arrives garbled. After the compaction, the resume prompt arrives as a new turn: read the
+   It returns at once with `armed (pid N)` in herdr, or `armed (SISO Code thread …)` in SISO Code.
+4. **End your turn immediately.** Do not call another tool. The compaction runs only once your turn ends (SISO Code
+   queues it behind the turn; herdr waits for the pane to go idle). After the compaction, the resume prompt arrives as a new turn: read the
    checkpoint and carry on.
 
 ## Refusals (exit 3, nothing typed)
 
-- Outside herdr (no `HERDR_PANE_ID`): run `/compact` by hand or ask the operator.
+- Neither a herdr pane nor a SISO Code thread (no `HERDR_PANE_ID`, no `CLAUDE_CODE_SESSION_ID`): run `/compact` by
+  hand or ask the operator.
+- SISO Code is not answering (it listens on `SISO_CODE_URL`, default `http://127.0.0.1:5490`), or no thread holds
+  your session.
 - `SISO_A0=1`: Agent Zero is compacted by Shaan.
 - A waiter is already armed for your pane (`self-compact status` shows it), the checkpoint file does not exist, or
   your pane does not host a Claude agent.
 
 ## Boundaries
 
-- It only ever types into `$HERDR_PANE_ID`, your own pane. Never point it, or `herdr pane send-text`, at another
+- It only ever compacts you: your own SISO Code thread (found by your session id) or `$HERDR_PANE_ID`, your own pane. Never point it, or `herdr pane send-text`, at another
   agent's pane.
 - If the pane is replaced, the waiter's timeout passes (`--timeout`, default 45 minutes), or the context never drops,
   the waiter logs `failed` and exits without typing the resume prompt. Claude Code's ~95% auto-compact still holds.
