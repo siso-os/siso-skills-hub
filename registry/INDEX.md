@@ -70,6 +70,7 @@
 | skills-catalog | Locate the current skill or router for a capability without relying on a stale duplicated inventory. | bundled |
 | skills-hub-usage | Navigate, discover, install, and use skills from the SISO Skills Hub | bundled |
 | subagents | Spawn and manage parallel subagents for concurrent task execution | bundled |
+| token-ledger | Answer where the Claude tokens went (seat, main vs sub-agents, model, top sessions, waste) from the TOKENS ledger script, not by reading transcripts. | bundled |
 | ui-pick | Rank the 137 curated UI components against a stated need in one ~1.5s parallel Jev call for $0.0006. Reads the curator's verbatim note as intent. Ranks only; design-lab decides by looking. | bundled |
 | writeback | Append one material owner line to a repository log and mirror it to the existing Agent Zero ledger, with safe retries. | bundled |
 
@@ -101,6 +102,6 @@
 
 ---
 
-**Total: 55 skills**
+**Total: 56 skills**
 
 Use `python3 scripts/skills list`, `search <query>`, or `info <skill>` to explore.

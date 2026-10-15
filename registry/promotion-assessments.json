@@ -1066,6 +1066,22 @@
           "observed_at": "2026-10-12"
         }
       ]
+    },
+    {
+      "skill_id": "token-ledger",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "Skills Hub instruction adapter over siso-harness-lab tokens/ledger.py",
+      "reason": "The TOKENS seat owns the script and its ledger in siso-harness-lab; the Hub owns discovery and installation of the instructions that call it.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "live_run",
+          "reference": "siso-harness-lab branch siso/tokens tokens/ledger.py --hours 24 (13,859 calls, $569)",
+          "observed_at": "2026-10-14"
+        }
+      ]
     }
   ],
   "evidence": [
