@@ -2105,6 +2105,44 @@
         "user_invocable": true,
         "status": "experimental"
       }
+    },
+    {
+      "skill_id": "token-ledger",
+      "name": "Token Ledger",
+      "description": "Answer where the Claude tokens went (seat, main vs sub-agents, model, top sessions, waste) from the TOKENS ledger script, not by reading transcripts.",
+      "category": "global",
+      "tags": [
+        "tokens",
+        "usage",
+        "cost",
+        "efficiency"
+      ],
+      "version": "1.0.0",
+      "author": "SISO Team",
+      "repo_url": null,
+      "commit_hash": null,
+      "remote_url": null,
+      "published_at": null,
+      "dependencies": {
+        "skills": [],
+        "packages": [
+          "python3"
+        ]
+      },
+      "install_commands": {
+        "system": "echo 'Python 3 required'",
+        "skill": "echo 'No additional setup required'"
+      },
+      "files": {
+        "required": [
+          "SKILL.md"
+        ],
+        "optional": []
+      },
+      "metadata": {
+        "user_invocable": true,
+        "status": "stable"
+      }
     }
   ]
 }
