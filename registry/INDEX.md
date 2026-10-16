@@ -8,6 +8,7 @@
 
 | Skill | Description | Source |
 |---|---|---|
+| add-module | Add a manifest-discovered Agent Base screen or independently served app using existing module, identity and lifecycle contracts. | bundled |
 | agent-builder | Route bounded work through current Agent Zero ownership; retired template setup is not executed | bundled |
 | agent-setup | Route bounded work through current Agent Zero ownership; retired template setup is not executed | bundled |
 | agent-widgets | Publish bounded data-only agent widgets from explicit operational sources and verify same-data fallback migration. | bundled |
@@ -57,7 +58,7 @@
 | Skill | Description | Source |
 |---|---|---|
 | classify-by-reading | Classify files from their content before assigning consequential current/stale/dead/duplicate/archive verdicts. | bundled |
-| estate-keeper | Keep Shaan's laptop estate clean while working: look before making anything, put new things in their district, one command per move, keys and big files out of git, other agents' work untouched, and report messes to the Estate Manager's inbox. | bundled |
+| estate-keeper | Keep Shaan's laptop estate clean while working: look before making anything, put new things in their district, one command per move, keys and big files out of git, other agents' work untouched, update maps with estate refresh --maps-only at session end, and report messes to the Estate Manager's inbox. | bundled |
 | jev-judgment | Optional intent, completion and progress checks; eligible model/skill/tool selection; bounded Camofox search/navigation; and shadow-only context relevance through the existing OpenRouter transport. | independent |
 | laptop-health | Diagnose and fix a slow or overloaded MacBook with the laptop-health command: power and Low Power Mode first, then CPU speed, RAM, who makes the load, what keeps spawning processes, and leftover servers and browsers. Never kills agents. | bundled |
 | machine-reach | Reach any SISO machine over ssh by the right alias, with fallbacks in order (Tailscale, home LAN, Cloudflare WARP) and a debug ladder when one is down. | bundled |
@@ -102,6 +103,6 @@
 
 ---
 
-**Total: 56 skills**
+**Total: 57 skills**
 
 Use `python3 scripts/skills list`, `search <query>`, or `info <skill>` to explore.
