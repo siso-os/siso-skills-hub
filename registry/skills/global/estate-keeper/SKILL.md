@@ -97,8 +97,9 @@ the top of `~/SISO_Workspace`.
 
 1. Your branch is pushed. Nothing you made is only on this laptop unless it belongs in a data plane.
 2. Scratch files are gone. Use `mktemp -d "${TMPDIR%/}/.siso-ephemeral-<task>.XXXXXX"` with an exit trap.
-3. If you created, moved or retired any folder, run `estate refresh --light` (the maps update themselves) and
-   `estate doctor`. It must show 0 failures.
+3. If you created, moved or retired any folder, run `estate refresh --maps-only` to rebuild district doors and the laptop map from existing
+   inventory, then run `estate doctor`. It must show 0 failures. Hourly `estate refresh --light` remains maintenance;
+   `--maps-only` uses the existing inventory and does not run that maintenance.
 4. **Found a mess outside your task?** That means a second copy, a folder in the wrong district, loose files with no
    home, a stray in `~`, or a key in a file. Do not fix other people's things in passing. Report it and carry on:
    ```bash

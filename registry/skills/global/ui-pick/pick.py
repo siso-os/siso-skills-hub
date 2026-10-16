@@ -12,7 +12,15 @@ This RANKS. It does not decide. Feed the shortlist to `design-lab` and pick by l
 from __future__ import annotations
 import json, os, sys, time
 
-HUB_SKILL = os.path.expanduser("~/.claude/skills/jev-judgment")
+# Jev is a sibling skill. Find it beside this file in the skills hub first, so ui-pick works wherever it is projected
+# and whether or not jev-judgment is (16 Oct: it was dropped from ~/.claude/skills and every seat's ui-pick failed).
+HERE = os.path.dirname(os.path.realpath(__file__))
+JEV_DIRS = [os.path.join(HERE, "..", "jev-judgment"),
+            os.path.expanduser("~/.claude/skills/jev-judgment"),
+            os.path.expanduser("~/SISO_Workspace/SISO_Agents/siso-skills-hub/registry/skills/global/jev-judgment")]
+HUB_SKILL = next((os.path.normpath(d) for d in JEV_DIRS if os.path.isfile(os.path.join(d, "jev.py"))), None)
+if HUB_SKILL is None:
+    sys.exit("ui-pick: jev-judgment not found beside ui-pick or in ~/.claude/skills; looked in: " + ", ".join(JEV_DIRS))
 if HUB_SKILL not in sys.path:
     sys.path.insert(0, HUB_SKILL)
 import jev  # noqa: E402

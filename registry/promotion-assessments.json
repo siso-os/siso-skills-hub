@@ -924,7 +924,7 @@
       "recommendation": "stay_bundled",
       "decision_status": "accepted",
       "target": "Bundled Skills Hub atomic capability",
-      "reason": "Shaan 24 Sep: every agent needs to know how to keep the estate clean; the rules and tools it points to are owned by SISO_Agents/siso-estate, so this stays a bundled global skill rather than its own repo.",
+      "reason": "Shaan 24 Sep: every agent needs to know how to keep the estate clean; the rules and tools it points to are owned by SISO_Agents/siso-estate, so this stays a bundled global skill rather than its own repo. Its session-end map refresh now calls the dedicated maps-only CLI path; hourly --light remains maintenance.",
       "blockers": [],
       "evidence": [
         {
@@ -1080,6 +1080,29 @@
           "kind": "live_run",
           "reference": "siso-harness-lab branch siso/tokens tokens/ledger.py --hours 24 (13,859 calls, $569)",
           "observed_at": "2026-10-14"
+        }
+      ]
+    },
+    {
+      "skill_id": "add-module",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Skills Hub / code / add-module",
+      "reason": "A bounded guide for the existing Agent Base manifest registry; reuses module services rather than generating another shell or credential store.",
+      "blockers": [
+        "Installed shell and remote URL module acceptance remain separate from guide registration."
+      ],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "Agent Base branch siso/agent-base-twenty-20261016, .agents/skills/add-module/SKILL.md and packages/siso-os/src/types.ts",
+          "observed_at": "2026-10-17"
+        },
+        {
+          "kind": "bounded_workflow_exercise",
+          "reference": "Console built-in module and released URL module manager implemented in Agent Base2365e194; registry typecheck passed and module install/collision/removal tests passed. SISO Console real-client fixture rendering passed.",
+          "observed_at": "2026-10-17"
         }
       ]
     }

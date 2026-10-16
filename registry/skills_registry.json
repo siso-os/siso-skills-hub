@@ -1823,7 +1823,7 @@
       },
       "install_commands": {
         "system": "node --version",
-        "skill": "none — copy templates/ next to the round's shots"
+        "skill": "none \u2014 copy templates/ next to the round's shots"
       },
       "files": {
         "required": [
@@ -1841,7 +1841,7 @@
     {
       "skill_id": "estate-keeper",
       "name": "Estate Keeper",
-      "description": "Keep Shaan's laptop estate clean while working: look before making anything, put new things in their district, one command per move, keys and big files out of git, other agents' work untouched, and report messes to the Estate Manager's inbox.",
+      "description": "Keep Shaan's laptop estate clean while working: look before making anything, put new things in their district, one command per move, keys and big files out of git, other agents' work untouched, update maps with estate refresh --maps-only at session end, and report messes to the Estate Manager's inbox.",
       "category": "global",
       "tags": [
         "estate",
@@ -2133,6 +2133,38 @@
         "system": "echo 'Python 3 required'",
         "skill": "echo 'No additional setup required'"
       },
+      "files": {
+        "required": [
+          "SKILL.md"
+        ],
+        "optional": []
+      },
+      "metadata": {
+        "user_invocable": true,
+        "status": "stable"
+      }
+    },
+    {
+      "skill_id": "add-module",
+      "name": "Add Agent Base module",
+      "description": "Add a manifest-discovered Agent Base screen or independently served app using existing module, identity and lifecycle contracts.",
+      "category": "code",
+      "tags": [
+        "siso-os",
+        "agent-base",
+        "modules"
+      ],
+      "version": "0.1.0",
+      "author": "SISO Team",
+      "repo_url": null,
+      "remote_url": null,
+      "commit_hash": null,
+      "published_at": null,
+      "dependencies": {
+        "skills": [],
+        "packages": []
+      },
+      "install_commands": {},
       "files": {
         "required": [
           "SKILL.md"
