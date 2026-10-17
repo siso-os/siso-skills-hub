@@ -67,6 +67,8 @@
 | owner-writeback | Persist owned material state and append an index pointer through the consuming project's existing adapter. | bundled |
 | prove-before-claim | Verify live-state, completion, and changed-contract claims with the smallest applicable probe while reusing existing evidence. | bundled |
 | self-compact | A long-running Claude agent in a herdr pane checkpoints its state, tells Agent Zero, and arms a one-shot waiter that types /compact into its own pane once idle and then the resume prompt, so the seat carries on without anyone typing. | bundled |
+| show-shots | Put screenshots (before/after, every state, laptop and phone) straight into Shaan's SISO Code chat as one html_render page above the reply, so he reviews by looking. | bundled |
+| siso-ui | How any SISO agent builds or restyles UI: the surface's standard and kit first, Shaan's hub picks and rankings, house rules plus the 71 verified evidence rules, machine checks in every state at laptop and phone size, a fresh reviewer, numbered shots for Shaan, approved goldens. | bundled |
 | skill-author | Author, register, validate and safely install one reviewed skill from its owning source. | bundled |
 | skills-catalog | Locate the current skill or router for a capability without relying on a stale duplicated inventory. | bundled |
 | skills-hub-usage | Navigate, discover, install, and use skills from the SISO Skills Hub | bundled |
@@ -103,6 +105,6 @@
 
 ---
 
-**Total: 57 skills**
+**Total: 59 skills**
 
 Use `python3 scripts/skills list`, `search <query>`, or `info <skill>` to explore.

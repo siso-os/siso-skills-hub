@@ -1823,7 +1823,7 @@
       },
       "install_commands": {
         "system": "node --version",
-        "skill": "none \u2014 copy templates/ next to the round's shots"
+        "skill": "none — copy templates/ next to the round's shots"
       },
       "files": {
         "required": [
@@ -2175,6 +2175,60 @@
         "user_invocable": true,
         "status": "stable"
       }
+    },
+    {
+      "skill_id": "show-shots",
+      "name": "Show shots",
+      "description": "Put screenshots (before/after, every state, laptop and phone) straight into Shaan's SISO Code chat as one html_render page above the reply, so he reviews by looking.",
+      "category": "global",
+      "tags": [
+        "ui",
+        "screenshots",
+        "review",
+        "t3",
+        "html_render"
+      ],
+      "version": "1.0.0",
+      "author": "SISO Team",
+      "repo_url": null,
+      "remote_url": null,
+      "commit_hash": null,
+      "published_at": null,
+      "dependencies": null,
+      "install_commands": null,
+      "files": {
+        "required": [
+          "SKILL.md"
+        ]
+      },
+      "metadata": null
+    },
+    {
+      "skill_id": "siso-ui",
+      "name": "SISO UI",
+      "description": "How any SISO agent builds or restyles UI: the surface's standard and kit first, Shaan's hub picks and rankings, house rules plus the 71 verified evidence rules, machine checks in every state at laptop and phone size, a fresh reviewer, numbered shots for Shaan, approved goldens.",
+      "category": "global",
+      "tags": [
+        "ui",
+        "design",
+        "components",
+        "review",
+        "checks"
+      ],
+      "version": "1.0.0",
+      "author": "SISO Team",
+      "repo_url": null,
+      "remote_url": null,
+      "commit_hash": null,
+      "published_at": null,
+      "dependencies": null,
+      "install_commands": null,
+      "files": {
+        "required": [
+          "SKILL.md"
+        ]
+      },
+      "metadata": null
     }
   ]
 }
