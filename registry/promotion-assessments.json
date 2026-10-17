@@ -1105,6 +1105,26 @@
           "observed_at": "2026-10-17"
         }
       ]
+    },
+    {
+      "skill_id": "show-shots",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Skills Hub / global / show-shots",
+      "reason": "One bounded capability: show UI screenshots inside a SISO Code (T3) thread with html_render, numbered so the reader answers per component. Complements ui-iteration-round and siso-ui (what to shoot, how to judge) rather than duplicating them.",
+      "evidence": "Used by the HALO Operator seat on 17 Oct 2026 (Models + Tonight before/after page); Shaan asked for it to become a skill. html_preview on 17 Oct confirmed local PNG paths are inlined as data:image/png URLs (two 1440x1100 shots).",
+      "blockers": []
+    },
+    {
+      "skill_id": "siso-ui",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Skills Hub / global / siso-ui",
+      "reason": "The one entry point for UI work: ties the surface standard, ui-pick, design-lab, show-shots and ui-iteration-round together with the verified rules and machine checks, so agents do not each invent a process.",
+      "evidence": "Built 17 Oct 2026 after Shaan asked why agents build bad UI. Rules graded in siso-design-system principles/VERIFIED.md (92 rules: 71 verified, 17 leads, 4 out). impeccable detect run on her app's v2/model/src (1 finding, the brand font).",
+      "blockers": []
     }
   ],
   "evidence": [
