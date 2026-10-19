@@ -10,6 +10,11 @@ tags:
 
 # PM Tasks — deprecated convenience adapter
 
+> **Not the only task system.** Many SISO projects carry their own file-based tasks at
+> `.agents/tasks/` (Oracle Streaming has ~984 of them) which this skill does NOT read or write.
+> Load `siso-project-front-door` before assuming a project's work lives in Agent Brain.
+
+
 PM Tasks is not an independent task system. It is a temporary convenience alias over `siso-brain` and will retire after its consumers adopt the canonical commands.
 
 ```bash

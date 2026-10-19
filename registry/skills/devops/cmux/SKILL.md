@@ -6,6 +6,7 @@ tags:
   - cmux
   - terminal
   - automation
+disable-model-invocation: true
 ---
 
 # CMUX Skill

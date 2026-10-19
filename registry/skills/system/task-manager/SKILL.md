@@ -10,6 +10,11 @@ tags:
 
 # Task Manager — Agent Brain adapter
 
+> **Not the only task system.** Many SISO projects carry their own file-based tasks at
+> `.agents/tasks/` (Oracle Streaming has ~984 of them) which this skill does NOT read or write.
+> Load `siso-project-front-door` before assuming a project's work lives in Agent Brain.
+
+
 This skill no longer owns or opens a SQLite database. **SISO Agent Brain** is the canonical shared-state service. The local `siso-tasks.py` file preserves familiar commands while forwarding them to the installed `siso-brain` client.
 
 Configure Agent Brain with `SISO_BRAIN_URL` and `SISO_BRAIN_TOKEN`, or its standard token directory. For packaged/test environments, `SISO_BRAIN_CLI` may point at an explicit client command.

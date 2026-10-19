@@ -10,6 +10,11 @@ tags:
 
 # Task Commander — transitional playbook adapter
 
+> **Not the only task system.** Many SISO projects carry their own file-based tasks at
+> `.agents/tasks/` (Oracle Streaming has ~984 of them) which this skill does NOT read or write.
+> Load `siso-project-front-door` before assuming a project's work lives in Agent Brain.
+
+
 Task Commander does not own a database or a workspace topology. It is one step of a future Agent Playbook: select shared work from **SISO Agent Brain**, construct a bounded handoff, then deliver it through the orchestration host selected by that playbook (for the current SISO stack, normally Herdr).
 
 ## 1. Read or claim work
