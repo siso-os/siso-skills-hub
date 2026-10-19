@@ -1,6 +1,6 @@
 ---
 name: websearch
-description: Search the web using Perplexity Sonar via OpenRouter. Use whenever you need current information, documentation, tutorials, or real-time data. Always search before implementing.
+description: Search the web using Perplexity Sonar via OpenRouter when the user requests web research or the task needs current external information.
 version: 1.0.0
 tags:
   - research

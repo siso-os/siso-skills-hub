@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "origin_repository": "SISO_Agent_Base",
+  "origin_commit": "269c8ecd00724d8ab99cb2b260d0f5f52e921771",
+  "admission": "explicit",
+  "kind": "atomic_skill_batch",
+  "skills": [
+    {
+      "skill_id": "classify-by-reading",
+      "source_path": "templates/profile/skills/classify-by-reading/SKILL.md",
+      "source_commit": "269c8ecd00724d8ab99cb2b260d0f5f52e921771",
+      "source_worktree_state": "clean_snapshot",
+      "source_sha256": "b3e0362fb61084f874db843c7fbbcbc1d3b1f3994fd6481456f0afb97c585bcf",
+      "hub_snapshot_path": "registry/skills/global/classify-by-reading/SKILL.md",
+      "hub_snapshot_sha256": "e472cb5cb71ede4016fe85cff323974a9f6833f27b4e11ad4467d2a05d56d08c"
+    },
+    {
+      "skill_id": "prove-before-claim",
+      "source_path": "templates/profile/skills/prove-before-claim/SKILL.md",
+      "source_commit": "269c8ecd00724d8ab99cb2b260d0f5f52e921771",
+      "source_worktree_state": "dirty_snapshot_preserved",
+      "source_sha256": "2705b7fdd4c42291a824f6b0dcf866c43374398f8287b49c721eaa103d388b0a",
+      "hub_snapshot_path": "registry/skills/global/prove-before-claim/SKILL.md",
+      "hub_snapshot_sha256": "3973ff70988f93a42a2d334649095f9fea6bf147b5995e1045e0358ac0b90a2d"
+    },
+    {
+      "skill_id": "skills-catalog",
+      "source_path": "templates/profile/skills/skills-catalog/SKILL.md",
+      "source_commit": "269c8ecd00724d8ab99cb2b260d0f5f52e921771",
+      "source_worktree_state": "dirty_snapshot_preserved",
+      "source_sha256": "cd68072c3c3ce111bc7727d36fb0a05ea12f562a6dd284829056ba1fdb9e8746",
+      "hub_snapshot_path": "registry/skills/global/skills-catalog/SKILL.md",
+      "hub_snapshot_sha256": "3d7f2deeb65fe9e8b233a63460dba117bf90aa0d9f41bc9d718aee63f1255edd"
+    },
+    {
+      "skill_id": "unified-code-search",
+      "source_path": "templates/profile/skills/unified-code-search/SKILL.md",
+      "source_commit": "269c8ecd00724d8ab99cb2b260d0f5f52e921771",
+      "source_worktree_state": "dirty_snapshot_preserved",
+      "source_sha256": "650a0f764732dc17dec9103dc0aeddfd1524b01cda7614d296b3f662f23a4287",
+      "hub_snapshot_path": "registry/skills/code/unified-code-search/SKILL.md",
+      "hub_snapshot_sha256": "fca9f793f48dcf7f42b08efac92299dd895799ef252b395d2ca27568351823f2",
+      "hub_projection_transform": "removed personal absolute path; retained command contract"
+    }
+  ]
+}

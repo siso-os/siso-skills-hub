@@ -108,7 +108,10 @@ class PipelineRunner:
                     return False, str(e)
 
         if skill_md.exists():
-            return True, skill_md.read_text()[:500]
+            return False, (
+                f"Skill '{skill_id}' has no executable (no scripts/*.py or scripts/*.sh) — "
+                f"SKILL.md is prose-only and cannot be invoked as a pipeline step"
+            )
 
         return False, f"No script or SKILL.md found for '{skill_id}'"
 

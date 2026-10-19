@@ -7,6 +7,10 @@ tags: [ui, components, ranking, jev, 21st, design]
 
 # ui-pick
 
+**First:** `~/SISO_Workspace/Great_Library_of_SISO/banks/siso-ui-hub/bin/uihub brief <project>` (the UI hub): most categories already have a decided pick with an install line.
+Rank here for taste, or where the hub has no pick. Whatever you build carries a line `// uihub: <id>`, and
+`uihub check` fails without it.
+
 ```bash
 python3 ~/.claude/skills/ui-pick/pick.py "a notifications dropdown in the top bar"
 ```

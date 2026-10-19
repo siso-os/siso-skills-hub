@@ -130,5 +130,5 @@ For each item write **five or more** ideas, his first. Each idea is one bullet w
 - `templates/compare.html`: the before/after page, driven by `round.json`. Copy both next to the
   shots.
 - Worked example (HALO model app, Dashboard widgets):
-  `apps/oracle-streaming` lane `oracle-worker/src/renderer/public/review/widget-review/`. Round 1
+  `partners/halo/oracle/core` lane `oracle-worker/src/renderer/public/review/widget-review/`. Round 1
   shows what went wrong; round 2 and later follow this skill.
