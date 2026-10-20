@@ -7,7 +7,7 @@ description: Diagnose and fix a slow or overloaded MacBook (load storms, full RA
 
 Shaan's MacBook (M1, 8 cores, 16 GB) runs flat out: 8-10 Claude sessions, DeepSeek and Codex workers, dev servers,
 test browsers, a live stream. When it chokes, do not guess from one `top` snapshot. Run the command; it holds what was
-learned the hard way. Its house is `~/SISO_Workspace/_data/worktrees/siso/live/estate/laptop-health` (read its `AGENTS.md` for the full playbook and the
+learned the hard way. Its house is `~/SISO_Workspace/_data/worktrees/siso/live/ops/estate/laptop-health` (read its `AGENTS.md` for the full playbook and the
 known offenders), and its agent is herdr `LAPTOP`.
 
 ## Run it
@@ -43,9 +43,9 @@ CPU-speed probe use passwordless `sudo` (it works on this laptop).
 - **Never free `heavy` slots held by `live-quiet`** (`sleep 2700` in a slot protects a live Oracle stream).
 - `clean` stops only: dead or duplicate console waiters, dev/file servers whose starter is gone with no clients for 2 h+,
   your Chrome with no windows, agent Chromes whose owner is gone, the idle chrome-devtools-axi browser, and polling
-  loops from ended sessions. Shaan's own servers are in `~/SISO_Workspace/_data/worktrees/siso/live/estate/laptop-health/keep.txt`; add to it when he says
+  loops from ended sessions. Shaan's own servers are in `~/SISO_Workspace/_data/worktrees/siso/live/ops/estate/laptop-health/keep.txt`; add to it when he says
   a thing is his.
-- **Before you start heavy work yourself**, avoid the patterns in `~/SISO_Workspace/_data/worktrees/siso/live/estate/laptop-health/tips.json`: transcribe
+- **Before you start heavy work yourself**, avoid the patterns in `~/SISO_Workspace/_data/worktrees/siso/live/ops/estate/laptop-health/tips.json`: transcribe
   audio with Groq (Keychain `com.siso.groq-api`), not local whisper; `heavy -- vitest --maxWorkers=2`; `tsc-inc`;
   `shot` instead of your own Playwright Chrome; stop the dev server you started when you are done.
 - A bug in someone else's tool: `estate report "<what, where, numbers>"`. New findings go in the house's

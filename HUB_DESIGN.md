@@ -384,7 +384,7 @@ skills_hub/
         │   ├── verify_story/
         │   └── analyze_task/
         │
-        ├── data/                # Data & Search
+        ├── ops/data/                # Data & Search
         │   ├── websearch/
         │   ├── xsearch/
         │   ├── multisearch/
@@ -448,7 +448,7 @@ skills_hub/
 │   └── skills/                # All skills (by category)
 │       ├── devops/
 │       ├── code/
-│       ├── data/
+│       ├── ops/data/
 │       ├── communication/
 │       ├── testing/
 │       ├── system/

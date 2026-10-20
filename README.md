@@ -98,7 +98,7 @@ python3 scripts/skills pipeline list
 │   └── skills/              # Skill directories by category
 │       ├── devops/          # Infrastructure & deployment
 │       ├── code/            # Code generation & implementation
-│       ├── data/            # Search & discovery
+│       ├── ops/data/            # Search & discovery
 │       ├── communication/   # Inter-agent messaging
 │       ├── testing/         # QA & verification
 │       ├── system/          # OS, workspace, task management
@@ -115,7 +115,7 @@ python3 scripts/skills pipeline list
 │   └── research-and-deploy.yml
 ├── templates/skill/         # New skill scaffold
 ├── docs/                   # Integration docs
-├── data/                   # Runtime-data policy; databases are not committed
+├── ops/data/                   # Runtime-data policy; databases are not committed
 └── templates/skill/        # New skill scaffold
 ```
 
