@@ -1125,6 +1125,172 @@
       "reason": "The one entry point for UI work: ties the surface standard, ui-pick, design-lab, show-shots and ui-iteration-round together with the verified rules and machine checks, so agents do not each invent a process.",
       "evidence": "Built 17 Oct 2026 after Shaan asked why agents build bad UI. Rules graded in siso-design-system principles/VERIFIED.md (92 rules: 71 verified, 17 leads, 4 out). impeccable detect run on her app's v2/model/src (1 finding, the brand font).",
       "blockers": []
+    },
+    {
+      "skill_id": "ui-bank",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "Skills Hub canonical instruction source, recovered from workspace projection",
+      "reason": "Module retains canonical source; Hub installs explicitly declared instruction and support files.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "agents/skills/hub/registry/skills/code/ui-bank/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "analyzing-video",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "library/works/unfuck-the-project/skills/analyzing-video",
+      "reason": "Module retains canonical source; Hub installs explicitly declared instruction and support files.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "library/works/unfuck-the-project/skills/analyzing-video",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "superapp-forge",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "agency/factory/method/superapp-forge",
+      "reason": "Module retains canonical source; Hub installs explicitly declared instruction and support files.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "agency/factory/method/superapp-forge",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "siso-owner",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "apps/labs-server/skills/siso-owner",
+      "reason": "Module retains canonical source; Hub installs explicitly declared instruction and support files.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "apps/labs-server/skills/siso-owner",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "siso-plane-ops",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "apps/labs-server/skills/siso-plane-ops",
+      "reason": "Module retains canonical source; Hub installs explicitly declared instruction and support files.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "apps/labs-server/skills/siso-plane-ops",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "siso-project-front-door",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "apps/labs-server/skills/siso-project-front-door",
+      "reason": "Module retains canonical source; Hub installs explicitly declared instruction and support files.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "apps/labs-server/skills/siso-project-front-door",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "siso-project-page",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "apps/labs-server/skills/siso-project-page",
+      "reason": "Module retains canonical source; Hub installs explicitly declared instruction and support files.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "apps/labs-server/skills/siso-project-page",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "haiku-deep-dive",
+      "capability_kind": "orchestration_playbook",
+      "recommendation": "move_to_playbook",
+      "decision_status": "provisional",
+      "target": "Agent Playbook; current Hub entry retained",
+      "reason": "Existing registered orchestration guidance had no assessment, blocking the catalog parity gate. No launcher or routing behavior changed in this audit.",
+      "blockers": [
+        "Separate ownership review before any relocation."
+      ],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "registry/skills/global/haiku-deep-dive/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "haiku-leverage",
+      "capability_kind": "orchestration_playbook",
+      "recommendation": "move_to_playbook",
+      "decision_status": "provisional",
+      "target": "Agent Playbook; current Hub entry retained",
+      "reason": "Existing registered orchestration guidance had no assessment, blocking the catalog parity gate. No launcher or routing behavior changed in this audit.",
+      "blockers": [
+        "Separate ownership review before any relocation."
+      ],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "registry/skills/global/haiku-leverage/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "haiku-team",
+      "capability_kind": "orchestration_playbook",
+      "recommendation": "move_to_playbook",
+      "decision_status": "provisional",
+      "target": "Agent Playbook; current Hub entry retained",
+      "reason": "Existing registered orchestration guidance had no assessment, blocking the catalog parity gate. No launcher or routing behavior changed in this audit.",
+      "blockers": [
+        "Separate ownership review before any relocation."
+      ],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "registry/skills/global/haiku-team/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
     }
   ],
   "evidence": [

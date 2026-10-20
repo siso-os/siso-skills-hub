@@ -23,7 +23,7 @@ $ARGUMENTS
 
 Run the search using Perplexity with Twitter focus:
 ```bash
-python3 ~/SISO_Workspace/.claude/tools/perplexity_search.py "Find recent X/Twitter discussions about: $ARGUMENTS"
+python3 "${CLAUDE_SKILL_DIR:-$HOME/.claude/skills/xsearch}/../websearch/scripts/perplexity_search.py" "Find recent X/Twitter discussions about: $ARGUMENTS"
 ```
 
 Or use WebSearch with site filter:

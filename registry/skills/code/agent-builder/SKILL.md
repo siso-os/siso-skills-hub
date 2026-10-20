@@ -13,7 +13,7 @@ The old V3 template recipe is retired. Do not copy `agent_os` templates or
 create a parallel agent runtime. This skill routes work to its current owner.
 
 1. Resolve the workspace (`${SISO_WORKSPACE:-$HOME/SISO_Workspace}`), then read
-   `SISO_Agents/agent-zero/siso-agent-zero/AGENTS.md` and `routing.json` there.
+   `~/SISO_Workspace/_data/worktrees/siso/live/agents/zero/AGENTS.md` and `routing.json` there.
    Read the target project's instructions and check existing ownership before
    assigning a new bounded job. Reuse its integrating owner; do not duplicate a
    standing agent or interrupt an active session.
@@ -23,7 +23,7 @@ create a parallel agent runtime. This skill routes work to its current owner.
    worktrees. A request for a persistent agent needs the owning project's
    contract; this skill does not scaffold one.
 3. For an authorized bounded execution job, use the existing
-   `SISO_Agents/siso-harness-lab/bin/codex-run` with an explicit model chosen
+   `~/SISO_Workspace/_data/worktrees/siso/live/agents/harness/bin/codex-run` with an explicit model chosen
    from current `routing.json`, an existing working directory, and that brief:
 
    ```bash
@@ -31,7 +31,7 @@ create a parallel agent runtime. This skill routes work to its current owner.
    ```
 
    For an authorized hosted Agent Zero chat, use the existing
-   `SISO_Agents/agent-zero/siso-agent-zero/bin/soul` contract:
+   `~/SISO_Workspace/_data/worktrees/siso/live/agents/zero/bin/soul` contract:
 
    ```bash
    SOUL_MODEL="$reviewed_model" soul "$unique_name" "$brief_file" "$return_file" "$effort"
@@ -50,3 +50,7 @@ Replaces the V3 `agent_os/module_templates/agents/live/v3` recipe on 2026-10-06.
 The prior recipe remains in Git history. `TESTING_AGENT.md` is a historical
 example, not a current launch or browser policy. Agent Zero owns coordination;
 Harness Lab owns `codex-run`; Skills Hub owns this routing entry.
+
+## Setup compatibility
+
+For setup requests, use this same ownership and launcher flow. `agent-setup` remains a refusal shim for the retired V4 installer; its `scripts/setup.sh` exits 2 without mutating the target. Resolve `siso.agents.zero` and `siso.agents.harness` with `bin/siso where` before launching.

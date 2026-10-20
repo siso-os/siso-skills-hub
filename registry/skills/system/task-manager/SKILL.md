@@ -48,3 +48,18 @@ Configure Agent Brain with `SISO_BRAIN_URL` and `SISO_BRAIN_TOKEN`, or its stand
 Raw SQL is intentionally retired. Use stable commands such as `siso-brain tasks`, `siso-brain steps`, `siso-brain memory-recall`, and `siso-brain artifact-latest` so schema changes do not break every agent.
 
 The decomposition decision and receipts live in the Agent Brain repository’s `LEGACY-TASK-STATE-ASSESSMENT.json` and `docs/TASK-STATE-MIGRATION.html`.
+
+## PM compatibility commands
+
+`pm-tasks` is a retained compatibility entry for existing consumers, not a second task system. Its script forwards to the same `siso-brain` client:
+
+```bash
+python3 ~/.claude/skills/pm-tasks/scripts/pm_tasks.py list
+python3 ~/.claude/skills/pm-tasks/scripts/pm_tasks.py mine
+python3 ~/.claude/skills/pm-tasks/scripts/pm_tasks.py create "Build feature X" --desc "Acceptance notes" --priority 8
+python3 ~/.claude/skills/pm-tasks/scripts/pm_tasks.py update TASK-001 in_progress
+python3 ~/.claude/skills/pm-tasks/scripts/pm_tasks.py add-step TASK-001 implement developer --order 1
+python3 ~/.claude/skills/pm-tasks/scripts/pm_tasks.py get TASK-001
+```
+
+New consumers use `siso-brain tasks`, `task-create`, `task-update`, and `step-add` directly. Existing alias calls remain supported until their consumers migrate. Both adapters leave IDs and mutation serialization with Agent Brain; neither opens SQLite or accepts raw SQL.

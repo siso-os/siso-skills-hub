@@ -19,7 +19,7 @@ When asked to research a topic, spawn **3 parallel subagents** using the Task to
 ### Agent 1: Web Search
 - Use websearch skill or run:
 ```bash
-python3 ~/SISO_Workspace/.claude/tools/perplexity_search.py "$ARGUMENTS"
+python3 "${CLAUDE_SKILL_DIR:-$HOME/.claude/skills/multisearch}/../websearch/scripts/perplexity_search.py" "$ARGUMENTS"
 ```
 
 ### Agent 2: GitHub Search
@@ -32,7 +32,7 @@ gh search code "$ARGUMENTS" --limit 10
 ### Agent 3: X/Twitter Search
 - Use xsearch skill or run:
 ```bash
-python3 ~/SISO_Workspace/.claude/tools/perplexity_search.py "Find recent X/Twitter discussions about: $ARGUMENTS"
+python3 "${CLAUDE_SKILL_DIR:-$HOME/.claude/skills/multisearch}/../websearch/scripts/perplexity_search.py" "Find recent X/Twitter discussions about: $ARGUMENTS"
 ```
 
 ## Execution

@@ -11,8 +11,7 @@ Owner: the TOKENS seat. The script reads the session transcripts on disk and cou
 ## Ask
 
 ```sh
-L=~/SISO_Workspace/SISO_Agents/siso-harness-lab/tokens/ledger.py
-[ -f "$L" ] || L=~/SISO_Workspace/_data/worktrees/siso-harness-lab/tokens/tokens/ledger.py
+L=~/SISO_Workspace/_data/worktrees/siso/live/agents/harness/tokens/ledger.py
 heavy -- python3 "$L" --hours 24 --top 10          # last 24 h
 heavy -- python3 "$L" --day 2026-10-14             # one local calendar day
 heavy -- python3 "$L" --hours 6 --json /tmp/t.json # machine-readable
@@ -48,3 +47,5 @@ the fetch-nudge hook's rule: a command is a read only if every piece of it is on
 Run `compare.py` at the moment the change went live and put both columns in `tokens/FINDINGS.md`. Behaviour fixes
 in another seat's work (seats reading on Opus, not delegating) go in `tokens/FINDINGS.md` for EFFICIENCY, who owns
 them at the source.
+
+Resolve current module locations with `bin/siso where` in the live siso checkout: `siso.estate.core`, `siso.estate.laptop-health`, `siso.agents.harness`, and `siso.agents.zero`.

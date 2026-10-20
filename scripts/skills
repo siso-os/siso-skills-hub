@@ -10,6 +10,7 @@ import sys
 import time
 import re
 import tempfile
+from contextlib import ExitStack
 from pathlib import Path
 
 HUB_ROOT = Path(__file__).parent.parent
@@ -28,6 +29,25 @@ RUNTIME_SUFFIXES = (".db", ".db-wal", ".db-shm", ".sqlite", ".sqlite3", ".sqlite
 SECRET_NAMES = ("id_rsa", "id_ed25519", "credentials.json", "secrets.json")
 
 
+def source_root(entry):
+    if not entry.get('source_path'):
+        return SKILLS_DIR.resolve()
+    repo = HUB_ROOT.resolve().parents[2]
+    relative = _safe_relative(entry['source_path'], 'module source')
+    candidate = repo / relative
+    if not candidate.resolve().is_relative_to(repo) or any(p.is_symlink() for p in [candidate, *candidate.parents] if p != repo.parent):
+        raise ValueError('module source escapes repository or uses a symlink')
+    return candidate.resolve()
+
+
+def source_files(entry, skill_dir):
+    if not entry.get('source_path'):
+        return list(skill_dir.rglob('*'))
+    # Module-owned capabilities retain their owner. Only declared support files
+    # are projected; research payloads and runtime state never enter an install.
+    return [skill_dir / _safe_relative(v, 'install file') for v in entry['files']['required']]
+
+
 def _safe_relative(value, label):
     if not isinstance(value, str) or not value or Path(value).is_absolute():
         raise ValueError(f"invalid {label} path")
@@ -43,9 +63,9 @@ def _validate_source(skill_id, entry, skill_dir, check_location=True):
     category = entry.get("category")
     if not isinstance(category, str) or not SAFE_ID.fullmatch(category):
         raise ValueError(f"invalid category for {skill_id}")
-    source_root = SKILLS_DIR.resolve()
+    allowed_root = source_root(entry)
     resolved_dir = skill_dir.resolve()
-    if check_location and not str(resolved_dir).startswith(str(source_root) + os.sep):
+    if check_location and resolved_dir != allowed_root and not str(resolved_dir).startswith(str(allowed_root) + os.sep):
         raise ValueError("skill path escapes the registered source root")
     if not skill_dir.is_dir() or skill_dir.is_symlink():
         raise ValueError("skill source must be a real directory")
@@ -55,6 +75,8 @@ def _validate_source(skill_id, entry, skill_dir, check_location=True):
         path = skill_dir / rel
         if not path.is_file() or path.is_symlink():
             raise ValueError(f"missing or unsafe required file: {value}")
+        if not path.resolve().is_relative_to(skill_dir.resolve()) or any(p.is_symlink() for p in path.parents if p != skill_dir.parent):
+            raise ValueError(f"required file escapes source or uses a symlink: {value}")
     text = (skill_dir / "SKILL.md").read_text(encoding="utf-8")
     if not text.startswith("---\n") or "\n---\n" not in text[4:]:
         raise ValueError("SKILL.md requires YAML frontmatter")
@@ -67,7 +89,7 @@ def _validate_source(skill_id, entry, skill_dir, check_location=True):
             values[key.strip()] = value.strip().strip("'\"")
     if not {"name", "description"}.issubset(fields) or not values.get("name") or not values.get("description"):
         raise ValueError("SKILL.md frontmatter requires name and description")
-    for path in skill_dir.rglob("*"):
+    for path in source_files(entry, skill_dir):
         rel = path.relative_to(skill_dir)
         if any(part in ("", ".", "..") for part in rel.parts):
             raise ValueError("unsafe source path")
@@ -151,10 +173,10 @@ def save_registry(data):
 def cmd_list(args):
     """List all skills"""
     registry = load_registry()
-    skills = registry.get('skills', [])
+    skills = [s for s in registry.get('skills', []) if (s.get('metadata') or {}).get('status') != 'dormant']
 
     if not skills:
-        print("No skills found in registry.")
+        print("[]" if args.json else "No skills found in registry.")
         return 0
 
     if args.category:
@@ -167,7 +189,7 @@ def cmd_list(args):
     print(f"{'SKILL ID':<20} {'NAME':<25} {'CATEGORY':<15} {'STATUS'}")
     print("-" * 70)
     for s in skills:
-        print(f"{s['skill_id']:<20} {s['name']:<25} {s.get('category', 'N/A'):<15} {s.get('metadata', {}).get('status', 'N/A')}")
+        print(f"{s['skill_id']:<20} {s['name']:<25} {s.get('category', 'N/A'):<15} {(s.get('metadata') or {}).get('status', 'N/A')}")
 
     if TELEMETRY_ENABLED:
         track("list", success=True, context=f"category:{args.category or 'all'}")
@@ -181,10 +203,10 @@ def cmd_search(args):
 
     results = [
         s for s in registry.get('skills', [])
-        if query in s['skill_id'].lower()
+        if (s.get('metadata') or {}).get('status') != 'dormant' and (query in s['skill_id'].lower()
         or query in s['name'].lower()
         or query in s.get('description', '').lower()
-        or any(query in tag.lower() for tag in s.get('tags', []))
+        or any(query in tag.lower() for tag in s.get('tags', [])))
     ]
 
     if not results:
@@ -231,6 +253,9 @@ def cmd_info(args):
 
 def find_skill_dir(skill_id):
     """Find a skill directory by searching category subdirs recursively."""
+    entry = next((s for s in load_registry().get('skills', []) if s['skill_id'] == skill_id), {})
+    if entry.get('source_path'):
+        return source_root(entry)
     for root, dirs, files in os.walk(SKILLS_DIR):
         if Path(root).name == skill_id or (Path(root).parent == SKILLS_DIR and Path(root).name == skill_id):
             return Path(root)
@@ -265,6 +290,11 @@ def resolve_agent_skill_path(agent_name, skill_dir):
 
 
 def cmd_install(args):
+    with ExitStack() as stack:
+        return _install(args, stack)
+
+
+def _install(args, stack):
     """Install skill to target (supports cloning from remote)"""
     import subprocess
 
@@ -277,7 +307,7 @@ def cmd_install(args):
         skill_id = skill_spec
 
     registry = load_registry()
-    skill_entry = next((s for s in registry.get("skills", []) if s.get("skill_id") == skill_id), None)
+    skill_entry = next((s for s in registry.get("skills", []) if s.get("skill_id") == skill_id or skill_id in s.get('aliases', [])), None)
     try:
         if not SAFE_ID.fullmatch(skill_id):
             raise ValueError(f"invalid skill ID: {skill_id}")
@@ -296,7 +326,7 @@ def cmd_install(args):
         return 1
 
     # Find skill directory (search recursively in category subdirs)
-    skill_dir = find_skill_dir(skill_id)
+    skill_dir = find_skill_dir(skill_entry['skill_id'])
 
     if not skill_dir and args.agent:
         print("Error: remote skills require explicit --target; staged source cannot establish an agent workspace")
@@ -322,7 +352,6 @@ def cmd_install(args):
         if remote_url:
             print(f"Skill '{skill_id}' not found locally, cloning from {remote_url}...")
             # Clone to temporary location
-            import tempfile
             with tempfile.TemporaryDirectory() as tmpdir:
                 clone_dir = Path(tmpdir) / skill_id
                 try:
@@ -373,6 +402,19 @@ def cmd_install(args):
         return 1
 
     # Resolve target
+    staging = None
+    if skill_entry.get('source_path'):
+        if args.link:
+            print('Error: module sources require copy installation')
+            return 1
+        staging = stack.enter_context(tempfile.TemporaryDirectory(prefix='skills-module-'))
+        staged = Path(staging) / skill_id
+        staged.mkdir()
+        for source in source_files(skill_entry, skill_dir):
+            destination = staged / source.relative_to(skill_dir)
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, destination)
+        skill_dir = staged
     if args.agent:
         target_dir = resolve_agent_skill_path(args.agent, skill_dir)
         print(f"Installing to agent '{args.agent}' (pattern: {'full' if (skill_dir / 'SKILL.md').exists() else 'bare'})")
@@ -413,14 +455,14 @@ def cmd_validate(args):
 
     # Check registry
     registry = load_registry()
-    skill_entry = next((s for s in registry.get('skills', []) if s['skill_id'] == skill_id), None)
+    skill_entry = next((s for s in registry.get('skills', []) if s['skill_id'] == skill_id or skill_id in s.get('aliases', [])), None)
 
     if not skill_entry:
         print(f"Error: Skill '{skill_id}' not found in registry")
         return 1
 
     # Check skill directory
-    skill_dir = find_skill_dir(skill_id)
+    skill_dir = find_skill_dir(skill_entry['skill_id'])
     if not skill_dir:
         print(f"Error: Skill directory for '{skill_id}' not found")
         return 1

@@ -48,7 +48,7 @@ assert consumer_states["task-manager"] == "migrated"
 assert consumer_states["skills telemetry scripts"] == "reclassified"
 
 for entry in entries:
-    candidates = list(SKILLS.glob(f"*/{entry['skill_id']}"))
+    candidates = [ROOT.parents[2] / entry['source_path']] if entry.get('source_path') else list(SKILLS.glob(f"*/{entry['skill_id']}"))
     assert len(candidates) == 1, f"expected one bundled source for {entry['skill_id']}, found {len(candidates)}"
     assert (candidates[0] / "SKILL.md").is_file(), f"missing SKILL.md for {entry['skill_id']}"
     if entry.get("remote_url"):
@@ -146,6 +146,7 @@ assert stats['count'] == 1 and stats['success_rate'] == 1.0
     assert telemetry_db.is_file()
 
 run(["python3", "scripts/test_skills_installer.py"], stdout=subprocess.DEVNULL)
+run(["python3", "scripts/test_audit_contract.py"], stdout=subprocess.DEVNULL)
 run(["python3", "scripts/test_writeback.py"], stdout=subprocess.DEVNULL)
 run(["python3", "-B", "-m", "unittest", "discover", "-s", "registry/skills/global/jev-judgment/tests", "-p", "test_*.py"], stdout=subprocess.DEVNULL)
 

@@ -16,13 +16,15 @@ def render():
     entries = json.loads(REGISTRY.read_text()).get("skills", [])
     by_category = defaultdict(list)
     for entry in entries:
+        if (entry.get('metadata') or {}).get('status') == 'dormant':
+            continue
         by_category[entry["category"]].append(entry)
 
     lines = ["# Skill Registry", "", "> Auto-generated from `skills_registry.json`. Do not edit manually.", "", "## Categories", ""]
     for category in sorted(by_category):
         lines.extend([f"### {category}", "", "| Skill | Description | Source |", "|---|---|---|"])
         for entry in sorted(by_category[category], key=lambda item: item["skill_id"]):
-            source = "independent" if entry.get("remote_url") else "bundled"
+            source = entry.get('source_path') or ("independent" if entry.get("remote_url") else "bundled")
             lines.append(f"| {entry['skill_id']} | {entry['description']} | {source} |")
         lines.append("")
     lines.extend(["---", "", f"**Total: {len(entries)} skills**", "", "Use `python3 scripts/skills list`, `search <query>`, or `info <skill>` to explore.", ""])

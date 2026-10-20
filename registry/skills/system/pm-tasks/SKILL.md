@@ -1,31 +1,10 @@
 ---
 name: pm-tasks
-description: Deprecated PM convenience aliases backed by the canonical SISO Agent Brain task API.
-version: 2.0.0
-tags:
-  - task-management
-  - pm
-  - deprecated-adapter
+description: Compatibility alias for task-manager; use its canonical Agent Brain guidance.
+version: 2.0.1
+canonical: task-manager
 ---
 
-# PM Tasks — deprecated convenience adapter
+# PM Tasks compatibility entry
 
-> **Not the only task system.** Many SISO projects carry their own file-based tasks at
-> `.agents/tasks/` (Oracle Streaming has ~984 of them) which this skill does NOT read or write.
-> Load `siso-project-front-door` before assuming a project's work lives in Agent Brain.
-
-
-PM Tasks is not an independent task system. It is a temporary convenience alias over `siso-brain` and will retire after its consumers adopt the canonical commands.
-
-```bash
-python3 scripts/pm_tasks.py list
-python3 scripts/pm_tasks.py mine
-python3 scripts/pm_tasks.py create "Build feature X" --desc "Acceptance notes" --priority 8
-python3 scripts/pm_tasks.py update TASK-001 in_progress
-python3 scripts/pm_tasks.py add-step TASK-001 implement developer --order 1
-python3 scripts/pm_tasks.py get TASK-001
-```
-
-This adapter never opens SQLite, never composes SQL, and never generates count-based IDs. Agent Brain creates missing IDs and serializes task mutations.
-
-Use the `task-manager` adapter for artifacts, memories, task-step claims, and execution events. New integrations should call `siso-brain` directly.
+Follow the installed `task-manager` skill, including its PM compatibility commands. Canonical source: `agents/skills/hub/registry/skills/system/task-manager/SKILL.md` in sisodias/siso. `scripts/pm_tasks.py` remains supported for existing consumers and routes to `siso-brain`. No separate task store or raw SQL is provided.
