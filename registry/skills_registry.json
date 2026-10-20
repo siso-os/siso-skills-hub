@@ -32,7 +32,9 @@
       },
       "metadata": {
         "user_invocable": true,
-        "status": "experimental"
+        "status": "dormant",
+        "previous_status": "experimental",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
       }
     },
     {
@@ -222,7 +224,9 @@
       },
       "metadata": {
         "user_invocable": true,
-        "status": "stable"
+        "status": "dormant",
+        "previous_status": "stable",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
       }
     },
     {
@@ -464,7 +468,9 @@
       },
       "metadata": {
         "user_invocable": true,
-        "status": "stable"
+        "status": "dormant",
+        "previous_status": "stable",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
       }
     },
     {
@@ -596,7 +602,7 @@
       "skill_id": "task-commander",
       "name": "Task Commander",
       "description": "Log tasks and communicate with agents using the SISO task database",
-      "category": "system",
+      "category": "communication",
       "tags": [
         "task",
         "messaging",
@@ -713,14 +719,16 @@
       },
       "metadata": {
         "user_invocable": true,
-        "status": "stable"
+        "status": "dormant",
+        "previous_status": "stable",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
       }
     },
     {
       "skill_id": "verify_story",
       "name": "Verify Story",
       "description": "Verify a story implementation meets acceptance criteria",
-      "category": "testing",
+      "category": "code",
       "tags": [
         "verification",
         "testing",
@@ -752,7 +760,10 @@
       "metadata": {
         "user_invocable": true,
         "status": "stable"
-      }
+      },
+      "aliases": [
+        "verify-story"
+      ]
     },
     {
       "skill_id": "websearch",
@@ -870,7 +881,9 @@
       },
       "metadata": {
         "user_invocable": true,
-        "status": "stable"
+        "status": "dormant",
+        "previous_status": "stable",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
       }
     },
     {
@@ -950,7 +963,9 @@
       },
       "metadata": {
         "user_invocable": true,
-        "status": "stable"
+        "status": "dormant",
+        "previous_status": "stable",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
       }
     },
     {
@@ -989,7 +1004,9 @@
       },
       "metadata": {
         "user_invocable": true,
-        "status": "stable"
+        "status": "dormant",
+        "previous_status": "stable",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
       }
     },
     {
@@ -1227,8 +1244,10 @@
       },
       "metadata": {
         "user_invocable": true,
-        "status": "stable",
-        "ownership": "consumer-adapter"
+        "status": "dormant",
+        "ownership": "consumer-adapter",
+        "previous_status": "stable",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
       }
     },
     {
@@ -1255,8 +1274,10 @@
       },
       "metadata": {
         "user_invocable": true,
-        "status": "experimental",
-        "ownership": "playbook-adapter"
+        "status": "dormant",
+        "ownership": "playbook-adapter",
+        "previous_status": "experimental",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
       }
     },
     {
@@ -1294,7 +1315,9 @@
       },
       "metadata": {
         "user_invocable": true,
-        "status": "stable"
+        "status": "dormant",
+        "previous_status": "stable",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
       }
     },
     {
@@ -1539,7 +1562,9 @@
       },
       "metadata": {
         "user_invocable": true,
-        "status": "experimental"
+        "status": "dormant",
+        "previous_status": "experimental",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
       }
     },
     {
@@ -1575,7 +1600,9 @@
       },
       "metadata": {
         "user_invocable": true,
-        "status": "experimental"
+        "status": "dormant",
+        "previous_status": "experimental",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
       }
     },
     {
@@ -1693,9 +1720,11 @@
       },
       "metadata": {
         "user_invocable": false,
-        "status": "stable",
+        "status": "dormant",
         "source_commit": "269c8ecd00724d8ab99cb2b260d0f5f52e921771",
-        "ownership": "canonical-hub"
+        "ownership": "canonical-hub",
+        "previous_status": "stable",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
       }
     },
     {
@@ -1733,9 +1762,11 @@
       },
       "metadata": {
         "user_invocable": false,
-        "status": "stable",
+        "status": "dormant",
         "source_commit": "269c8ecd00724d8ab99cb2b260d0f5f52e921771",
-        "ownership": "canonical-hub"
+        "ownership": "canonical-hub",
+        "previous_status": "stable",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
       }
     },
     {
@@ -1823,7 +1854,7 @@
       },
       "install_commands": {
         "system": "node --version",
-        "skill": "none — copy templates/ next to the round's shots"
+        "skill": "none \u2014 copy templates/ next to the round's shots"
       },
       "files": {
         "required": [
@@ -1913,7 +1944,9 @@
       },
       "metadata": {
         "user_invocable": true,
-        "status": "experimental"
+        "status": "dormant",
+        "previous_status": "experimental",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
       }
     },
     {
@@ -2031,7 +2064,10 @@
       "metadata": {
         "user_invocable": true,
         "status": "stable"
-      }
+      },
+      "aliases": [
+        "i-have-adhd"
+      ]
     },
     {
       "skill_id": "agent-widgets",
@@ -2229,6 +2265,288 @@
         ]
       },
       "metadata": null
+    },
+    {
+      "skill_id": "haiku-leverage",
+      "name": "Haiku Leverage",
+      "description": "How an Opus seat uses Haiku 5.5 sub-agents as its arms and legs for reading, searching and checking.",
+      "category": "global",
+      "tags": [
+        "haiku",
+        "delegation",
+        "cost"
+      ],
+      "version": "1.0.0",
+      "author": "SISO Team",
+      "repo_url": null,
+      "commit_hash": null,
+      "remote_url": null,
+      "published_at": null,
+      "dependencies": {
+        "skills": [],
+        "packages": []
+      },
+      "install_commands": {
+        "system": "echo 'No system dependencies'",
+        "skill": "echo 'No additional setup required'"
+      },
+      "files": {
+        "required": [
+          "SKILL.md"
+        ],
+        "optional": [
+          "README.md"
+        ]
+      },
+      "metadata": {
+        "user_invocable": false,
+        "status": "stable",
+        "source_commit": null,
+        "ownership": "canonical-hub"
+      }
+    },
+    {
+      "skill_id": "haiku-deep-dive",
+      "name": "Haiku Deep Dive",
+      "description": "Opus scopes a topic, 6 to 12 Haiku scouts each take one slice across laptop, GitHub, boxes and Shaan's words, and the Opus answers in one plain reply.",
+      "category": "global",
+      "tags": [
+        "haiku",
+        "research",
+        "delegation"
+      ],
+      "version": "1.0.0",
+      "author": "SISO Team",
+      "repo_url": null,
+      "commit_hash": null,
+      "remote_url": null,
+      "published_at": null,
+      "dependencies": {
+        "skills": [],
+        "packages": []
+      },
+      "install_commands": {
+        "system": "echo 'No system dependencies'",
+        "skill": "echo 'No additional setup required'"
+      },
+      "files": {
+        "required": [
+          "SKILL.md"
+        ],
+        "optional": [
+          "README.md"
+        ]
+      },
+      "metadata": {
+        "user_invocable": false,
+        "status": "stable",
+        "source_commit": null,
+        "ownership": "canonical-hub"
+      }
+    },
+    {
+      "skill_id": "haiku-team",
+      "name": "Haiku Team",
+      "description": "Workflow-run Haiku teams: scouts per team report to a Haiku owner who merges; the caller gets one return per team, not one ping per Haiku.",
+      "category": "global",
+      "tags": [
+        "haiku",
+        "workflow",
+        "delegation"
+      ],
+      "version": "1.0.0",
+      "author": "SISO Team",
+      "repo_url": null,
+      "commit_hash": null,
+      "remote_url": null,
+      "published_at": null,
+      "dependencies": {
+        "skills": [],
+        "packages": []
+      },
+      "install_commands": {
+        "system": "echo 'No system dependencies'",
+        "skill": "echo 'No additional setup required'"
+      },
+      "files": {
+        "required": [
+          "SKILL.md"
+        ],
+        "optional": [
+          "README.md"
+        ]
+      },
+      "metadata": {
+        "user_invocable": false,
+        "status": "stable",
+        "source_commit": null,
+        "ownership": "canonical-hub"
+      }
+    },
+    {
+      "skill_id": "ui-bank",
+      "name": "ui-bank",
+      "description": "Shaan's curated UI component bank (21st.dev picks with his verbatim notes + 300 rubric-rated candidates), with per-project presets (operator, models-app, landing). Use BEFORE building any UI component or screen for the Oracle streaming operator dashboard, the Oracle models app, or any SISO product \u2014 \"which component should I use for X\", \"is there a comp for a login/chart/notifications/leaderboard/calendar/chat input\", \"A/B these comps\", \"open the bank\", or when Shaan pastes 21st.dev URLs with reactions. Entry points are brief.mjs and registry/curated/query.mjs in siso-ui-base.",
+      "category": "code",
+      "version": "1.0.0",
+      "tags": [
+        "recovered-projection"
+      ],
+      "files": {
+        "required": [
+          "SKILL.md"
+        ]
+      },
+      "metadata": {
+        "status": "active",
+        "user_invocable": true
+      }
+    },
+    {
+      "skill_id": "analyzing-video",
+      "name": "analyzing-video",
+      "description": "Extract frames or scenes from a video with ffmpeg and analyse them in parallel. Use when a human shares a screen recording, Loom, or .mp4 to review.",
+      "category": "code",
+      "source_path": "library/works/unfuck-the-project/skills/analyzing-video",
+      "version": "1.0.0",
+      "tags": [
+        "recovered-projection"
+      ],
+      "files": {
+        "required": [
+          ".gitignore",
+          "LICENSE",
+          "README.md",
+          "SKILL.md",
+          "references/analysis-strategies.md",
+          "references/ffmpeg-commands.md",
+          "references/transcription-guide.md",
+          "scripts/extract-audio.sh",
+          "scripts/extract-frames.sh",
+          "scripts/video-info.sh"
+        ]
+      },
+      "metadata": {
+        "status": "dormant",
+        "user_invocable": true,
+        "previous_status": "active",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
+      }
+    },
+    {
+      "skill_id": "superapp-forge",
+      "name": "superapp-forge",
+      "description": "Research an industry end-to-end and produce an open-source super-app blueprint \u2014 find the specific operator, map their working day, map the commercial tools that own each step, sweep GitHub wide for open-source replacements, then assemble the best of them into one coherent app design. Use when asked to research an industry, find what open source exists for a vertical, build an industry research pack, work out what a super-app for a profession would contain, or add an industry to the SISO industry index. Triggers \u2014 \"research this industry\", \"super app for X\", \"what open source exists for\", \"industry pack\", \"industry index\", \"what do X use and what could replace it\".",
+      "category": "code",
+      "source_path": "agency/factory/method/superapp-forge",
+      "version": "1.0.0",
+      "tags": [
+        "recovered-projection"
+      ],
+      "files": {
+        "required": [
+          "SKILL.md"
+        ]
+      },
+      "metadata": {
+        "status": "dormant",
+        "user_invocable": true,
+        "previous_status": "active",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
+      }
+    },
+    {
+      "skill_id": "siso-owner",
+      "name": "siso-owner",
+      "description": "How to BE a SISO domain owner, and how to dispatch one. Load at the start of any owned task, and before spawning any agent. Use when you are given a domain, when a task says \"you are the owner\", or when you are about to write a brief for another agent.",
+      "category": "code",
+      "source_path": "apps/labs-server/skills/siso-owner",
+      "version": "1.0.0",
+      "tags": [
+        "recovered-projection"
+      ],
+      "files": {
+        "required": [
+          "CORE-PACKET.md",
+          "SKILL.md"
+        ]
+      },
+      "metadata": {
+        "status": "dormant",
+        "user_invocable": true,
+        "previous_status": "active",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
+      }
+    },
+    {
+      "skill_id": "siso-plane-ops",
+      "name": "siso-plane-ops",
+      "description": "Run SISO's Plane workspace (projects, work items, states, labels, assignees, cycles, modules, pages, views, comments) from the command line. Use whenever asked to create/list/update a project or task, check what SISO is working on, or wire an agent into the task system.",
+      "category": "code",
+      "source_path": "apps/labs-server/skills/siso-plane-ops",
+      "version": "1.0.0",
+      "tags": [
+        "recovered-projection"
+      ],
+      "files": {
+        "required": [
+          "PROJECTS.md",
+          "REFERENCE.md",
+          "SKILL.md",
+          "scripts/plane",
+          "scripts/refresh-projects"
+        ]
+      },
+      "metadata": {
+        "status": "dormant",
+        "user_invocable": true,
+        "previous_status": "active",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
+      }
+    },
+    {
+      "skill_id": "siso-project-front-door",
+      "name": "siso-project-front-door",
+      "description": "Find where a SISO project's real code, tasks, docs and history live before doing any work. Use at the START of any task on a SISO project \u2014 especially Oracle Streaming \u2014 or when asked \"where is X\", \"what repo is this\", \"what tasks exist\", or when a repo's README or main branch seems to disagree with reality.",
+      "category": "code",
+      "source_path": "apps/labs-server/skills/siso-project-front-door",
+      "version": "1.0.0",
+      "tags": [
+        "recovered-projection"
+      ],
+      "files": {
+        "required": [
+          "SKILL.md"
+        ]
+      },
+      "metadata": {
+        "status": "dormant",
+        "user_invocable": true,
+        "previous_status": "active",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
+      }
+    },
+    {
+      "skill_id": "siso-project-page",
+      "name": "siso-project-page",
+      "description": "Build or refresh a SISO project's front door \u2014 the one page that shows every repo, doc, app and layer of a project so an agent with no repo access can orient. Use when onboarding a project into the SISO workspace, when asked for a project hub/one-pager/front-end, or when a project's map has drifted from the code.",
+      "category": "code",
+      "source_path": "apps/labs-server/skills/siso-project-page",
+      "version": "1.0.0",
+      "tags": [
+        "recovered-projection"
+      ],
+      "files": {
+        "required": [
+          "SKILL.md"
+        ]
+      },
+      "metadata": {
+        "status": "dormant",
+        "user_invocable": true,
+        "previous_status": "active",
+        "status_reason": "No observed invocation or definition-path mention in 2026-10-20 audit; retained and explicitly installable."
+      }
     }
   ]
 }

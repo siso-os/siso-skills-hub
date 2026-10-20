@@ -23,7 +23,7 @@ $ARGUMENTS
 
 1. Run the search using this command:
 ```bash
-python3 ${CLAUDE_SKILL_DIR}/scripts/perplexity_search.py "$ARGUMENTS"
+python3 "${CLAUDE_SKILL_DIR:-$HOME/.claude/skills/websearch}/scripts/perplexity_search.py" "$ARGUMENTS"
 ```
 
 2. Read the output carefully

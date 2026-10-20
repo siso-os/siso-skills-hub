@@ -5,7 +5,7 @@ description: Reach any SISO machine over ssh (laptop, Mac mini, siso-vps, halo-v
 
 # Reaching the machines
 
-Owner: HEALTH (`SISO_Agents/laptop-health`). Measured 2 Oct 2026 from the laptop (Shaan works away from home; the
+Owner: HEALTH (`~/SISO_Workspace/_data/worktrees/siso/live/estate/laptop-health`). Measured 2 Oct 2026 from the laptop (Shaan works away from home; the
 laptop is NOT on the mini's home LAN). Aliases live in `~/.ssh/config` (shared; back it up before editing:
 `cp -p ~/.ssh/config ~/.ssh/config.bak-$(date +%Y%m%d)-<why>`).
 
@@ -40,4 +40,6 @@ laptop is NOT on the mini's home LAN). Aliases live in `~/.ssh/config` (shared; 
 6. No route answers and Tailscale says offline: it needs Shaan at the machine (power or wake). Ask in one line:
    "Press the Mac mini's power button once, wait 2 minutes."
 
-Live state of every machine: `estate fleet` (SISO_Agents/siso-estate), `health-watch status` (laptop-health).
+Live state of every machine: `estate fleet` (~/SISO_Workspace/_data/worktrees/siso/live/estate/core), `health-watch status` (laptop-health).
+
+Resolve current module locations with `bin/siso where` in the live siso checkout: `siso.estate.core`, `siso.estate.laptop-health`, `siso.agents.harness`, and `siso.agents.zero`.

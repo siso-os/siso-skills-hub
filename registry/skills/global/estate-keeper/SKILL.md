@@ -8,7 +8,7 @@ description: Keep Shaan's laptop estate clean while you work. Use before you cre
 Everything on this laptop has one home on one map: `~/SISO_Workspace` is the private repo `sisodias/siso-city`, and
 every repo sits at one path in it. Shaan's goal: the dumbest agent finds anything, and nothing lives in two places.
 You keep it that way by following six habits. The Estate Manager (herdr agent `ESTATE`, repo
-`SISO_Agents/siso-estate`) cleans up after the fact; this skill stops the mess being made.
+`~/SISO_Workspace/_data/worktrees/siso/live/estate/core`) cleans up after the fact; this skill stops the mess being made.
 
 ## 1. Look before you make anything
 
@@ -24,7 +24,7 @@ If it exists, use it. Do not make a second copy, a `-v2`, a `-new` or a clone "j
 
 Ask the map, not this page: `estate new <island>/<compound>[/<building>] --what "..."` dry-runs the placement, names
 it, and refuses a second building for a job that already has an owner (`--run` makes it). The rule behind it is
-`SISO_Agents/siso-estate/docs/LEGEND.md` §5, three questions in order: which part of the business does it serve;
+`~/SISO_Workspace/_data/worktrees/siso/live/estate/core/docs/LEGEND.md` §5, three questions in order: which part of the business does it serve;
 does something already do this job; is it code, data or a run.
 
 | It serves | It goes in |
@@ -49,10 +49,13 @@ Rules the map is built on:
 
 ### Hidden folders (ADR 0015)
 
-- **`.agents/` is the one agent folder in a repo**, whatever the harness: `HANDOFF.md`, `memory/`, `source/`, `tasks/`,
-  `skills/`, `briefs/`, `runs/`. Do not start a `.memory/`, `.plans/`, `.scratch/`, `.orchestrate/` or `.tasks/`.
+- **`.agents/` is the one state root in a repo** (ADR 0029). Each seat writes only
+  `.agents/agents/<seat>/{memory/,HANDOFF.md,notes/,lessons/,session-context/}`. `.agents/memory/` is reviewed repo-wide
+  facts only. Cross-project state follows the same layout in `~/SISO_Workspace/.agents/`.
+  Keep existing mixed state read-only; the harness importer copies it without removing or overwriting originals.
+  Do not start a `.memory/`, `.plans/`, `.scratch/`, `.orchestrate/` or `.tasks/`.
 - `.claude/`, `.codex/`, `.cursor/` hold that harness's config only. `.uihub/` is the UI loop (siso-project-os).
-- Tool state (`.omc/`, `.playwright-cli/`, `.wrangler/`, `.serena/cache/`, `.claude/session-context/`) is never
+- Tool state (`.omc/`, `.playwright-cli/`, `.wrangler/`, `.serena/cache/`) and per-agent runtime state are never
   committed; the machine-wide git ignore already hides it.
 - A hook (`estate-guard`) blocks a new folder at the top of `~/SISO_Workspace` or in `~`, and a worktree outside
   `_data/worktrees/`. If it blocks you, it says where the thing goes.
@@ -60,7 +63,7 @@ Rules the map is built on:
 ## 3. The one command for each move
 
 ```bash
-E=~/SISO_Workspace/SISO_Agents/siso-estate
+E=~/SISO_Workspace/_data/worktrees/siso/live/estate/core
 python3 $E/tools/houses.py house <folder> --repo <name> --why "..."    # loose work becomes its own private repo
 python3 $E/tools/houses.py sync <folder> --why "..."                   # every branch, stash and edit up to GitHub
 estate move <src> <dst> --no-link --why "..."                          # move a folder; records it, repairs worktrees
@@ -106,10 +109,12 @@ the top of `~/SISO_Workspace`.
    estate report "<what you found, and where>"    # one line in the Estate Manager's inbox; read at its next boot
    ```
    Do not ask Shaan about it and do not fix it in passing.
-   The inbox is `SISO_Agents/siso-estate/.agents/INBOX.md`; `estate brief` shows it.
+   The inbox is `~/SISO_Workspace/_data/worktrees/siso/live/estate/core/.agents/INBOX.md`; `estate brief` shows it.
 
 ## Where the detail lives
 
-`~/SISO_Workspace/AGENTS.md` is the city map. `SISO_Agents/siso-estate/AGENTS.md` and its `docs/adr/` hold the rules and why.
-The Estate Manager's own skills are in `SISO_Agents/siso-estate/.claude/skills/` (move, house and retire, backups and
+`~/SISO_Workspace/AGENTS.md` is the city map. `~/SISO_Workspace/_data/worktrees/siso/live/estate/core/AGENTS.md` and its `docs/adr/` hold the rules and why.
+The Estate Manager's own skills are in `~/SISO_Workspace/_data/worktrees/siso/live/estate/core/.claude/skills/` (move, house and retire, backups and
 secrets, delete and archive, Downloads).
+
+Resolve current module locations with `bin/siso where` in the live siso checkout: `siso.estate.core`, `siso.estate.laptop-health`, `siso.agents.harness`, and `siso.agents.zero`.

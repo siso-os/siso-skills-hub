@@ -6,7 +6,7 @@ description: Compact your own context and carry on without anyone typing for you
 # Self-compact
 
 Claude Code will not let you run `/compact` on yourself, so `self-compact` (source
-`SISO_Agents/siso-harness-lab/bin/self-compact`) has it done for you once your turn ends. It picks the path itself:
+`~/SISO_Workspace/_data/worktrees/siso/live/agents/harness/bin/self-compact`) has it done for you once your turn ends. It picks the path itself:
 
 - **In a SISO Code thread** (most seats now): it asks SISO Code to queue `/compact` behind your current turn, then your
   resume prompt, on your own thread. That is the same compaction the composer's Compact button runs.
@@ -17,7 +17,7 @@ Either way you come back with a fresh window and a pointer to your own checkpoin
 yourself", that is the ask: do the four steps below.
 
 Only Claude Code's own auto-compact (about 95%) sits underneath as a last-resort net, with the PreCompact hook
-writing a template checkpoint to `<repo>/.claude/session-context/`. Nothing compacts you earlier: on 1 Oct an agent
+writing a metadata checkpoint to `<repo>/.agents/agents/<seat>/session-context/`. Nothing compacts you earlier: on 1 Oct an agent
 was auto-compacted mid-conversation with Shaan at a forced 45%, and he reversed it: "we kind of want to leave the
 reasoning up to the agents". You choose the moment and you write the checkpoint yourself.
 
@@ -43,15 +43,18 @@ context meter beside the composer shows it).
 
 ## The four steps
 
-1. **Write the checkpoint where it belongs.** That is the owning repo's `.agents/HANDOFF.md` (new top entry), or
-   your lane or brief file if you have one. It must stand alone for a reader who remembers nothing:
+1. **Write the checkpoint where it belongs.** Resolve your persistent identity with `SISO_SEAT` or `SISO_AGENT_NAME`;
+   `node agents/harness/bin/agent-state.mjs init` prints your paths in the monorepo. Use the owning repo's
+   `.agents/agents/<seat>/HANDOFF.md` (new top entry). Keep notes, memory and lessons under that same agent folder.
+   `.agents/memory/` contains only reviewed facts needed by every agent. Never write state below `.claude/`.
+   It must stand alone for a reader who remembers nothing:
    - **Done:** what now works and how it was checked, with commit hashes.
    - **Next:** the exact next action, then the rest of the plan.
    - **Open threads:** workers running (names, panes, where results land), waits, promises to Shaan or Agent Zero.
    - **Key paths:** the files, briefs, receipts and commands you will need first.
    - **Shaan's words:** the ask in his words, so the goal survives the summary.
 2. **Tell who should know.** Append one line to Agent Zero's inbox:
-   `echo "$(date +%H:%M) <YOUR-NAME>: compacting at NN%; checkpoint <path>; next: <one line>" >> ~/SISO_Workspace/SISO_Agents/agent-zero/siso-agent-zero/.agents/a0/inbox.log`.
+   `echo "$(date +%H:%M) <YOUR-NAME>: compacting at NN%; checkpoint <path>; next: <one line>" >> ~/SISO_Workspace/_data/worktrees/siso/live/agents/zero/.agents/a0/inbox.log`.
    If the project has a Work page, also `siso-work checkin "compacting; next: <one line>"`.
 3. **Arm the waiter.**
    ```bash
@@ -82,3 +85,5 @@ context meter beside the composer shows it).
   the waiter logs `failed` and exits without typing the resume prompt. Claude Code's ~95% auto-compact still holds.
 - Everything it does is logged to `~/.local/state/self-compact/log.jsonl` (`armed`, `compact-typed`, `resumed` with
   context before and after, `refused`, `failed`).
+
+Resolve current module locations with `bin/siso where` in the live siso checkout: `siso.estate.core`, `siso.estate.laptop-health`, `siso.agents.harness`, and `siso.agents.zero`.

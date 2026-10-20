@@ -7,6 +7,7 @@
     "build:index": "python3 scripts/build_index.py",
     "build:promotion-map": "python3 scripts/build_promotion_map.py",
     "check:index": "python3 scripts/build_index.py --check",
-    "test": "python3 scripts/check.py"
+    "test": "python3 scripts/check.py",
+    "build:audit": "python3 scripts/build_audit_index.py"
   }
 }

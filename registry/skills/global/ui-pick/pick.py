@@ -17,7 +17,7 @@ import json, os, sys, time
 HERE = os.path.dirname(os.path.realpath(__file__))
 JEV_DIRS = [os.path.join(HERE, "..", "jev-judgment"),
             os.path.expanduser("~/.claude/skills/jev-judgment"),
-            os.path.expanduser("~/SISO_Workspace/SISO_Agents/siso-skills-hub/registry/skills/global/jev-judgment")]
+            os.path.expanduser("~/SISO_Workspace/_data/worktrees/siso/live/agents/skills/hub/registry/skills/global/jev-judgment")]
 HUB_SKILL = next((os.path.normpath(d) for d in JEV_DIRS if os.path.isfile(os.path.join(d, "jev.py"))), None)
 if HUB_SKILL is None:
     sys.exit("ui-pick: jev-judgment not found beside ui-pick or in ~/.claude/skills; looked in: " + ", ".join(JEV_DIRS))
@@ -25,8 +25,8 @@ if HUB_SKILL not in sys.path:
     sys.path.insert(0, HUB_SKILL)
 import jev  # noqa: E402
 
-PICKS = os.path.expanduser(
-    "~/SISO_Workspace/Great_Library_of_SISO/banks/siso-ui-base/registry/curated/picks.jsonl")
+PICKS = os.path.expanduser(os.environ.get("SISO_UI_PICKS",
+    "~/SISO_Workspace/_data/worktrees/siso/live/library/banks/siso-ui-base/registry/curated/picks.jsonl"))
 BATCH = 70          # keeps state+questions well inside Jev's 32k ceiling
 
 
