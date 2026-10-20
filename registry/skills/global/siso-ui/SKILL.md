@@ -11,7 +11,7 @@ better eyes. It is: take what he already chose, follow rules that have a source,
 Everything below lives in the UI Hub: `~/SISO_Workspace/Great_Library_of_SISO/banks/siso-ui-hub` (call it `$HUB`).
 Its own docs: `$HUB/AGENTS.md`. Browse it at https://ui.sisolabs.space (the newest hub; signed in as Shaan it serves his
 private build with the 138 curated picks and their code, everyone else gets the public build). Its source is
-`hubs/ui` in the sisodias/siso monorepo. The older links (the dtc-storefront worker, the tailnet :8767 snapshot)
+`apps/ui` in the sisodias/siso monorepo. The older links (the dtc-storefront worker, the tailnet :8767 snapshot)
 are stale: never send them.
 
 ## First: the surface's own standard
