@@ -1,0 +1,21 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/workers-best-practices",
+  "original_sha256": [
+    {
+      "sha256": "099432ff265ff6080327ef0b392c118b835d2a5bda98a7de07e1afd115ed6458",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "b0273b18c7fa40fadf33262e7da7c8f2a52f2f1240ce66d590e4c31663261380",
+      "path": "references/rules.md"
+    },
+    {
+      "sha256": "3e32da345be0906d020e5235d01f2b6398a41216900b5370a267e3f17757ade0",
+      "path": "references/review.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/console",
+  "original_sha256": [
+    {
+      "sha256": "4a782bd9f3a68b135dc0bfcf709daa21207f7c372460b4f0be362bd418fb67b5",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

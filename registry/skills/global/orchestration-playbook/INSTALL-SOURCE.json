@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.codex/skills/orchestration-playbook",
+  "original_sha256": [
+    {
+      "sha256": "880f4b9c1d12fcbad15f7e16b0f754b4032c6cdc9486d5f416b0da2d0415e447",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

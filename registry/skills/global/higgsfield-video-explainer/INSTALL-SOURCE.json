@@ -1,0 +1,16 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/higgsfield-video-explainer",
+  "original_sha256": [
+    {
+      "sha256": "aef0cd18d919818996cd63a993443fe527627af4a463cb887e6cdf127c36ef09",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "1419406cbd1c173ab84c5902597615ba53738c91a94c1c69bac2398c2cca9035",
+      "path": "references/prompts.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+# codex-dispatch — fire-and-forget HEADLESS Codex code-fix agent.
+# Runs `codex exec` on Codex's own ChatGPT-Pro auth ($0 to the Claude plan),
+# NO MCP/hooks, NO herdr pane. Appends a PASS/FAIL handoff contract so you can
+# gate on the result file (orchestrate Law 3) instead of process exit.
+#
+# Usage:  codex-dispatch <slug> <prompt-file|inline-prompt> [--deep]
+#   <slug>            short id -> handoff .orchestrate/handoffs/<slug>.result.html, log /tmp/codex-<slug>.log
+#   prompt            a file path (if it exists) OR an inline string
+#   --deep            gpt-5.5 xhigh (correctness-critical); default gpt-5.5 medium
+#
+# MODEL: defaults to gpt-5.5 (the newest model provably on this account, 2026-07-11).
+#   Override with CODEX_MODEL=<id>. A phantom id (e.g. gpt-5.6-sol) makes Codex silently
+#   fall back to an OLDER model — and with --ignore-user-config the "Model metadata not
+#   found" warning is SUPPRESSED (verified 2026-07-11), so a post-run log-grep can't catch
+#   it. So we validate the id BEFORE dispatch against Codex's own catalog and abort loudly.
+set -euo pipefail
+
+MODEL="${CODEX_MODEL:-gpt-5.5}"
+
+# Pre-dispatch model guard: the catalog at ~/.codex/custom_models.json is the authoritative
+# list of ids that actually resolve. If MODEL isn't in it, refuse rather than silently
+# downgrade. Skip the check only if the catalog is missing (don't block on our own gap).
+CATALOG="$HOME/.codex/custom_models.json"
+if [ -f "$CATALOG" ]; then
+  if ! grep -q "\"slug\"[[:space:]]*:[[:space:]]*\"$MODEL\"" "$CATALOG"; then
+    echo "codex-dispatch: model '$MODEL' is NOT in $CATALOG — it would silently fall back to an older model. Refusing." >&2
+    echo "  available slugs:" >&2
+    grep -oE '"slug"[[:space:]]*:[[:space:]]*"[^"]+"' "$CATALOG" | sed -E 's/.*"([^"]+)"$/    - \1/' >&2
+    echo "  (override intentionally with CODEX_MODEL=<a-listed-slug>; refresh the catalog by launching codex if a new model should be there.)" >&2
+    exit 3
+  fi
+fi
+
+[ "$#" -ge 2 ] || { echo "usage: codex-dispatch <slug> <prompt-file|inline> [--deep]" >&2; exit 2; }
+SLUG=$1; shift
+EFFORT=medium
+PROMPT_SRC=""
+for arg in "$@"; do
+  if [ "$arg" = "--deep" ]; then EFFORT=xhigh; else PROMPT_SRC=$arg; fi
+done
+[ -n "$PROMPT_SRC" ] || { echo "codex-dispatch: no prompt given" >&2; exit 2; }
+
+# Resolve prompt: file path if it exists, else treat as inline text.
+if [ -f "$PROMPT_SRC" ]; then TASK=$(cat "$PROMPT_SRC"); else TASK=$PROMPT_SRC; fi
+
+REPO=$(pwd -P)
+HANDOFF_DIR="$REPO/.orchestrate/handoffs"
+HANDOFF="$HANDOFF_DIR/$SLUG.result.html"
+LOG="/tmp/codex-$SLUG.log"
+mkdir -p "$HANDOFF_DIR"
+
+# Append the mandatory handoff contract so the caller's prompt stays task-only.
+FULL_PROMPT="$TASK
+
+---
+MANDATORY HANDOFF (your final step, do not skip): write the file
+  $HANDOFF
+containing, in this order:
+  1. a line that is EXACTLY  PASS  or  FAIL  (uppercase, alone on the line)
+  2. one sentence: the outcome
+  3. verification evidence (the tsc result and any test results, verbatim)
+  4. diff summary: files touched + line ranges
+Then print a single final line: '<SLUG> <PASS|FAIL>: <one-sentence outcome>' and STOP.
+If you could not complete or verify, write FAIL with the reason. Never claim PASS without showing the verification output."
+
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+# Model already validated against the catalog above (pre-dispatch), so it resolves.
+# command codex bypasses the user's shell function wrapper; --ignore-user-config skips MCP/hooks.
+nohup bash -c "command codex exec \
+  --ignore-user-config \
+  -m '$MODEL' \
+  -c 'model_provider=openai' \
+  -c 'model_reasoning_effort=$EFFORT' \
+  -c 'approval_policy=never' \
+  -c 'sandbox_mode=danger-full-access' \
+  \"\$1\" > '$LOG' 2>&1" _ "$FULL_PROMPT" >/dev/null 2>&1 &
+
+PID=$!
+echo "dispatched codex slug=$SLUG model=$MODEL effort=$EFFORT pid=$PID"
+echo "  log:     $LOG"
+echo "  handoff: $HANDOFF  (poll with: codex-dispatch-status $SLUG)"

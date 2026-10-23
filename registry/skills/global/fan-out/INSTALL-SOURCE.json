@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/fan-out",
+  "original_sha256": [
+    {
+      "sha256": "92b64067d1e8e3e38cdac95476154598628f412d5683497e3e2d27e91cc4d893",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

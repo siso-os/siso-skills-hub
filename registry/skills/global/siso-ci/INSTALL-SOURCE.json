@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/siso-ci",
+  "original_sha256": [
+    {
+      "sha256": "d5019ec6f7cce163b16be1ebc31b779dbcc3c20b3f604d45de545d3770f8a857",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

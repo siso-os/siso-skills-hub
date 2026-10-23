@@ -29,6 +29,9 @@ def fingerprint(path):
 
 
 def main():
+    if (HUB / 'registry/curation-20261021.json').is_file():
+        subprocess.run([sys.executable, str(HUB/'scripts/apply_curation.py')], check=True)
+        return
     policy = json.loads((HUB / 'registry/audit-policy.json').read_text())
     registry = cli.load_registry()['skills']
     entries = {s['skill_id']: s for s in registry}
@@ -76,23 +79,25 @@ def main():
             out.write(f'{target}\t{retired}\tbackup={saved}\n')
 
     checked = 0
-    for harness in ['.claude', '.codex', '.agents']:
-        parent = home / harness / 'skills'
-        for name in policy['install_ids']:
-            entry = entries[name]
-            source = cli.find_skill_dir(entry['skill_id'])
-            target = parent / name
-            expected = {str(p.relative_to(source)): hashlib.sha256(p.read_bytes()).hexdigest()
-                        for p in cli.source_files(entry, source) if p.is_file()}
-            if fingerprint(target) != expected:
-                preserve(target)
-                result = subprocess.run([sys.executable, str(HUB / 'scripts/skills'), 'install', name, '--target', str(parent)], capture_output=True, text=True)
-                if result.returncode:
-                    raise RuntimeError(result.stdout + result.stderr)
-            assert fingerprint(target) == expected, f'projection mismatch: {target}'
+    from types import SimpleNamespace
+    for name in policy['install_ids']:
+        result = cli.cmd_install(SimpleNamespace(skill_id=name, agent=None, target=None, link=False, dry_run=False))
+        if result:
+            raise RuntimeError(f'canonical install failed: {name}')
+        entry = entries[name]
+        source = cli.find_skill_dir(entry['skill_id'])
+        expected = {str(p.relative_to(source)): hashlib.sha256(p.read_bytes()).hexdigest()
+                    for p in cli.source_files(entry, source) if p.is_file()}
+        for harness in ['.agents', '.claude']:
+            target = home / harness / 'skills' / name
+            actual = {str(p.relative_to(target)): hashlib.sha256(p.read_bytes()).hexdigest()
+                      for p in target.rglob('*') if p.is_file()}
+            assert actual == expected, f'projection mismatch: {target}'
             checked += 1
+        assert not (home / '.codex/skills' / name).exists(), f'Codex duplicate: {name}'
+    for harness in ['.agents', '.claude', '.codex']:
         for name in policy['archive_unavailable']:
-            preserve(parent / name)
+            preserve(home / harness / 'skills' / name)
     receipt = {'machine': socket.gethostname(), 'checked_at': stamp, 'verified_projections': checked,
                'names': policy['install_ids'], 'backup_manifest': str(manifest), 'archive': str(archive)}
     (backup / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')

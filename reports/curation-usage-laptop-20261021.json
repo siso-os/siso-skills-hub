@@ -1,0 +1,110 @@
+{
+  "candidate_observations": 3576,
+  "files": 2002,
+  "unavailable_files": 1,
+  "usage": {
+    "by_skill": {
+      "a0-dispatch": {
+        "claude": {
+          "invocations": 4
+        }
+      },
+      "bounded-tool-output": {
+        "codex": {
+          "definition_reads": 1
+        }
+      },
+      "camofox": {
+        "claude": {
+          "invocations": 4
+        },
+        "codex": {
+          "definition_reads": 3
+        }
+      },
+      "dataviz": {
+        "claude": {
+          "invocations": 1
+        }
+      },
+      "estate-house-and-retire": {
+        "claude": {
+          "invocations": 1
+        }
+      },
+      "estate-keeper": {
+        "claude": {
+          "invocations": 1
+        }
+      },
+      "estate-space-sweep": {
+        "claude": {
+          "invocations": 1
+        }
+      },
+      "fast-build-loop": {
+        "claude": {
+          "invocations": 2
+        }
+      },
+      "fleet-check": {
+        "claude": {
+          "invocations": 2
+        }
+      },
+      "haiku-team": {
+        "claude": {
+          "invocations": 2
+        }
+      },
+      "halocrm": {
+        "claude": {
+          "invocations": 1
+        }
+      },
+      "machine-reach": {
+        "claude": {
+          "invocations": 3
+        }
+      },
+      "publish": {
+        "claude": {
+          "invocations": 1
+        }
+      },
+      "self-compact": {
+        "claude": {
+          "invocations": 2
+        }
+      },
+      "show-shots": {
+        "claude": {
+          "invocations": 4
+        }
+      },
+      "siso-ci": {
+        "claude": {
+          "invocations": 4
+        }
+      },
+      "siso-ui": {
+        "claude": {
+          "invocations": 7
+        }
+      },
+      "token-ledger": {
+        "claude": {
+          "invocations": 1
+        }
+      },
+      "workflow-authoring": {
+        "claude": {
+          "invocations": 1
+        }
+      }
+    },
+    "codex_definition_reads": 4,
+    "days": 7,
+    "observed_skill_invocations": 42
+  }
+}

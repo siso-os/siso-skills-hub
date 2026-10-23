@@ -1,10 +1,11 @@
 ---
 name: skill-author
-description: Author, register, validate and install one SISO skill through Skills Hub, preserving existing projections and source ownership.
+description: Use when any agent adds, edits, registers or installs a skill; reuse the Hub source, write trigger cases first, validate and verify the installed files.
 ---
 
 # P3 — author and install one skill
 
+In sisodias/siso, resolve `bin/siso where siso.agents.skills.hub`; the Hub is `agents/skills/hub`.
 Resolve the user's actual Skills Hub checkout and read its AGENTS.md and
 PROMOTION.md. The registry owns discovery/provenance; bundled atomic capabilities
 live at `registry/skills/<category>/<id>/`. Composed workflows stay with Agent
@@ -17,7 +18,7 @@ classification is a review lead, not permission to remove an installed consumer.
 
 For one requested capability:
 
-1. Reuse its owning source. For a new atomic skill, write a concise SKILL.md with
+1. Write at least two realistic positive trigger cases and one adjacent negative case before editing descriptions. Keep baseline descriptions and count actual Skill calls, not the model's claim that it used a skill. Reuse its owning source. For a new atomic skill, write a concise SKILL.md with
    nonempty `name` and `description`; add only resources its actual task needs.
 2. Add/update its entry in `registry/skills_registry.json` and matching assessment
    in `registry/promotion-assessments.json`. Preserve other entries. Remote sources
@@ -40,3 +41,5 @@ For one requested capability:
 Do not run whole-stack installers, registry install_commands, hooks, providers or
 schedulers merely to add a skill. Install only the reviewed capability, not the
 entire historical catalog. Publishing/pushing remains a separate requested action.
+
+Authoring references: [Anthropic skill-creator trigger evaluator](https://github.com/anthropics/skills/blob/main/skills/skill-creator/scripts/run_eval.py), [Superpowers writing-skills](https://github.com/obra/superpowers/blob/main/skills/writing-skills/SKILL.md). Use trigger conditions first in a description of at most 300 characters; keep deterministic work in existing scripts and validate the artifact after execution.

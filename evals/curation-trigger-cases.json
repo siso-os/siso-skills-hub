@@ -1,0 +1,122 @@
+[
+  {
+    "name": "siso-ui",
+    "after_name": "siso-ui",
+    "before_description": "How any SISO agent builds or restyles UI - start from Shaan's own picks and rankings in the SISO UI Hub (his 138 curated picks with notes first, then the 13,590 items behind them by rung, the charts he ranked, decided swaps), follow the house rules and the verified evidence rules, build from the surface's own standard and kit, prove the result with machine checks (uihub check, impeccable's detector) in every state at laptop and phone size, get a fresh reviewer's verdict, then show Shaan numbered shots (show-shots) and keep what he approves as goldens. Use before building, restyling or reviewing any screen, component, chart, dashboard, page or app view in any SISO or HALO project, and whenever you are about to pick a library or draw a component yourself.",
+    "positive_queries": [
+      "Build a settings screen for our operator app using Shaan's saved design picks.",
+      "Restyle the dashboard cards in the SISO app; start with the existing component bank."
+    ],
+    "negative_queries": [
+      "Translate hello into French."
+    ]
+  },
+  {
+    "name": "a0-dispatch",
+    "after_name": "a0-dispatch",
+    "before_description": "Agent Zero's dispatch rules - who gets each piece of work (Haiku sub-agent, Codex builder, an existing seat, or a new seat), how to resolve a seat to its live thread before sending, how to add, repoint or retire a seat in the org chart, the dispatch log, and what to do after a mistake. Load before every t3_thread_send, t3_thread_launch, delegate_task or Agent call, before editing t3-seats.json, after a compaction, and whenever Shaan says a message went to the wrong agent or the wrong model was used.",
+    "positive_queries": [
+      "Send this bounded bug fix to the existing HALO owner and wait for its completed result.",
+      "Dispatch this job brief to an existing Agent Zero seat and track its completion."
+    ],
+    "negative_queries": [
+      "Translate hello into French."
+    ]
+  },
+  {
+    "name": "siso-ci",
+    "after_name": "land",
+    "before_description": "Our own CI, since GitHub Actions is off (billing; Shaan, 15 Oct \"I don't want to do payments\"). The Mac mini runs every open PR's tests in SISO Code, siso-harness-lab, Agent Base and Agent Zero and posts a `siso-ci` commit status. Use before merging any PR in those repos, when a PR shows red Actions checks (\"not started because recent account payments have failed\": ignore them), when siso-ci is red or missing, and when a repo needs its tests added to siso-ci.",
+    "positive_queries": [
+      "This sisodias PR has a missing siso-ci status. Diagnose it and land the checked change.",
+      "Our branch is committed and ready to land in sisodias/siso. Use the guarded local landing workflow."
+    ],
+    "negative_queries": [
+      "Translate hello into French."
+    ]
+  },
+  {
+    "name": "camofox",
+    "after_name": "camofox",
+    "before_description": "Headless anti-detection browsing via the local camofox-browser REST API on :9377. Use for ANY web page fetch, scrape, screenshot, or click-through \u2014 instead of Playwright, which opens visible Chrome windows on Shaan's screen. Also use when a site blocks scraping, needs login cookies, or returns a Cloudflare challenge.",
+    "positive_queries": [
+      "Read this web page headlessly and take a screenshot without opening a window on my screen.",
+      "Navigate the website using the local Camofox service and extract the headings."
+    ],
+    "negative_queries": [
+      "Translate hello into French."
+    ]
+  },
+  {
+    "name": "show-shots",
+    "after_name": "show-page",
+    "before_description": "Put screenshots straight into Shaan's chat in SISO Code (T3) - before/after, every state, laptop and phone - as one page above your reply, so he reviews by looking, not by opening links. Use whenever you change a screen, component, chart or page and want his eyes on it, for every UI round, and whenever you would otherwise paste a screenshot path or a localhost link.",
+    "positive_queries": [
+      "Show me a before-and-after screenshot comparison of the screen you changed.",
+      "Prepare an HTML page of the UI results and give Shaan a real link to inspect it."
+    ],
+    "negative_queries": [
+      "Translate hello into French."
+    ]
+  },
+  {
+    "name": "machine-reach",
+    "after_name": "machine-reach",
+    "before_description": "Reach any SISO machine over ssh (laptop, Mac mini, siso-vps, halo-vps, Cam's MacBook) by the right alias, with the fallback routes in order (Tailscale, then home LAN, then the Cloudflare WARP route) and a short debug ladder for when one is down. Use before any ssh to these machines, when an alias times out, when a machine \"looks down\", or when a fleet tool says a box is unreachable.",
+    "positive_queries": [
+      "SSH to the Mac mini using our configured alias and diagnose why it is unreachable.",
+      "Connect to the SISO VPS; try the documented alternate routes if SSH fails."
+    ],
+    "negative_queries": [
+      "Translate hello into French."
+    ]
+  },
+  {
+    "name": "haiku-team",
+    "after_name": "haiku-team",
+    "before_description": "Run Haiku teams through the Workflow tool. Each team is 3 to 12 Haiku scouts, one slice each, plus a Haiku owner who cross-checks and merges, so the calling Opus or Sonnet gets ONE return instead of a ping per Haiku. Use for any question, audit or map that needs more than five reads, and when Shaan says \"throw some Haikus at it\" or \"Haiku team\".",
+    "positive_queries": [
+      "Map this codebase using a Haiku team with independent read-only slices and one combined result.",
+      "Audit these twelve modules with cheap parallel scouts and an integrating owner."
+    ],
+    "negative_queries": [
+      "Translate hello into French."
+    ]
+  },
+  {
+    "name": "self-compact",
+    "after_name": "self-compact",
+    "before_description": "Compact your own context and carry on without anyone typing for you. Use when the context ping asks you to compact (a \"Time to compact at your next clean break\" note after a tool call) and you are at a clean break, or earlier at a natural seam before a big new phase; also when Shaan or Agent Zero asks you to \"checkpoint and compact\" or \"self-compact\". Defer instead when you are mid-conversation with Shaan or mid-critical reasoning. You write the checkpoint, tell who should know, arm the waiter with `self-compact go`, and end your turn. Not for Agent Zero (Shaan compacts it himself).",
+    "positive_queries": [
+      "Context is filling; checkpoint and compact yourself at the next clean break.",
+      "The compaction ping arrived after this milestone. Save the handoff and arm your resume."
+    ],
+    "negative_queries": [
+      "Translate hello into French."
+    ]
+  },
+  {
+    "name": "fast-build-loop",
+    "after_name": "codex-run",
+    "before_description": "How a product owner finishes a product fast. Default since 17 Oct - one Opus builds each row itself, end to end (code, DEV, proof, ledger flip), with Haiku only for reads; progress is rows closed on DEV, never PRs. The fan-out lanes below are opt-in only. Load it when you own a product and have rows to ship.",
+    "positive_queries": [
+      "Coordinate multiple builders on independent changes and integrate the verified returns.",
+      "Run a team to map and implement these independent modules with disjoint file ownership."
+    ],
+    "negative_queries": [
+      "Translate hello into French."
+    ]
+  },
+  {
+    "name": "fleet-check",
+    "after_name": "fleet-check",
+    "before_description": "See every seat at once for 0 tokens \u2014 each seat's latest run, how long ago, the first line it last said to Shaan, and what is wrong: runs stuck \"running\" with nothing happening, messages queued that will never start, turns that ended short (\"Next I'm X\"), waiting on someone, offering instead of deciding, parked on \"I'll do it when \u2026\" with nothing to wake it, or idle with the brief unfinished. Use whenever Shaan or Agent Zero asks \"what's going on\", \"is X stuck\", \"why did X stop\", \"what are the agents doing\", before relaying to a seat, and before reading any seat's thread by hand.",
+    "positive_queries": [
+      "What are all the agents doing, and which seats look stuck?",
+      "Why did the HALO seat stop? Check its current run and queued messages before reading the transcript."
+    ],
+    "negative_queries": [
+      "Translate hello into French."
+    ]
+  }
+]

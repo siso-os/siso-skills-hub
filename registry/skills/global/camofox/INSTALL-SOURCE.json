@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/camofox",
+  "original_sha256": [
+    {
+      "sha256": "2313d4518545c2464ee5a7f3c383951262ebfa1cf1a65303b3d71123324d9287",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/web-perf",
+  "original_sha256": [
+    {
+      "sha256": "94c5cb37766676a8321a82861d2ac1072d3dd0ef612f0c946792014ad48fb0c2",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

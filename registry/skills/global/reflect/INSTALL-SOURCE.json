@@ -1,0 +1,17 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/reflect",
+  "original_sha256": [
+    {
+      "sha256": "242008690972de57d9f1219cbcbbd5942e7af7d021058861b676f3edeefda0f8",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "43f43d31f21e6855d7992492e03707063c311bca5036f3ba80e4b5eeeaa620d5",
+      "path": "scripts/reflect-agent-prompt.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

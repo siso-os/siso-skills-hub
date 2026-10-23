@@ -1,0 +1,17 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/graphify",
+  "original_sha256": [
+    {
+      "sha256": "2673dc70e02b0ccc669100cf048457ca5e92fb6a764d9ec9123d3029fe964847",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "0b8df30482721540002995eb7245a2f72e9d045d73b43b14d1e0990acdc82fca",
+      "path": ".graphify_version"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

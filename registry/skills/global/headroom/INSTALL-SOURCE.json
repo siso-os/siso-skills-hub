@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/headroom",
+  "original_sha256": [
+    {
+      "sha256": "2ba8159e797ae02cf48c95be31d011c72699f726707564bce4a2cf0563079422",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

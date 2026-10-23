@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/opencli",
+  "original_sha256": [
+    {
+      "sha256": "5d8d762f9cff0f97ab4df457e55ad09c338458abed46c5686a6fa5875ba5ad3f",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

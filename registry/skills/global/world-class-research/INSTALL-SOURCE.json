@@ -1,0 +1,24 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/world-class-research",
+  "original_sha256": [
+    {
+      "sha256": "d9ee6d0c10a685b43b3efdf0d4ed201d56de8c415068d66c909189f6bdf069c1",
+      "path": "merge.py"
+    },
+    {
+      "sha256": "b342c4dce4357d18c5a41259926e604b328d44263c5a7590d043d297ce4198d9",
+      "path": "base-score.py"
+    },
+    {
+      "sha256": "8f7b545d63f6bcc4dc6d9cf4dd2c8b41232471d75c6904251ae3304a07b24e97",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "6f91c9ca58315a47227fa29c160f53a0517dce565f265a4a61d3e3dd68793805",
+      "path": "gh-sweep.py"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

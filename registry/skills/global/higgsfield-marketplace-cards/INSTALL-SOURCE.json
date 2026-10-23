@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/higgsfield-marketplace-cards",
+  "original_sha256": [
+    {
+      "sha256": "16107629e9e4bcede3bda9a49f8260f02314c8f9f2010e6eaab1a6e0f857f1a2",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

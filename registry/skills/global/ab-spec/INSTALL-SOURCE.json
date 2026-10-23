@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/ab-spec",
+  "original_sha256": [
+    {
+      "sha256": "5593c62ac893524086e4216bae3021f37128e38a90edb54cd1c2290e463c59f5",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/dedup-primitive",
+  "original_sha256": [
+    {
+      "sha256": "e20e21821ed939596359419257e34e25472e374cff1e74c6e8ed522171fe40bb",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

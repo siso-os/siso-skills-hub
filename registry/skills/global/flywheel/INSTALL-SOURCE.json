@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/flywheel",
+  "original_sha256": [
+    {
+      "sha256": "d6dea8a7fd6e0df59c98c98c976f4fc2a3f1a86fc45a44b851cecb3f099f1320",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

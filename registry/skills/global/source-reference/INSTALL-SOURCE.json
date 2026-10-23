@@ -1,0 +1,21 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/source-reference",
+  "original_sha256": [
+    {
+      "sha256": "1646cd91a0dd9dc02ae6154bd29c27d1579de721b4db6fb03f13074d56fc7e4a",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "4be930211704533e12e8c928b3d71a50b5affe0f8c2805610aecba4176d33af2",
+      "path": "agents/openai.yaml"
+    },
+    {
+      "sha256": "9945e51c2cd9b2976634d9ecc530843654f6feb658e3c0d19f3ecb00a63ac0e1",
+      "path": "scripts/fetch-source-reference.mjs"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

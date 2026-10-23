@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bifrost Log Maintenance"
+  short_description: "Archive, verify, and bound Bifrost logs"
+  default_prompt: "Use $bifrost-log-maintenance to inspect, archive, verify, and safely rotate my Bifrost logs."

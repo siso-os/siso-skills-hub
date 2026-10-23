@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/telemetry",
+  "original_sha256": [
+    {
+      "sha256": "8132129d388fbf23535a4b789590afa429044a65841f10288fb2e3e03c1d3008",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

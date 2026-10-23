@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/model-routing",
+  "original_sha256": [
+    {
+      "sha256": "df11ba06df1c058e26920f483473eb972621e5a2f7729dc53e2d576a571ac6d5",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

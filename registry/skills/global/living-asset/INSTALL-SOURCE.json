@@ -1,0 +1,28 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/living-asset",
+  "original_sha256": [
+    {
+      "sha256": "521113b8c12d0fb2e05bc066d753d114b2e904c72d794363600de5cc463123bb",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "886f996f6c88825ebdb83a58ac130140c6c3767885944a69800d272d734e1e9b",
+      "path": "scripts/harness.py"
+    },
+    {
+      "sha256": "cdde3f824315ba79cd57415e90dc7e16b265754304be6d80479776d3450258f3",
+      "path": "scripts/check-asset.mjs"
+    },
+    {
+      "sha256": "261c755caff057f2c499d3340e11c65b74ff2bbd4c54a80d97728b8ff468f9aa",
+      "path": "reference/halo-face.css"
+    },
+    {
+      "sha256": "b35c773a915ec89b6b01fc19f5f71ff3348ca68c85cbb8002b40f1a75089f09f",
+      "path": "reference/halo-face.js"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

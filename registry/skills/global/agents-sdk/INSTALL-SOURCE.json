@@ -1,0 +1,89 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/agents-sdk",
+  "original_sha256": [
+    {
+      "sha256": "a05244d3cfb23330daff956ec28a990241f5dbbe489cd7fd6489c8f76bb60877",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "0a156971806f83f2f93450d731a57d6cb315cab387e3adeb33ad6ff50fe49ecc",
+      "path": "references/email.md"
+    },
+    {
+      "sha256": "55c9c94b02f827cbd90bc00ca798197b4cdee0e87e0b2fe15b8f77d7725d66a6",
+      "path": "references/routing.md"
+    },
+    {
+      "sha256": "8ac4eac5459693272c6e54fc1a656538f5e4a118029ee76988726ca84d20fd05",
+      "path": "references/server-driven-messages.md"
+    },
+    {
+      "sha256": "1778b2dee2788d0238c1d4b61e3ee42538a24166770cf33c38d78c22c1ac6dbe",
+      "path": "references/workflows.md"
+    },
+    {
+      "sha256": "b6254f2afa76a9530c43741bc9ea4dfcc9bcef2c7819dfba026825811943b06a",
+      "path": "references/voice.md"
+    },
+    {
+      "sha256": "dfc8d08564187ea5920ecc78779973a432c03ca29eea50c258c8984e521e0704",
+      "path": "references/streaming-chat.md"
+    },
+    {
+      "sha256": "c991cb8ed89ca93f0c34433bceadf54d4ac42bd0c6d439130829d058fb7bccaf",
+      "path": "references/mcp.md"
+    },
+    {
+      "sha256": "7cea752aa3423745be812cc97df38b6beeea97900b97b21f171fc3ad1a5e281b",
+      "path": "references/durable-execution.md"
+    },
+    {
+      "sha256": "cefd3d4947e8c081ac2a66ce6dedf95edb3e30f34bde0c6b8a2eaef182ee7210",
+      "path": "references/client-sdk.md"
+    },
+    {
+      "sha256": "f0b0ab893b85135c4001b123a0cbee1cdc3ce85c5d8339acded546e16f582cea",
+      "path": "references/state-scheduling.md"
+    },
+    {
+      "sha256": "1ee166ab7d14d2b26db04ce8c6071e7cf0b348bf5bf704b13f943229e1a52cb5",
+      "path": "references/webhooks-push.md"
+    },
+    {
+      "sha256": "e35b6627eee0bcd0f86e264ad0973aa5c364a5bd3ec14838ad36217faf47c841",
+      "path": "references/browse-the-web.md"
+    },
+    {
+      "sha256": "91842e59fb17eff0d40df1cf16905aca8abd3ad9a939f8d15bfd6c5b84175354",
+      "path": "references/configuration.md"
+    },
+    {
+      "sha256": "4c116204cd68ff53908c49100a110d5fb773f9a3bc486a2be57afb09a4ead248",
+      "path": "references/callable.md"
+    },
+    {
+      "sha256": "35d9639fe1db69400479c34670a71090031608276ebf9bc1c5e7fa32f77d487b",
+      "path": "references/codemode.md"
+    },
+    {
+      "sha256": "989733a31aa7ab7b6e9b778da975a3a5db6e21f200a02af073069150eb700ea3",
+      "path": "references/queue-retries.md"
+    },
+    {
+      "sha256": "4563c0b9856b0f2ce9728470473caab565442cb2eb40044434d771805b9aa7f1",
+      "path": "references/observability.md"
+    },
+    {
+      "sha256": "1c507f9a22414290cf1c45821deb1d83ae3b008098ead751af380559789547e5",
+      "path": "references/think.md"
+    },
+    {
+      "sha256": "729bb89c146b1e260e58b751bf47566ac7870afa33fff35d672ad485ed695766",
+      "path": "references/human-in-the-loop.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

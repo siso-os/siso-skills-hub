@@ -1,0 +1,20 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/hub-research",
+  "original_sha256": [
+    {
+      "sha256": "922f8784a4ff489b3aff8f7d39f851b90c7b9864ff7d0557ca76e3b64a78c57c",
+      "path": "merge.py"
+    },
+    {
+      "sha256": "e86d98cf33dfd92d4a571dff07c8a7c49e20e09c4b7709c65ecb5b4d4cc5b667",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "7f3e8a23dc7f3fbb519e69e8e7429ef1b4e1bffc4606a551286bf4a613da5a43",
+      "path": "gh-sweep.py"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

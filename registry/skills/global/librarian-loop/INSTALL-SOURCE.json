@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/librarian-loop",
+  "original_sha256": [
+    {
+      "sha256": "8b122c4ef40e65bb910e8123ad783edb6013403fc4a6c9e2cc6777f9f2fb48f3",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

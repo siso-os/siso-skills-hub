@@ -1,0 +1,21 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.codex/skills/agent-zero",
+  "original_sha256": [
+    {
+      "sha256": "aca2db3d0b03dd28b7080d49448893775f9ad09f75edb35086fb609de9ceea8e",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "fa3cbdcc11ad88c1a46b07140dd3f9d16023888223b283b2bfe9a2c9408208d7",
+      "path": "LANE-REGISTRY.md"
+    },
+    {
+      "sha256": "f466a75e59008e45d8544a2fa842a3d6b79f7344680a02cce190a467c1e7a04a",
+      "path": "agents/openai.yaml"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

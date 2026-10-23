@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/gh-cli",
+  "original_sha256": [
+    {
+      "sha256": "65e47a6f2686720c75f0265c94807955da28cecf278050e6f4314356e4321097",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

@@ -88,7 +88,7 @@ python3 $E/tools/reference-index.py drop <clone> --why "..."           # drop a 
 - **Big or binary data does not go in git.** That means corpora, recordings, databases, exports and anything over 10 MB.
   Keep it under `_data/`, or in the project's ignored folder with an encrypted data plane. The planes are listed in
   `$E/plan/data-planes.json`; ask `ESTATE` to add one.
-- **HALO code is never copied off Cam's repo** (`HALO_Agency/crm`). Not into sisodias, not into notes, not into a backup.
+- **HALO code lives in HALO's repo** (`HALO-AGENCY/halo`, apps/platform), so it is never copied out. Not into sisodias, not into notes, not into a backup.
 
 ## 5. Other agents' work
 

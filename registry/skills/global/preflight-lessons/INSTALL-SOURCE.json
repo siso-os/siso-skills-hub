@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/preflight-lessons",
+  "original_sha256": [
+    {
+      "sha256": "c366cd3bff55d7416a334e2429f2d50b7759ad841f3ca2e512de2874e3b28973",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

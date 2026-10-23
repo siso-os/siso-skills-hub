@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/pb-codenav",
+  "original_sha256": [
+    {
+      "sha256": "a054129415dced80cb3fe06030c23c77ec40b43bf2ef2bf977172b65d3cb56e5",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

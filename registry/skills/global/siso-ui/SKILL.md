@@ -1,6 +1,6 @@
 ---
 name: siso-ui
-description: How any SISO agent builds or restyles UI - start from Shaan's own picks and rankings in the SISO UI Hub (his 138 curated picks with notes first, then the 13,590 items behind them by rung, the charts he ranked, decided swaps), follow the house rules and the verified evidence rules, build from the surface's own standard and kit, prove the result with machine checks (uihub check, impeccable's detector) in every state at laptop and phone size, get a fresh reviewer's verdict, then show Shaan numbered shots (show-shots) and keep what he approves as goldens. Use before building, restyling or reviewing any screen, component, chart, dashboard, page or app view in any SISO or HALO project, and whenever you are about to pick a library or draw a component yourself.
+description: Use when building or restyling a SISO screen or component; start with the surface standard and Shaan's curated UI picks, then inspect rendered results.
 ---
 
 # SISO UI
@@ -24,7 +24,7 @@ prove it. That is how the landing page went fast and good: one page he signed of
 built from them.
 
 - The surface has a standard: read it before you touch anything, and build only from its kit.
-- It has none: do not redesign many pages. Get one reference page right with Shaan (design-lab if there is a real fork),
+- It has none: do not redesign many pages. Get one reference page right with Shaan (render two or three directions if there is a real fork),
   then write the standard from that page, then build the rest from it.
 
 ## The loop (every screen)
@@ -43,7 +43,7 @@ built from them.
       drawers, tab bars, segmented controls, empty states, settings rows have few or none).
    4. The rest of the corpus (about 12,000 indexed, mostly 21st.dev). Read for the idea, rebuild against the project's
       tokens; never paste 21st.dev code into a product. Arc Pro, Kobra and Kinetics are reference only.
-   - For a slot from rung 3 or 4, show him two or three real options (`show-shots` or `design-lab`) before you build;
+   - For a slot from rung 3 or 4, show him two or three real options through `show-page` or the project's private preview before you build;
      when he picks one, `uihub bookmark <id> --signal good --note "<his words>"` so the next agent starts from it. That
      is how the library grows past 138.
    - Nothing fits anywhere: build it against the project's tokens, then `uihub add siso:<id> --from <path> --reason
@@ -76,7 +76,7 @@ built from them.
    - Use `preview_click`, `preview_type` and `preview_scroll` to put the screen in each state. Then call
      `preview_snapshot {includeImage:true}` and read the image as Shaan would: crowding, white on white, clipped text,
      tap targets, what is missing, his words in the project's FEEDBACK file. Fix it before any check runs.
-   - `preview_snapshot {save:true}` returns the PNG paths that `show-shots` inlines. `preview_recording_start`/`stop`
+   - `preview_snapshot {save:true}` returns the PNG paths that `show-page` inlines. `preview_recording_start`/`stop`
      records anything that moves (sheets, the tab bar, transitions).
    - Use the iOS Simulator (`device_open`) only when SISO Code has device access on and an iOS runtime is installed.
      Neither is true on the laptop as of 17 Oct, so use the preview presets.
@@ -84,8 +84,8 @@ built from them.
    one short review by a new agent with no transcript (shots, the standard, his words; ship, fix or rebuild per
    component), done in minutes in the foreground. Shaan, 17 Oct: "it's unviable now to use sub-agents if they're gonna
    take that long". No background reviewers or scouts that run for minutes in his loop.
-8. **Show him, numbered.** The `show-shots` skill: before beside after, laptop beside phone, every section numbered so
-   he answers "3 worse, keep 2b". If he is around, walk him through the running app instead (`ui-iteration-round`).
+8. **Show him, numbered.** The `show-page` skill: before beside after, laptop beside phone, every section numbered so
+   he answers "3 worse, keep 2b". If he is around, walk him through the running app instead.
 9. **Keep what he approved.** His words verbatim in the project's reviews folder; an approved shot becomes the golden
    for that state, and the next change to that screen is diffed against it first. Nothing he liked is removed,
    swapped or restyled unless he asks.
@@ -97,7 +97,7 @@ Most work is not a redesign: build from the standard's kit and decide. Only when
 - Write the identity lock first, with real values: "Cam's creator phone theme, canvas 225 18% 4%, Montserrat, his
   PhoneFrame layout" beats "dark and clean". Never invent a look (17 Oct: a dark mode that was "my own invention").
 - Make three options that differ in kind (layout, hierarchy, density, how the screen is split), not three colours of one
-  layout. Show them with `show-shots`; he picks or mixes. Then build the one he picked.
+  layout. Show them with `show-page`; he picks or mixes. Then build the one he picked.
 
 ## House rules (Shaan's, `$HUB/principles/0001-0015`, dated, his words)
 
@@ -150,4 +150,4 @@ The craft floor every screen meets (verified, and the checks below test most of 
 - Judge your own UI from a screenshot and call it done.
 - Add a library, a font or a colour that is not in the project's tokens or the hub.
 - Restyle a screen Shaan is hand-rolling with a seat unless that seat asked for it.
-- Copy HALO CRM code (Cam's repo) anywhere; read it, change it only by branch and PR in his repo.
+- The HALO CRM is HALO code: it lives in the HALO monorepo (HALO-AGENCY/halo, apps/platform) and HALO agents change it like any other app. HALO code stays in HALO's repo, not in sisodias/siso.

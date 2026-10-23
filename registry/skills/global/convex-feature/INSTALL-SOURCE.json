@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/convex-feature",
+  "original_sha256": [
+    {
+      "sha256": "4bff66e4ec869c278c4b0548da5727c67dd1fb1612dd264d619567cf962eaa5f",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ui-science — verified primary sources (receipts)</title>
+  <meta name="generator" content="ui-science">
+  <meta name="generated" content="2026-07-15">
+  <style>
+    body { font: 14px/1.5 -apple-system, system-ui, sans-serif; max-width: 60rem; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; }
+    h1 { font-size: 1.4rem; } h2 { margin-top: 2rem; border-bottom: 1px solid #ddd; padding-bottom: .3rem; }
+    .tier1 { border-left: 3px solid #167c3c; } .tier2 { border-left: 3px solid #b06a00; }
+    .tier3 { border-left: 3px solid #666; } .tier4 { border-left: 3px solid #b00020; }
+    article { padding: .5rem 1rem; margin: .8rem 0; background: #fafafa; }
+    .verdict { font-weight: 700; } .evidence { color: #167c3c; } .opinion { color: #666; } .folklore { color: #b00020; }
+    dt { font-weight: 600; margin-top: .4rem; } dd { margin: 0 0 .2rem 1rem; }
+    code { background: #eee; padding: 0 .2rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ui-science — verified primary sources</h1>
+    <p>Every rule in <code>rules.json</code> cites one of these. Each was verified at its
+    primary venue this session (fetched, not asserted). Verdicts: <span class="evidence">EVIDENCE</span>
+    (someone measured a human) · <span class="opinion">OPINION</span> (influential assertion) ·
+    <span class="folklore">FOLKLORE</span> (debunked / misapplied).</p>
+    <p><strong>The tell:</strong> real UI science bottoms out in a measurement of a human —
+    a reaction time, a color-discrimination ellipse, a recall rate, an eye-track.</p>
+  </header>
+  <main>
+    <section id="evidence-tier1">
+      <h2>Tier 1 — hard, measured, formula-grade</h2>
+
+      <article class="tier1">
+        <p class="verdict evidence">EVIDENCE — Fitts 1954</p>
+        <dl>
+          <dt>Full</dt><dd>Fitts, P.M. "The information capacity of the human motor system in controlling the amplitude of movement." J. Experimental Psychology 47(6):381 (1954).</dd>
+          <dt>Formula</dt><dd>MT = a + b·log₂(2D/W) — movement time as a function of distance D and target width W.</dd>
+          <dt>Use</dt><dd>Targets as large/close as feasible; screen-edge targets are effectively infinite-depth. 44px/48dp are platform guidelines built around this, not measured constants.</dd>
+          <dt>Rule</dt><dd><code>motor.fitts-target-size</code></dd>
+        </dl>
+      </article>
+
+      <article class="tier1">
+        <p class="verdict evidence">EVIDENCE — MacAdam 1942 → OKLCH</p>
+        <dl>
+          <dt>Full</dt><dd>MacAdam, D.L. "Visual Sensitivities to Color Differences in Daylight." J. Optical Society of America 32(5):247 (1942).</dd>
+          <dt>Finding</dt><dd>25,000 color-match trials → color space is perceptually NON-uniform (MacAdam ellipses); CIE 1931 xy cannot be made uniform by any projective transform.</dd>
+          <dt>Chain</dt><dd>This is why HSL lies (equal HSL steps ≠ equal perceived steps) and why OKLab/OKLCH (Ottosson 2020) exist — engineered so equal numeric steps ≈ equal perceived steps.</dd>
+          <dt>Rule</dt><dd><code>color.oklch-ramp-uniformity</code></dd>
+        </dl>
+      </article>
+
+      <article class="tier1">
+        <p class="verdict evidence">STANDARD — WCAG 2.1 contrast</p>
+        <dl>
+          <dt>Full</dt><dd>W3C WCAG 2.1 Success Criterion 1.4.3 (Contrast Minimum), W3C Recommendation (2018).</dd>
+          <dt>Caveat</dt><dd>Relative-luminance ratio is the enforceable standard; APCA / WCAG 3 (draft) model perceived contrast better in some cases. Ratio is what ships today.</dd>
+          <dt>Rule</dt><dd><code>color.wcag-contrast-aa</code></dd>
+        </dl>
+      </article>
+    </section>
+
+    <section id="evidence-tier2">
+      <h2>Tier 2 — real but conditional</h2>
+
+      <article class="tier2">
+        <p class="verdict evidence">EVIDENCE — Cowan 2001 (supersedes Miller)</p>
+        <dl>
+          <dt>Full</dt><dd>Cowan, N. "The magical number 4 in short-term memory: a reconsideration of mental storage capacity." Behavioral & Brain Sciences 24(1):87 (2001).</dd>
+          <dt>Finding</dt><dd>Working-memory capacity ≈ 4 chunks, not 7. Miller 1956's "7±2" was serial recall of unidimensional stimuli, not UI chunking — Miller himself called it near-coincidence.</dd>
+          <dt>Rule</dt><dd><code>memory.no-cross-step-recall</code> (and folklore flag <code>folklore.magical-seven</code>)</dd>
+        </dl>
+      </article>
+
+      <article class="tier2">
+        <p class="verdict evidence">EVIDENCE — Cleveland &amp; McGill 1984</p>
+        <dl>
+          <dt>Full</dt><dd>Cleveland, W.S. &amp; McGill, R. "Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods." J. American Statistical Association 79(387):531 (1984).</dd>
+          <dt>Finding</dt><dd>Ranked accuracy of decoding: position &gt; length &gt; angle &gt; area &gt; color. Replicated on Mechanical Turk by Heer &amp; Bostock (CHI 2010).</dd>
+          <dt>Rule</dt><dd><code>dataviz.encoding-rank</code></dd>
+        </dl>
+      </article>
+
+      <article class="tier2">
+        <p class="verdict evidence">EVIDENCE — Weissgerber 2015</p>
+        <dl>
+          <dt>Full</dt><dd>Weissgerber, T.L. et al. "Beyond Bar and Line Graphs: Time for a New Data Presentation Paradigm." PLOS Biology 13(4):e1002128 (2015).</dd>
+          <dt>Finding</dt><dd>Review of 703 papers: "many different data distributions produce the identical bar graph." Bars of means hide the data; show the distribution for small n.</dd>
+          <dt>Rule</dt><dd><code>dataviz.bar-hides-distribution</code></dd>
+        </dl>
+      </article>
+    </section>
+
+    <section id="evidence-tier4">
+      <h2>Tier 4 — folklore &amp; overstated claims (flagged when invoked)</h2>
+
+      <article class="tier4">
+        <p class="verdict folklore">FOLKLORE — "max 7 items (Miller)"</p>
+        <p>Wrong number (Cowan: ~4) AND wrong domain (serial recall ≠ visual layout). No scientific "7 widgets" cap. Flag: <code>folklore.magical-seven</code>.</p>
+      </article>
+
+      <article class="tier4">
+        <p class="verdict folklore">FOLKLORE — "design for the F-pattern"</p>
+        <p>Nielsen Norman Group, "F-Shaped Pattern of Reading on the Web" (eye-tracking, ~45–47 users/example, 2006). NN/g's own finding: the F-pattern is the DEFAULT when cues are absent, is "bad for users," and should be COUNTERACTED with hierarchy — not emulated. Flag: <code>folklore.design-for-f-pattern</code>.</p>
+      </article>
+
+      <article class="tier4">
+        <p class="verdict opinion">OVERSTATED — "always maximize data-ink (Tufte)"</p>
+        <p>Bateman et al., "Useful Junk? The Effects of Visual Embellishment on Comprehension and Memorability of Charts." ACM CHI 2010, pp.2573–2582. Embellished charts were no worse for comprehension and BETTER for long-term recall — refuting the strong form of Tufte's data-ink orthodoxy. Treat data-ink as taste, not law. Flag: <code>folklore.maximize-data-ink</code>.</p>
+      </article>
+    </section>
+
+    <section id="provenance">
+      <h2>Provenance</h2>
+      <p>Sources verified at primary venues during the UI-SCIENCE research track (TASK-0001,
+      2026-07-15). Full running log with confidence ratings:
+      <code>evidence/ui-science/references/verified-sources.md</code>. Repos in the scraped
+      corpus are POINTERS to this literature, not the literature itself.</p>
+    </section>
+  </main>
+</body>
+</html>

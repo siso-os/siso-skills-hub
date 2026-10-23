@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.codex/skills/codex-router",
+  "original_sha256": [
+    {
+      "sha256": "4ea9e290d38db84a4cb67b41517b1390816eb418de82a61a5a1f08e82e9789c3",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

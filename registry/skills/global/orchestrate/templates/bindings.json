@@ -1,0 +1,34 @@
+{
+  "defaults": {
+    "MAX_LIVE": 6,
+    "max_depth": 1,
+    "heartbeat_sec": 60,
+    "stale_sec": 600
+  },
+  "routing_principle": "Use Codex GPT-5.6 Sol for Codex worker lanes. Reserve Claude only for work that genuinely needs a different provider's taste, ambiguity reduction, or cross-domain judgment. Pick the Codex reasoning effort by task depth: 'fast' (low/medium) for quick deterministic edits where speed matters; 'xhigh' for hard coding/design/debugging where correctness matters more than latency. Do not pay xhigh for a one-line rename; do not run fast on a subtle concurrency bug. GPT-5.5 is prohibited for new Codex lanes.",
+  "engines": {
+    "claude": {
+      "launch": "claude --dangerously-skip-permissions",
+      "use_for": "reasoning, taste, design judgment, ambiguity, synthesis across domains"
+    },
+    "codex_fast": {
+      "launch": "codex -m gpt-5.6-sol -c model_reasoning_effort=medium",
+      "use_for": "quick deterministic edits, renames, file ops, mechanical refactors, fast checks — speed over depth"
+    },
+    "codex_deep": {
+      "launch": "codex -m gpt-5.6-sol -c model_reasoning_effort=xhigh",
+      "use_for": "hard implementation, subtle bugs, architecture-bearing code, thorough review — correctness over speed"
+    }
+  },
+  "lanes": {
+    "reasoning":  { "engine": "claude",     "recipe": "Deep analysis, ambiguity reduction, synthesis." },
+    "taste":      { "engine": "claude",     "recipe": "Product judgment, UX critique, design direction." },
+    "design":     { "engine": "claude",     "recipe": "Interaction design, IA, visual review." },
+    "mechanical": { "engine": "codex_fast", "recipe": "Deterministic edits, file ops, repeatable checks — speed matters." },
+    "codegen":    { "engine": "codex_deep", "recipe": "Feature implementation + tests — correctness matters." },
+    "refactor":   { "engine": "codex_fast", "recipe": "Mechanical rename/move/extract across files — fast." },
+    "debug":      { "engine": "codex_deep", "recipe": "Root-cause a bug/test failure — think hard." },
+    "review":     { "engine": "codex_deep", "recipe": "Adversarial diff review, regression + verification passes." },
+    "scaffold":   { "engine": "codex_fast", "recipe": "Boilerplate, configs, repetitive structure — fast." }
+  }
+}

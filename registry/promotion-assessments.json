@@ -1291,6 +1291,2384 @@
           "observed_at": "2026-10-21"
         }
       ]
+    },
+    {
+      "skill_id": "ponytail",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "registry/skills/global/ponytail",
+      "reason": "Reuse-first requested for Claude Code, Codex and Agent Zero; install only the reviewed prompt, with corpus lookup extension.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "registry/skills/global/ponytail/SOURCE.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "ab-spec",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/ab-spec/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "bifrost-log-maintenance",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/bifrost-log-maintenance/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "bykonz-ui-bank-review",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/bykonz-ui-bank-review/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "camofox",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/camofox/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "codex-computer-use",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/codex-computer-use/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "codex-in-app-browser",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/codex-in-app-browser/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "codex-router",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/codex-router/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "codex-router-media",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/codex-router-media/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "console",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/console/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "design-lab",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/design-lab/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "fast-build-loop",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/fast-build-loop/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "fleet-check",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/fleet-check/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "foundry-corpus",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/foundry-corpus/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "higgsfield-brandkit",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/higgsfield-brandkit/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "higgsfield-generate",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/higgsfield-generate/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "higgsfield-marketplace-cards",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/higgsfield-marketplace-cards/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "higgsfield-product-photoshoot",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/higgsfield-product-photoshoot/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "higgsfield-soul-id",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/higgsfield-soul-id/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "higgsfield-video-explainer",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/higgsfield-video-explainer/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "higgsfield-websites",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/higgsfield-websites/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "higgsfield-youtube-thumbnail",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/higgsfield-youtube-thumbnail/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "hub-research",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/hub-research/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "living-asset",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/living-asset/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "mac-mini-herdr-control",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/mac-mini-herdr-control/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "melanotresses-client-ops",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/melanotresses-client-ops/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "property-engine",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/property-engine/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "prove-model-routing",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/prove-model-routing/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "seat-launch",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/seat-launch/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "shaan-report",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "agents/zero/.claude/skills/shaan-report",
+      "reason": "Thin adapter over existing tools; retain module ownership and bounded projection.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/shaan-report/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        },
+        {
+          "kind": "source_review",
+          "reference": "agents/zero/.claude/skills/shaan-report/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "siso-ci",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/siso-ci/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "siso-credentials",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/siso-credentials/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "siso-work",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/siso-work/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "world-class-research",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved installed global capability in the Skills Hub",
+      "reason": "Retain the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/world-class-research/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "skills-home-check",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Skills home discovery diagnostic",
+      "reason": "A deterministic fresh-process check for the shared home.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "registry/skills/global/skills-home-check/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "adversary",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/adversary/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "agent-architecture",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/agent-architecture/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "agent-comms",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/agent-comms/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "agent-zero",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "agents/zero/.claude/skills/agent-zero",
+      "reason": "Thin adapter over existing tools; retain module ownership and bounded projection.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/agent-zero/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        },
+        {
+          "kind": "source_review",
+          "reference": "agents/zero/.claude/skills/agent-zero/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "agents-sdk",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/agents-sdk/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "ai-benchmarks",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/ai-benchmarks/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "ai-slop-cleaner",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/ai-slop-cleaner/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "async-codex-review",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/async-codex-review/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "brain",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/brain/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "cancel",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/cancel/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "capability-router",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/capability-router/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "chatgpt-deep-research",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/chatgpt-deep-research/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "checkmark",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/checkmark/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "claude-mini",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/claude-mini/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "claude-ops",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/claude-ops/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "clone-website",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/clone-website/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "cloudflare",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/cloudflare/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "cloudflare-email-service",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/cloudflare-email-service/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "cloudflare-one",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/cloudflare-one/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "cloudflare-one-migrations",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/cloudflare-one-migrations/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "code-search-campaign",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/code-search-campaign/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "codex-companion",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/codex-companion/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "codex-dispatch",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/codex-dispatch/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "codex-subagent-orchestration",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/codex-subagent-orchestration/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "codex-subagent-routing",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/codex-subagent-routing/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "conduct",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/conduct/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "context-relay",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/context-relay/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "convex-feature",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/convex-feature/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "dedup-primitive",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/dedup-primitive/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "design-directions",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/design-directions/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "disk-cleanup",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/disk-cleanup/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "dispatch",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/dispatch/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "durable-objects",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/durable-objects/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "falsifiable-investigation",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/falsifiable-investigation/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "fan-out",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/fan-out/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "firecrawl",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/firecrawl/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "firecrawl-agent",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/firecrawl-agent/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "firecrawl-crawl",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/firecrawl-crawl/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "firecrawl-download",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/firecrawl-download/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "firecrawl-instruct",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/firecrawl-instruct/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "firecrawl-map",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/firecrawl-map/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "firecrawl-scrape",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/firecrawl-scrape/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "firecrawl-search",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/firecrawl-search/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "flywheel",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/flywheel/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "forge-skill",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/forge-skill/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "gh-cli",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/gh-cli/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "graphify",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/graphify/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "haiku-dispatch",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/haiku-dispatch/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "headroom",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/headroom/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "herdr",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/herdr/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "implement",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/implement/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "improve-agent-system",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/improve-agent-system/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "insights-ask",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/insights-ask/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "iso",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/iso/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "legibility-floor",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/legibility-floor/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "lesson",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/lesson/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "librarian-loop",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/librarian-loop/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "model-routing",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/model-routing/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "omc-reference",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/omc-reference/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "opencli",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/opencli/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "oracle-checkpoint",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/oracle-checkpoint/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "oracle-loop-manager",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/oracle-loop-manager/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "orchestrate",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/orchestrate/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "orchestration-playbook",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/orchestration-playbook/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "page-deep-dive",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/page-deep-dive/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "page-deep-dive-verify",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/page-deep-dive-verify/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "page-flow-analysis",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/page-flow-analysis/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "pb-codenav",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/pb-codenav/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "pb-frontend",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/pb-frontend/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "pb-orchestration",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/pb-orchestration/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "pb-research",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/pb-research/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "pb-system",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/pb-system/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "pb-verification",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/pb-verification/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "pi-dispatch",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/pi-dispatch/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "pi-fleet",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/pi-fleet/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "playwright-cli",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/playwright-cli/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "preflight-lessons",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/preflight-lessons/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "reflect",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/reflect/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "run-spark",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/run-spark/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "runtime-reminders",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/runtime-reminders/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "safe-prompt-rewriter",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/safe-prompt-rewriter/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "sandbox-migrate-to-next",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/sandbox-migrate-to-next/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "sandbox-next",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/sandbox-next/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "sandbox-stable",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/sandbox-stable/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "session-checkpoint",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/session-checkpoint/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "siso-capabilities",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/siso-capabilities/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "siso-codex",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/siso-codex/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "siso-graph",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/siso-graph/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "siso-lsp",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/siso-lsp/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "skill",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/skill/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "source-reference",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/source-reference/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "sourcegraph",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/sourcegraph/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "systemdb-query",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/systemdb-query/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "task",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/task/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "telemetry",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/telemetry/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "turnstile-spin",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/turnstile-spin/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "ui-science",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/ui-science/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "verifiable-frontend",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/verifiable-frontend/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "verify-surface",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/verify-surface/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "web-perf",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/web-perf/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "workers-best-practices",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/workers-best-practices/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "wrangler",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Preserved Mini installed global capability",
+      "reason": "Preserve the installed skill during the shared home migration; upstream promotion remains provisional.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "installed_snapshot",
+          "reference": "registry/skills/global/wrangler/INSTALL-SOURCE.json",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "a0-dispatch",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "agents/zero/.claude/skills/a0-dispatch",
+      "reason": "Thin adapter over existing tools; retain module ownership and bounded projection.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "agents/zero/.claude/skills/a0-dispatch/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "job-brief",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "agents/zero/.claude/skills/job-brief",
+      "reason": "Thin adapter over existing tools; retain module ownership and bounded projection.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "agents/zero/.claude/skills/job-brief/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "research-fleet",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "agents/zero/.claude/skills/research-fleet",
+      "reason": "Thin adapter over existing tools; retain module ownership and bounded projection.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "agents/zero/.claude/skills/research-fleet/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "deletion-pass",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "agents/zero/.claude/skills/deletion-pass",
+      "reason": "Thin adapter over existing tools; retain module ownership and bounded projection.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "agents/zero/.claude/skills/deletion-pass/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "look",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "agents/skills/hub/registry/skills/global/look",
+      "reason": "Thin adapter over existing tools; retain module ownership and bounded projection.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "agents/skills/hub/registry/skills/global/look/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "librarian",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "agents/skills/hub/registry/skills/global/librarian",
+      "reason": "Thin adapter over existing tools; retain module ownership and bounded projection.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "agents/skills/hub/registry/skills/global/librarian/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "codex-run",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "agents/skills/hub/registry/skills/global/codex-run",
+      "reason": "Thin adapter over existing tools; retain module ownership and bounded projection.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "agents/skills/hub/registry/skills/global/codex-run/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "land",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "agents/skills/hub/registry/skills/global/land",
+      "reason": "Thin adapter over existing tools; retain module ownership and bounded projection.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "agents/skills/hub/registry/skills/global/land/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "show-page",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "agents/skills/hub/registry/skills/global/show-page",
+      "reason": "Thin adapter over existing tools; retain module ownership and bounded projection.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "agents/skills/hub/registry/skills/global/show-page/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "a0-upgrade",
+      "capability_kind": "tool_adapter",
+      "recommendation": "stay_bundled",
+      "decision_status": "accepted",
+      "target": "agents/skills/hub/registry/skills/global/a0-upgrade",
+      "reason": "Thin adapter over existing tools; retain module ownership and bounded projection.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "agents/skills/hub/registry/skills/global/a0-upgrade/SKILL.md",
+          "observed_at": "2026-10-21"
+        }
+      ]
+    },
+    {
+      "skill_id": "research-first",
+      "capability_kind": "atomic_skill",
+      "recommendation": "stay_bundled",
+      "decision_status": "provisional",
+      "target": "Skills Hub global skill installed for Claude and Codex seats",
+      "reason": "A reusable research habit every seat needs before building; the always-loaded brain names it in one line and this skill holds the method and the asset catalogue.",
+      "blockers": [],
+      "evidence": [
+        {
+          "kind": "source_review",
+          "reference": "_data/clean-slate-2026-10-20/wrapup-20261022/brave/haiku-team-brave-1023.json",
+          "observed_at": "2026-10-23"
+        }
+      ]
     }
   ],
   "evidence": [

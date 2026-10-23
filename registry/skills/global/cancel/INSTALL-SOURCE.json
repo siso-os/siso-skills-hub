@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/cancel",
+  "original_sha256": [
+    {
+      "sha256": "4b62e3b88b9f7c887b6c2069af5e84361941c9840381eb55603e9aa2236736f7",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

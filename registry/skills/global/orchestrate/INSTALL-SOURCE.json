@@ -1,0 +1,65 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/orchestrate",
+  "original_sha256": [
+    {
+      "sha256": "b23053d2e751c7f705cb8af37a295a23a4b1a91ec7df6eb77266ee21d2460501",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "608dbe45ae9c5ee4c7540089274561376758cc3c91d059c6ae672973a20526c6",
+      "path": "goal-mode/README.md"
+    },
+    {
+      "sha256": "271403f04e5cd8b029a1eb79339769a301b4cf3f34e12d53eff7fcf380e9896b",
+      "path": "goal-mode/codex-goal-contract.md"
+    },
+    {
+      "sha256": "c46a19bb39dd5b7fe375b5b485fbb1295a9e20ca65b39013b060981d8a69e06e",
+      "path": "goal-mode/context-cartographer.example.md"
+    },
+    {
+      "sha256": "1a74171ca7a7788a63a11c988c8bb5c2829984c89dfaa6786df943f3401db0d8",
+      "path": "scripts/render-board.sh"
+    },
+    {
+      "sha256": "c2d2d60b5cc847936a9d925f61d60d8dc8b54a1ea80dade584ca92f9597ad69a",
+      "path": "scripts/spawn-worker.sh"
+    },
+    {
+      "sha256": "c5a4b2fe5839ecf3f3f93f1bba5761978353cb3891a1ae30ea5094cad7861839",
+      "path": "scripts/orchestrate-tree.sh"
+    },
+    {
+      "sha256": "90714d4236d8d4c45a4bb068224a113303bfef99e68a94948ab3644bf3615285",
+      "path": "scripts/heartbeat.sh"
+    },
+    {
+      "sha256": "6eebf61f41712c8c785b6a9fedb98a8981424fa35255108bf7b4c562f2dfba04",
+      "path": "scripts/serve-board.sh"
+    },
+    {
+      "sha256": "f82766771889d82681fb46edd5691b918febda535ff4c9a41ad6866bb99d141e",
+      "path": "scripts/watchdog.sh"
+    },
+    {
+      "sha256": "b0681d903511bde0c69a4c53408af258e6e1796ebaf8ed01215820ff231264dd",
+      "path": "scripts/lib.sh"
+    },
+    {
+      "sha256": "18a780da4340c9e4298b188e951c2c81a1015eafbb17eb6526e584bfd4ca1284",
+      "path": "scripts/rehydrate.sh"
+    },
+    {
+      "sha256": "054bd7ebc0ba0cbfc53773d9e1de75f32ed609ccfe75caa5bd60071848661622",
+      "path": "templates/bindings.json"
+    },
+    {
+      "sha256": "d54384e4381107fd3e5a39cc7216cca46ed30239d965ab94c839146e1a15bab1",
+      "path": "templates/agent-tree.template.html"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.codex/skills/context-relay",
+  "original_sha256": [
+    {
+      "sha256": "838d5eec5601a37a89104e936da2533c8d90eb69d2bad9f44798e021929eb3d1",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

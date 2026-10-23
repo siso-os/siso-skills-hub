@@ -1,0 +1,17 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/insights-ask",
+  "original_sha256": [
+    {
+      "sha256": "f87578caec32e994663cd79f2eb9552acbf203d77c0206aa5715fe28a0bca10b",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "47e8a63ae01c44cde1e547e226a9eb918b158b60a161d4e43fd4ef41da66339c",
+      "path": "scripts/ask.py"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

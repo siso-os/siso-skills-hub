@@ -1,0 +1,5 @@
+// SISO verifiable-frontend — spec registry. Copy to specs/index.ts.
+// Import every *.verify.ts here for side-effect registration. One line per unit.
+// import "./YourUnit.verify";
+// import "./AnotherUnit.verify";
+export {};

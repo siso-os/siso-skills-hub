@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/skill",
+  "original_sha256": [
+    {
+      "sha256": "c398c96c40142f06e6427308d644627227c9c2f00fe55466a9b3a09b13986b59",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

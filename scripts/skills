@@ -27,6 +27,7 @@ SAFE_ID = re.compile(r"^[a-z0-9][a-z0-9_-]*$")
 RUNTIME_NAMES = {".git", "node_modules", "state.json"}
 RUNTIME_SUFFIXES = (".db", ".db-wal", ".db-shm", ".sqlite", ".sqlite3", ".sqlite-wal", ".sqlite-shm", ".jsonl", ".ndjson", ".pem", ".key", ".p12")
 SECRET_NAMES = ("id_rsa", "id_ed25519", "credentials.json", "secrets.json")
+REFRESH_ARCHIVE = Path.home() / ".agents" / "_archive"
 
 
 def source_root(entry):
@@ -63,6 +64,8 @@ def _validate_source(skill_id, entry, skill_dir, check_location=True):
     category = entry.get("category")
     if not isinstance(category, str) or not SAFE_ID.fullmatch(category):
         raise ValueError(f"invalid category for {skill_id}")
+    if skill_dir is None:
+        raise ValueError("registered skill source is unavailable")
     allowed_root = source_root(entry)
     resolved_dir = skill_dir.resolve()
     if check_location and resolved_dir != allowed_root and not str(resolved_dir).startswith(str(allowed_root) + os.sep):
@@ -111,6 +114,37 @@ def _same_projection(left, right):
     left_items = {p.name for p in left.iterdir()}
     right_items = {p.name for p in right.iterdir()}
     return left_items == right_items and all(_same_projection(left / n, right / n) for n in left_items)
+
+
+def _skill_name(skill_dir):
+    """Frontmatter name of the copy at skill_dir, or None when it has no SKILL.md frontmatter."""
+    try:
+        text = (skill_dir / "SKILL.md").read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError):
+        return None
+    if not text.startswith("---\n") or "\n---\n" not in text[4:]:
+        return None
+    for line in text[4:text.index("\n---\n", 4)].splitlines():
+        key, _, value = line.partition(":")
+        if key.strip() == "name":
+            return value.strip().strip("'\"")
+    return None
+
+
+def _outdated_copy(target_dir, skill_dir, skill_id):
+    """True only for a real copy of this same skill id whose content differs from the source."""
+    return (target_dir.is_dir() and not target_dir.is_symlink() and _skill_name(target_dir) == skill_id
+            and not _same_projection(skill_dir, target_dir))
+
+
+def _archive_outdated(target_dir, skill_id):
+    """Move an outdated copy aside under the dated refresh archive; never delete or overwrite."""
+    archive = REFRESH_ARCHIVE / f"skills-refresh-{time.strftime('%Y%m%d')}" / skill_id
+    if archive.exists() or archive.is_symlink():
+        raise FileExistsError(f"refresh archive already exists, refusing to overwrite: {archive}")
+    archive.parent.mkdir(parents=True, exist_ok=True)
+    os.rename(target_dir, archive)
+    return archive
 
 
 def _materialize(skill_dir, target_dir, link=False):
@@ -173,7 +207,7 @@ def save_registry(data):
 def cmd_list(args):
     """List all skills"""
     registry = load_registry()
-    skills = [s for s in registry.get('skills', []) if (s.get('metadata') or {}).get('status') != 'dormant']
+    skills = [s for s in registry.get('skills', []) if getattr(args, 'all', False) or (s.get('metadata') or {}).get('status') not in {'dormant', 'archived'}]
 
     if not skills:
         print("[]" if args.json else "No skills found in registry.")
@@ -203,7 +237,7 @@ def cmd_search(args):
 
     results = [
         s for s in registry.get('skills', [])
-        if (s.get('metadata') or {}).get('status') != 'dormant' and (query in s['skill_id'].lower()
+        if (getattr(args, 'all', False) or (s.get('metadata') or {}).get('status') not in {'dormant', 'archived'}) and (query in s['skill_id'].lower()
         or query in s['name'].lower()
         or query in s.get('description', '').lower()
         or any(query in tag.lower() for tag in s.get('tags', [])))
@@ -256,10 +290,8 @@ def find_skill_dir(skill_id):
     entry = next((s for s in load_registry().get('skills', []) if s['skill_id'] == skill_id), {})
     if entry.get('source_path'):
         return source_root(entry)
-    for root, dirs, files in os.walk(SKILLS_DIR):
-        if Path(root).name == skill_id or (Path(root).parent == SKILLS_DIR and Path(root).name == skill_id):
-            return Path(root)
-    return None
+    candidate = SKILLS_DIR / entry.get('category', '') / skill_id
+    return candidate if candidate.is_dir() else None
 
 
 def resolve_agent_skill_path(agent_name, skill_dir):
@@ -292,6 +324,64 @@ def resolve_agent_skill_path(agent_name, skill_dir):
 def cmd_install(args):
     with ExitStack() as stack:
         return _install(args, stack)
+
+
+def home_operation(operation, *values):
+    import subprocess
+    helper = HUB_ROOT.resolve().parents[1] / 'harness/stack/lib/skill-home.mjs'
+    result = subprocess.run(['node', str(helper), operation, *map(str, values)], text=True, capture_output=True)
+    if result.returncode:
+        raise ValueError(result.stderr.strip() or result.stdout.strip())
+    return json.loads(result.stdout)
+
+
+def cmd_doctor(args):
+    try:
+        # Doctor emits its structured report even when problems are found.
+        import subprocess
+        helper = HUB_ROOT.resolve().parents[1] / 'harness/stack/lib/skill-home.mjs'
+        return subprocess.run(['node', str(helper), 'doctor', str(Path.home())]).returncode
+    except OSError as exc:
+        print(f'Error: {exc}')
+        return 1
+
+
+def cmd_migrate(args):
+    if (HUB_ROOT / 'registry/curation-20261021.json').is_file():
+        import subprocess
+        command = [sys.executable, str(HUB_ROOT/'scripts/apply_curation.py')]
+        if args.dry_run:
+            command.append('--dry-run')
+        return subprocess.run(command).returncode
+    names = set()
+    broken = []
+    for tool in ['.agents', '.claude', '.codex']:
+        root = Path.home() / tool / 'skills'
+        if root.exists():
+            names.update(p.name for p in root.iterdir() if not p.name.startswith('.') and (p / 'SKILL.md').is_file())
+            broken.extend(p for p in root.iterdir() if not p.name.startswith('.') and p.is_symlink() and not p.exists())
+    entries = {name: s for s in load_registry()['skills'] for name in [s['skill_id'], *s.get('aliases', [])]}
+    names.update(p.name for p in broken if p.name in entries)
+    # Validate the entire installed set before archiving any projection.
+    for name in sorted(names):
+        if name not in entries:
+            print(f'Error: register installed skill before migration: {name}')
+            return 1
+        entry = entries[name]
+        _validate_source(entry['skill_id'], entry, find_skill_dir(entry['skill_id']))
+    from types import SimpleNamespace
+    for path in broken:
+        if path.name not in entries:
+            # No payload exists to migrate. Keep the dangling reference and its
+            # restore receipt in the archive rather than leaving a broken discovery entry.
+            if args.dry_run:
+                print(f'Plan: archive unavailable dangling reference: {path}')
+            else:
+                print(json.dumps(home_operation('archive', path, Path.home())))
+    for name in sorted(names):
+        if cmd_install(SimpleNamespace(skill_id=name, agent=None, target=None, link=False, dry_run=args.dry_run)):
+            return 1
+    return 0 if args.dry_run else cmd_doctor(args)
 
 
 def _install(args, stack):
@@ -371,8 +461,8 @@ def _install(args, stack):
                         if args.target:
                             target_dir = Path(args.target) / skill_id
                         else:
-                            target_dir = Path(os.path.expanduser("~/.claude/skills")) / skill_id
-                        result = _materialize(staged, target_dir)
+                            target_dir = Path.home() / '.agents/skills' / skill_id
+                        result = _materialize(staged, target_dir) if args.target else home_operation('install', staged, skill_id, Path.home())
                         print(f"{'Linked' if args.link else 'Installed'} {skill_id} -> {target_dir}" + (" (unchanged)" if result == "unchanged" else ""))
                         if TELEMETRY_ENABLED:
                             track(skill_id, success=True, context="install")
@@ -421,22 +511,38 @@ def _install(args, stack):
     elif args.target:
         target_dir = Path(args.target) / skill_id
     else:
-        target_dir = Path(os.path.expanduser("~/.claude/skills")) / skill_id
+        target_dir = Path.home() / '.agents/skills' / skill_id
 
+    if not args.agent and not args.target:
+        if args.dry_run:
+            print(f'Plan: canonical copy {skill_id} -> {target_dir}; Claude per-skill link; archive Codex duplicate')
+            return 0
+        try:
+            result = home_operation('install', skill_dir, skill_id, Path.home())
+        except (ValueError, OSError) as exc:
+            print(f'Error: {exc}')
+            return 1
+        print(json.dumps(result))
+        return 0
+
+    refresh = getattr(args, 'refresh', False) and not args.link and _outdated_copy(target_dir, skill_dir, skill_id)
     if args.dry_run:
         if target_dir.exists() or target_dir.is_symlink():
             same = (args.link and target_dir.is_symlink() and target_dir.resolve() == skill_dir.resolve()) or (not args.link and not target_dir.is_symlink() and target_dir.is_dir() and _same_projection(skill_dir, target_dir))
-            if not same:
+            if not same and not refresh:
                 print(f"Error: existing projection differs: {target_dir}")
                 return 1
-        print(f"Plan: {'link' if args.link else 'copy'} {skill_id} -> {target_dir}")
+        print(f"Plan: {'link' if args.link else 'copy'} {skill_id} -> {target_dir}" + (" after archiving the outdated copy" if refresh else ""))
         return 0
+    archived = None
     try:
+        if refresh:
+            archived = _archive_outdated(target_dir, skill_id)
         result = _materialize(skill_dir, target_dir, link=args.link)
     except (ValueError, OSError, shutil.Error) as exc:
-        print(f"Error: install refused: {exc}")
+        print(f"Error: install refused: {exc}" + (f"; outdated copy is archived at {archived}" if archived else ""))
         return 1
-    print(f"{'Linked' if args.link else 'Installed'} {skill_id} -> {target_dir}" + (" (unchanged)" if result == "unchanged" else ""))
+    print(f"{'Linked' if args.link else 'Installed'} {skill_id} -> {target_dir}" + (" (unchanged)" if result == "unchanged" else "") + (f" (outdated copy archived at {archived})" if archived else ""))
 
     if TELEMETRY_ENABLED:
         track(skill_id, success=True, context="install")
@@ -806,11 +912,13 @@ def main():
     p_list = subparsers.add_parser('list', help='List skills')
     p_list.add_argument('--category', help='Filter by category')
     p_list.add_argument('--json', action='store_true', help='JSON output')
+    p_list.add_argument('--all', action='store_true', help='Include archived and dormant specialist sources')
     p_list.set_defaults(func=cmd_list)
 
     # search
     p_search = subparsers.add_parser('search', help='Search skills')
     p_search.add_argument('query', help='Search query')
+    p_search.add_argument('--all', action='store_true', help='Include archived and dormant specialist sources')
     p_search.set_defaults(func=cmd_search)
 
     # info
@@ -821,11 +929,18 @@ def main():
     # install
     p_install = subparsers.add_parser('install', help='Install skill')
     p_install.add_argument('skill_id', help='Skill ID')
-    p_install.add_argument('--target', help='Target directory (default: ~/.claude/skills/)')
+    p_install.add_argument('--target', help='Explicit copy target (default: shared ~/.agents/skills with Claude links)')
     p_install.add_argument('--agent', help='Install into agent\'s skill directory (auto-detects full/bare pattern)')
     p_install.add_argument('--link', action='store_true', help='Symlink instead of copy')
     p_install.add_argument('--dry-run', action='store_true', help='Show bounded install plan without writing')
+    p_install.add_argument('--refresh', action='store_true', help='Copy only: archive an outdated copy of this same skill, then install current source')
     p_install.set_defaults(func=cmd_install)
+
+    p_doctor = subparsers.add_parser('doctor', help='Report broken links, duplicates and tool skill parity')
+    p_doctor.set_defaults(func=cmd_doctor)
+    p_migrate = subparsers.add_parser('migrate-home', help='Consolidate installed skills from reviewed registry sources; archive old copies')
+    p_migrate.add_argument('--dry-run', action='store_true')
+    p_migrate.set_defaults(func=cmd_migrate)
 
     # update
     p_update = subparsers.add_parser('update', help='Update skill')

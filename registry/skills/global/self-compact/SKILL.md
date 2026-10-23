@@ -1,6 +1,6 @@
 ---
 name: self-compact
-description: Compact your own context and carry on without anyone typing for you. Use when the context ping asks you to compact (a "Time to compact at your next clean break" note after a tool call) and you are at a clean break, or earlier at a natural seam before a big new phase; also when Shaan or Agent Zero asks you to "checkpoint and compact" or "self-compact". Defer instead when you are mid-conversation with Shaan or mid-critical reasoning. You write the checkpoint, tell who should know, arm the waiter with `self-compact go`, and end your turn. Not for Agent Zero (Shaan compacts it himself).
+description: Use when context is filling, a compaction ping arrives or Shaan requests a checkpoint; save state and arm self-compact at a clean break. Agent Zero follows its own compaction rule.
 ---
 
 # Self-compact

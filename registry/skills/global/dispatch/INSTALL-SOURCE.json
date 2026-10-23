@@ -1,0 +1,81 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/dispatch",
+  "original_sha256": [
+    {
+      "sha256": "303260f8dfcbdf800f86ca6902e4a9795d33faf457896514effcf84b252ef4cb",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "942dd003dbc6a324e75816867ccab6bf5d6ccc992cdbcecf6d5daa366981fcb1",
+      "path": "viewer/launch.sh"
+    },
+    {
+      "sha256": "14e9e4987a795d22cfaa021ec4ea5820e7306652465f62a7c30d02a64862085a",
+      "path": "viewer/server.py"
+    },
+    {
+      "sha256": "0ecd1a079fab7d441fe60266ad052a0ecb8a7359c0e858f04074faad45a39e4a",
+      "path": "viewer/index.html"
+    },
+    {
+      "sha256": "5da909532c74fb1a7a1150b3b4994c38b2ddaadd290fc351cf2570788d4b5cda",
+      "path": "templates/haiku-brief.md"
+    },
+    {
+      "sha256": "5d855d0fc8b4431ae2e95573beffaa62af122c956c17e896ea06b666594ca100",
+      "path": "templates/rejection.md"
+    },
+    {
+      "sha256": "b34fbfec2d6955ce9206211d4d92e6e90314452f6beac56f3c09b39525f974bf",
+      "path": "templates/opus-consult.md"
+    },
+    {
+      "sha256": "630df5ea454210a531d30a6b13b93763b82f32d7cf949cd9febad78da32e8348",
+      "path": "templates/sonnet-brief.md"
+    },
+    {
+      "sha256": "df162c96c66c133f1694a26341f184d3adc3930e97dd06c353ce5d85af133d2f",
+      "path": "sub-skills/consult-opus.md"
+    },
+    {
+      "sha256": "6b1ec7ee61e88c2f48a697963e1afd333331aaec6f5fc4cc533ab5499ae75ca0",
+      "path": "sub-skills/spawn-haiku.md"
+    },
+    {
+      "sha256": "f100a1b61511d159a983c0b7e7871310e26f6da5be4df62688e489bf072ec2a3",
+      "path": "sub-skills/escalate.md"
+    },
+    {
+      "sha256": "79a3aec0d91a18262e6cb290d8936006b85796946613f8e47463cc5223208322",
+      "path": "sub-skills/write-status.md"
+    },
+    {
+      "sha256": "cbd5f603bdc6d51c5f13221dca789c4659c2aa1e0d5aa9de7151ee0cf90e1a2e",
+      "path": "sub-skills/redispatch.md"
+    },
+    {
+      "sha256": "62376e1288b07cfe804e091cd78484e78c87da726bbdca10e485b33b1e86c403",
+      "path": "sub-skills/viewer.md"
+    },
+    {
+      "sha256": "5626931ab18aa4a98feb80f21fe473b6490020ea2a2686bbaad4575ce8b95da9",
+      "path": "sub-skills/verify-phase.md"
+    },
+    {
+      "sha256": "9e4a239d1574a534292e3027858d340441243eaf1a835eac8f6154cc350468a4",
+      "path": "sub-skills/spawn-research-fleet.md"
+    },
+    {
+      "sha256": "eeef93189eb56bec60c0136997c402c7a80863a6fb95d3da1100f385da04de86",
+      "path": "sub-skills/parse-plan.md"
+    },
+    {
+      "sha256": "c541f455ed8f5a4f955b78ac2a3fb5828f30cf67d6ff5d66fd495a44a869b90d",
+      "path": "sub-skills/spawn-sonnet.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.codex/skills/bykonz-ui-bank-review",
+  "original_sha256": [
+    {
+      "sha256": "6a8cf038c42f16055fef83b2dd7dc4df80fc77614871adb7de49ddcb24a96438",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

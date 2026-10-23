@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/design-lab",
+  "original_sha256": [
+    {
+      "sha256": "f73d73211b8dcae82cb77353679010274ef4dd85bdcf4b411bb70d08d2781154",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

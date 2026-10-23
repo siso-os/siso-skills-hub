@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SISO Task / Idea / Gap (global /task convention)",
+  "description": "Per-task durable shared brain. Any agent or human may create one. Superset of the SISO org .tasks convention (oracle-streaming/.tasks) — adds parent_task_id/root_task_id (lineage), fundamentals/locations_of_truth/context_pointers (stop re-derivation), and learnings (carry-forward). All new fields optional, so existing TASK-NNNN tasks validate unchanged.",
+  "type": "object",
+  "required": ["id", "title", "status", "priority", "domain", "created_at"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique ID, format: TASK-NNNN (zero-padded). Subtasks use dotted suffix: TASK-0042.1",
+      "pattern": "^TASK-[0-9]{4}(\\.[0-9]+)*$"
+    },
+    "title": { "type": "string", "description": "Short, descriptive title" },
+    "status": {
+      "type": "string",
+      "enum": ["backlog", "queued", "in_progress", "blocked", "completed", "cancelled"],
+      "description": "Lifecycle stage. New ideas/gaps start as 'backlog'."
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low"]
+    },
+    "domain": {
+      "type": "string",
+      "enum": ["ui", "security", "backend", "lifecycle", "infra", "data", "research", "ops"],
+      "description": "Which part of the project this belongs to."
+    },
+    "category": {
+      "type": "string",
+      "enum": ["feature", "idea", "gap", "bugfix", "infrastructure", "research", "content", "setup"],
+      "description": "Type. 'idea' = maybe-someday, 'gap' = found-but-unbuilt, 'feature' = committed work."
+    },
+    "target_agent": {
+      "type": "string",
+      "description": "Which agent/lane owns this. Empty string until claimed. Set atomically by `task claim`."
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "created_by": {
+      "type": "string",
+      "description": "'human' (Shaan) or the agent name that logged it."
+    },
+    "evidence": {
+      "type": "string",
+      "description": "file:line proof or the source audit that backs this. Reconcile against the project's proven ledger before flagging a gap."
+    },
+    "verified": {
+      "type": "boolean",
+      "description": "Has a second pass confirmed this is real (not a false alarm)? Unverified items are candidates, not facts."
+    },
+    "spec": {
+      "type": "object",
+      "properties": {
+        "description": { "type": "string" },
+        "objectives": { "type": "array", "items": { "type": "string" } },
+        "acceptance_criteria": { "type": "array", "items": { "type": "string" } },
+        "context": { "type": "string" },
+        "files_affected": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "IDs that must complete first."
+    },
+    "execution_log": {
+      "type": "array",
+      "description": "Append-only timeline. Each entry: {timestamp, action, by, notes}. NEVER rewrite — only append. This is the running journal of done/tested/learned.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": { "type": "string", "format": "date-time" },
+          "action": { "type": "string", "description": "seeded|created|claimed|done|tested|learned|blocked|handoff|note|completed" },
+          "by": { "type": "string" },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+
+    "parent_task_id": {
+      "type": "string",
+      "description": "LINEAGE. Explicit pointer to the task this descends from (beads/temporal pattern). A new task inherits its parent's learnings into fundamentals. Empty if root."
+    },
+    "root_task_id": {
+      "type": "string",
+      "description": "LINEAGE. Top of the tree this task belongs to. Walkable from any node. Equals id if this is a root."
+    },
+    "fundamentals": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Invariants / norms / constraints that DON'T change run-to-run. The first thing a cold agent reads so it stops re-deriving context. Seeded from parent's learnings on init."
+    },
+    "locations_of_truth": {
+      "type": "array",
+      "description": "The single most underrated section. Where the real state lives for this task.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string", "description": "file path, url, db table, or endpoint" },
+          "what": { "type": "string", "description": "one line: what lives here" }
+        },
+        "required": ["path", "what"]
+      }
+    },
+    "context_pointers": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Cheap re-entry hooks: file:line anchors, grep terms, prior task ids, doc paths. What to load to get back into this task fast."
+    },
+    "learnings": {
+      "type": "array",
+      "description": "Distilled, promotable findings (not raw log). Carry-forward fuel for child tasks. Promoted to spine `memories` (distilled=1) by the brain bridge.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "source_task_ids": { "type": "array", "items": { "type": "string" }, "description": "provenance: which tasks produced this learning (cass pattern)" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "required": ["text"]
+      }
+    }
+  }
+}

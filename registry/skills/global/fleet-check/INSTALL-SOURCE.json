@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/fleet-check",
+  "original_sha256": [
+    {
+      "sha256": "2f6371448328d92238dd4cae51d712401ff793a0a0306525a8aacdee4674114d",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

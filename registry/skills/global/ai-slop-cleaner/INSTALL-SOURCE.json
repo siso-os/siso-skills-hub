@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/ai-slop-cleaner",
+  "original_sha256": [
+    {
+      "sha256": "27bc14e534574066638c3e146f110b8cc93fd6ac0fa07257a1bba5ae1d36a4e1",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

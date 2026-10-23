@@ -1,0 +1,25 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/durable-objects",
+  "original_sha256": [
+    {
+      "sha256": "cd6797cb18f3ae8f721dfd2e5cb27b73a0aa8636683f1a38163dab2fd51a8dfb",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "3149c3ee371b5dbf3a84dac7d5bb42c4c6553762480741f6d2808e4ca20fd932",
+      "path": "references/workers.md"
+    },
+    {
+      "sha256": "08c4064e090ff1a8692543c38fc694c42622f59a27390af26c5825b3970f7f02",
+      "path": "references/testing.md"
+    },
+    {
+      "sha256": "92f12b305df75710fed778c22880ca7de73797f8f4fbbc4cffcf3e6c8ac919e5",
+      "path": "references/rules.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

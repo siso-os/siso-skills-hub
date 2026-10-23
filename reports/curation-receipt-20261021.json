@@ -1,0 +1,237 @@
+{
+  "status": "CURATION_VERIFIED",
+  "date": "2026-10-21",
+  "global_keepers_per_machine": 20,
+  "live_and_hub_counts": {
+    "keep": 20,
+    "cut": 171,
+    "merge": 43,
+    "becomes-a-rule": 16
+  },
+  "all_inventory_counts": {
+    "keep": 20,
+    "cut": 501,
+    "merge": 43,
+    "becomes-a-rule": 16
+  },
+  "historical_source_only_global_exclusions": 330,
+  "listing_tokens": {
+    "before": "approximately 6000-6820 from native skill-doctor",
+    "after": 1200,
+    "after_method": "fresh native /context",
+    "mini_conservative_metadata_estimate": 1701,
+    "mini_native_report": "blocked by expired OAuth; metadata catalog verified"
+  },
+  "trigger_eval": {
+    "model": "claude-haiku-5-5",
+    "positive_before": "15/20",
+    "positive_after": "16/20",
+    "negative_before": "0/10",
+    "negative_after": "0/10",
+    "workflows": [
+      {
+        "before_name": "siso-ui",
+        "after_name": "siso-ui",
+        "before": {
+          "triggered": 2,
+          "total": 2
+        },
+        "after": {
+          "triggered": 2,
+          "total": 2
+        }
+      },
+      {
+        "before_name": "a0-dispatch",
+        "after_name": "a0-dispatch",
+        "before": {
+          "triggered": 1,
+          "total": 2
+        },
+        "after": {
+          "triggered": 2,
+          "total": 2
+        }
+      },
+      {
+        "before_name": "siso-ci",
+        "after_name": "land",
+        "before": {
+          "triggered": 2,
+          "total": 2
+        },
+        "after": {
+          "triggered": 2,
+          "total": 2
+        }
+      },
+      {
+        "before_name": "camofox",
+        "after_name": "camofox",
+        "before": {
+          "triggered": 2,
+          "total": 2
+        },
+        "after": {
+          "triggered": 1,
+          "total": 2
+        }
+      },
+      {
+        "before_name": "show-shots",
+        "after_name": "show-page",
+        "before": {
+          "triggered": 0,
+          "total": 2
+        },
+        "after": {
+          "triggered": 1,
+          "total": 2
+        }
+      },
+      {
+        "before_name": "machine-reach",
+        "after_name": "machine-reach",
+        "before": {
+          "triggered": 2,
+          "total": 2
+        },
+        "after": {
+          "triggered": 2,
+          "total": 2
+        }
+      },
+      {
+        "before_name": "haiku-team",
+        "after_name": "haiku-team",
+        "before": {
+          "triggered": 2,
+          "total": 2
+        },
+        "after": {
+          "triggered": 2,
+          "total": 2
+        }
+      },
+      {
+        "before_name": "self-compact",
+        "after_name": "self-compact",
+        "before": {
+          "triggered": 2,
+          "total": 2
+        },
+        "after": {
+          "triggered": 2,
+          "total": 2
+        }
+      },
+      {
+        "before_name": "fast-build-loop",
+        "after_name": "codex-run",
+        "before": {
+          "triggered": 0,
+          "total": 2
+        },
+        "after": {
+          "triggered": 0,
+          "total": 2
+        }
+      },
+      {
+        "before_name": "fleet-check",
+        "after_name": "fleet-check",
+        "before": {
+          "triggered": 2,
+          "total": 2
+        },
+        "after": {
+          "triggered": 2,
+          "total": 2
+        }
+      }
+    ],
+    "after_basis": "All twenty installed personal descriptions asserted equal to the final registry; personal skills outrank project fixtures."
+  },
+  "installed": {
+    "laptop": {
+      "source_sha": "e84fbe93d0c504a50f139c545f750819273654e0",
+      "keepers": 20,
+      "claude_links": 20,
+      "preloaded_agents": 7,
+      "issues": [],
+      "repeat_archived_copies": 0
+    },
+    "mini": {
+      "source_sha": "e84fbe93d0c504a50f139c545f750819273654e0",
+      "keepers": 20,
+      "claude_links": 20,
+      "preloaded_agents": 7,
+      "issues": [],
+      "repeat_archived_copies": 0
+    }
+  },
+  "fresh_catalogs": {
+    "laptop": {
+      "claude": {
+        "harness": "claude",
+        "fresh_process": true,
+        "model_turns": 0,
+        "missing": [],
+        "disabled": [],
+        "other_catalog_errors": null,
+        "passed": true,
+        "matches": 20
+      },
+      "codex": {
+        "harness": "codex",
+        "fresh_process": true,
+        "model_turns": 0,
+        "missing": [],
+        "disabled": [],
+        "other_catalog_errors": 0,
+        "passed": true,
+        "matches": 20
+      }
+    },
+    "mini": {
+      "claude": {
+        "harness": "claude",
+        "fresh_process": true,
+        "model_turns": 0,
+        "missing": [],
+        "disabled": [],
+        "other_catalog_errors": null,
+        "passed": true,
+        "matches": 20
+      },
+      "codex": {
+        "harness": "codex",
+        "fresh_process": true,
+        "model_turns": 0,
+        "missing": [],
+        "disabled": [],
+        "other_catalog_errors": 0,
+        "passed": true,
+        "matches": 20
+      }
+    }
+  },
+  "brain_composed_and_checked": [
+    "laptop",
+    "mini"
+  ],
+  "telemetry": {
+    "existing_counter": "skills_telemetry.py / skill_events",
+    "observed_skill_invocations": 43,
+    "codex_definition_reads": 86,
+    "definition_reads_are_invocations": false,
+    "raw_content_persisted": false
+  },
+  "limits": [
+    "Two positive and one simple translation negative per workflow per arm, with a two-turn bound: a smoke test, not a statistically reliable benchmark. Personal skill bodies may outrank inert project fixtures; workflow mutation tools, hooks, MCP and skill shell execution were disabled.",
+    "Mini native token/model report is blocked by expired OAuth; fresh Claude and Codex metadata catalogs passed without model turns.",
+    "Mini build disk hold remains; full landing checks ran on laptop."
+  ],
+  "landed_source_sha": "e84fbe93d0c504a50f139c545f750819273654e0",
+  "home_landing_sha": "f282972ae776a72517cd1fa5169bf5b20cff8e2d"
+}

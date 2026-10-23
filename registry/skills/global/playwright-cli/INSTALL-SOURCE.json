@@ -1,0 +1,49 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/playwright-cli",
+  "original_sha256": [
+    {
+      "sha256": "d2d7c18cb6099b59b0436b094c1a25d92fb0148cfee4d4480f213195f98d9fc0",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "f08d14388b7002963e27bd242550154cb1379def89597464deb36b6f7afca15f",
+      "path": "references/test-generation.md"
+    },
+    {
+      "sha256": "bf19aa4671e0a50a0fefa9c790f39124e803060eefe395042b723c29fcb7faa2",
+      "path": "references/element-attributes.md"
+    },
+    {
+      "sha256": "0cea7708999aa663701917615889a84cbc05200718bb161de9a5366a826c2b4d",
+      "path": "references/video-recording.md"
+    },
+    {
+      "sha256": "d770e9eb15cf1e266b9d92e788722fa189941f89346702a6800b06e25416c4e7",
+      "path": "references/playwright-tests.md"
+    },
+    {
+      "sha256": "0729425a05ee7f16510dae80f1e18041fef53041f1d15cfb2f77a3b30b648244",
+      "path": "references/running-code.md"
+    },
+    {
+      "sha256": "1122778c9b13b44bddebb4476a7f99d918afd31757be8b4fade3cb09c3d48c99",
+      "path": "references/storage-state.md"
+    },
+    {
+      "sha256": "792e0ac7705e56ac48df84c0f5400221ce86107897c671590a64a4ea6a82508e",
+      "path": "references/tracing.md"
+    },
+    {
+      "sha256": "54e801c9663fc2b6d68ceb058cb1c360724c2499f42acc7852a68e83e5b5f37c",
+      "path": "references/request-mocking.md"
+    },
+    {
+      "sha256": "5b766d41614b3201f845b9b99b51df8c6cedc79850b541db1eaaeafb289bf0b3",
+      "path": "references/session-management.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# codex-watch-prompt — emit the watcher-agent prompt for a dispatched Codex slug.
+#
+# WHY: `codex-dispatch` is fire-and-forget + terminal — nothing wakes the caller
+# when Codex finishes, so the caller polls. A backgrounded Haiku Agent (auto-routes
+# to MiniMax, ~free) that BLOCKS on the codex pid + handoff turns this into a PUSH:
+# when Codex finishes, the watcher finishes, and the harness notifies the caller
+# with the PASS/FAIL verdict. No polling.
+#
+# PATTERN (the caller — a Claude agent — does this every dispatch):
+#   1. codex-dispatch <slug> <prompt> [--deep]      # note the printed pid
+#   2. spawn a BACKGROUNDED Haiku Agent whose prompt = `codex-watch-prompt <slug> <pid>`
+# The Agent tool's completion notification IS the "it's done, here's the verdict" ping.
+#
+# Usage: codex-watch-prompt <slug> <pid> [repo-root]
+set -euo pipefail
+[ "$#" -ge 2 ] || { echo "usage: codex-watch-prompt <slug> <pid> [repo-root]" >&2; exit 2; }
+SLUG=$1; PID=$2; REPO=${3:-$(pwd -P)}
+HANDOFF="$REPO/.orchestrate/handoffs/$SLUG.result.html"
+LOG="/tmp/codex-$SLUG.log"
+
+cat <<EOF
+You are a CODEX WATCHER for slug \`$SLUG\` (pid $PID). Block until that headless Codex
+job finishes, then report its verdict. Do NO coding yourself.
+
+Steps:
+1. Poll every 30s (sleeping, not token-burning), cap ~40 min:
+   for i in \$(seq 1 80); do
+     if [ -f "$HANDOFF" ]; then echo HANDOFF_READY; break; fi
+     if ! ps -p $PID >/dev/null 2>&1; then echo PROCESS_GONE; break; fi
+     sleep 30
+   done
+2. When done: cat "$HANDOFF" and tail -30 "$LOG".
+3. Read PASS/FAIL from the handoff's first PASS/FAIL line; grab the pushed SHA if present.
+
+RETURN exactly these 6 lines, nothing else:
+VERDICT: PASS|FAIL|STILL_RUNNING|NO_HANDOFF
+SHA: <pushed sha or "none">
+SUMMARY: <one sentence>
+TSC: <clean | N errors, in target dir or pre-existing>
+TEST: <pass/fail or "not found">
+NEXT: <one line — what the caller should do next>
+EOF

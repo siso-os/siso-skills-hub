@@ -1,0 +1,149 @@
+{
+  "$schema": "ui-science contract v1",
+  "note": "Every rule cites a receipt verified at a primary venue this session. See references/evidence.html. Tiers: 1=hard/deterministic, 2=conditional, 3=opinion/suggestion, 4=anti-folklore.",
+  "rules": [
+    {
+      "id": "color.oklch-ramp-uniformity",
+      "tier": 1,
+      "domain": "color",
+      "claim": "A color ramp stepped evenly in HSL/RGB is perceptually UNEVEN; perceptual evenness requires even steps in OKLab lightness.",
+      "receipt": { "source": "MacAdam, 'Visual Sensitivities to Color Differences in Daylight'", "year": 1942, "venue": "J. Optical Society of America 32(5):247", "chain": "MacAdam proved color space is perceptually non-uniform (25,000 color-match trials) -> OKLab (Ottosson 2020) is engineered so equal numeric steps ~ equal perceived steps." },
+      "check": { "kind": "deterministic", "predicate": "rampUniformity(ramp).unevenness <= 0.45" },
+      "severity": "error",
+      "fix": "Regenerate the ramp with even OKLab-L steps (use oklch() with evenly-spaced L). Do not step HSL lightness evenly.",
+      "folklore": false
+    },
+    {
+      "id": "color.wcag-contrast-aa",
+      "tier": 1,
+      "domain": "color",
+      "claim": "Body text must meet WCAG 2.1 AA contrast (>= 4.5:1 normal, >= 3:1 large) against its background.",
+      "receipt": { "source": "W3C WCAG 2.1 Success Criterion 1.4.3 (Contrast Minimum)", "year": 2018, "venue": "W3C Recommendation", "caveat": "WCAG 2.1 uses relative-luminance ratio; APCA / WCAG 3 (draft) model perceived contrast better for some cases. Ratio is the enforceable standard today." },
+      "check": { "kind": "deterministic", "predicate": "contrastRatio(fg,bg) >= 4.5" },
+      "severity": "error",
+      "fix": "Darken/lighten the foreground or background until the ratio meets AA. Avoid gray text on colored backgrounds; use a tint of the background hue instead.",
+      "folklore": false
+    },
+    {
+      "id": "motor.fitts-target-size",
+      "tier": 1,
+      "domain": "motor",
+      "claim": "Interactive targets below ~44x44px (iOS) / 48x48dp (Android) raise acquisition time and error rate; per Fitts's Law, smaller target width => longer, error-prone acquisition.",
+      "receipt": { "source": "Fitts, 'The information capacity of the human motor system in controlling the amplitude of movement'", "year": 1954, "venue": "J. Experimental Psychology 47(6):381", "formula": "MT = a + b*log2(2D/W)", "caveat": "44px/48dp are platform GUIDELINES (Apple HIG / Material) engineered around Fitts, not measured constants themselves." },
+      "check": { "kind": "deterministic", "predicate": "min(width,height) >= 44 for interactive elements" },
+      "severity": "warn",
+      "fix": "Increase the tap target to >= 44px (extend hit area with padding if the visual must stay small). Place frequent targets closer / at screen edges (infinite-depth) to cut travel distance.",
+      "folklore": false
+    },
+    {
+      "id": "type.scale-ratio",
+      "tier": 1,
+      "domain": "typography",
+      "claim": "A type scale should follow a consistent ratio (e.g. 1.2 minor-third, 1.25, 1.333, 1.5); arbitrary near-duplicate sizes read as noise and weaken hierarchy.",
+      "receipt": { "source": "Modular scale is design convention (Bringhurst, 'The Elements of Typographic Style'), NOT a human-measurement.", "year": 1992, "venue": "Hartley & Marks", "note": "Labeled Tier-1 for CONSISTENCY-checkability, but the RATIO CHOICE is aesthetic tradition, not measured. Flagged honestly." },
+      "check": { "kind": "deterministic", "predicate": "adjacent font-size ratios cluster around one constant (cv < 0.15)" },
+      "severity": "suggest",
+      "fix": "Collapse near-duplicate sizes; pick one ratio and derive the scale from it. Cap distinct text sizes (~3-5) to keep hierarchy legible.",
+      "folklore": false
+    },
+    {
+      "id": "memory.no-cross-step-recall",
+      "tier": 2,
+      "domain": "cognition",
+      "claim": "Do not force users to hold information in working memory across steps/screens; capacity is ~4 chunks, not 7.",
+      "receipt": { "source": "Cowan, 'The magical number 4 in short-term memory: a reconsideration of mental storage capacity'", "year": 2001, "venue": "Behavioral & Brain Sciences 24(1):87", "note": "Supersedes Miller 1956's '7+-2', which was serial recall of unidimensional stimuli, not UI chunking." },
+      "check": { "kind": "llm", "predicate": "Does any flow require the user to remember a value shown on a prior step to complete a later one? If yes, flag." },
+      "severity": "warn",
+      "fix": "Carry the needed value forward on-screen (show the cart total, echo the entered code). Never make the user remember it.",
+      "folklore": false
+    },
+    {
+      "id": "dataviz.encoding-rank",
+      "tier": 2,
+      "domain": "dataviz",
+      "claim": "Encode the primary quantitative comparison using position/length, not angle/area/color; humans decode position most accurately.",
+      "receipt": { "source": "Cleveland & McGill, 'Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods'", "year": 1984, "venue": "J. American Statistical Association 79(387):531", "note": "Foundational ranked experiment; replicated on Mechanical Turk by Heer & Bostock (CHI 2010)." },
+      "check": { "kind": "llm", "predicate": "Is the key comparison encoded as a pie/donut (angle) or bubble (area) when a bar (length/position) would serve? If yes, flag." },
+      "severity": "suggest",
+      "fix": "Prefer bar/dot/line (position, length) for the main comparison. Reserve angle/area for secondary or part-of-whole framing only.",
+      "folklore": false
+    },
+    {
+      "id": "dataviz.bar-hides-distribution",
+      "tier": 2,
+      "domain": "dataviz",
+      "claim": "A bar chart of a mean cannot show the underlying distribution; many different distributions produce the identical bar. For small-n, show the data (dots/box).",
+      "receipt": { "source": "Weissgerber et al., 'Beyond Bar and Line Graphs: Time for a New Data Presentation Paradigm'", "year": 2015, "venue": "PLOS Biology 13(4):e1002128", "note": "Systematic review of 703 papers." },
+      "check": { "kind": "llm", "predicate": "Is a bar/line of a mean (with SE/SD) used to summarize a small continuous sample? If yes, suggest a distribution-revealing plot." },
+      "severity": "suggest",
+      "fix": "Use a univariate scatter/dot plot or box plot for small samples so outliers, bimodality, and n are visible.",
+      "folklore": false
+    },
+    {
+      "id": "folklore.magical-seven",
+      "tier": 4,
+      "domain": "cognition",
+      "claim": "FOLKLORE: 'limit UI elements/menu items to 7 (+-2) because of Miller's law.' Miller 1956 was serial recall of unidimensional stimuli, NOT visual-UI chunking; the real WM figure is ~4 (Cowan 2001). Do not cap layout by 7.",
+      "receipt": { "source": "Miller 1956 (Psychological Review) misapplied; corrected by Cowan 2001 (Behavioral & Brain Sciences 24:87)", "year": 2001, "venue": "primary venues", "note": "Miller himself called 7 a near-coincidence." },
+      "check": { "kind": "deterministic", "predicate": "source text mentions 'magical number seven' / '7 plus or minus 2' / 'max 7 items' as a design justification" },
+      "severity": "warn",
+      "fix": "Drop the 7-item justification. Group by meaning (chunking) and reduce cross-step memory load; there is no scientific '7 widgets' cap.",
+      "folklore": true
+    },
+    {
+      "id": "folklore.design-for-f-pattern",
+      "tier": 4,
+      "domain": "attention",
+      "claim": "FOLKLORE: 'lay out dashboards to follow the F-pattern.' NN/g's own eye-tracking says the F-pattern is the DEFAULT when there are no strong cues, is bad for users, and should be COUNTERACTED with hierarchy, not emulated.",
+      "receipt": { "source": "Nielsen Norman Group, 'F-Shaped Pattern of Reading on the Web' (eye-tracking, ~45-47 users/example)", "year": 2006, "venue": "nngroup.com", "note": "Verified at source: NN/g recommends counteracting, not designing for, the F-pattern." },
+      "check": { "kind": "deterministic", "predicate": "source text advocates 'design for the F-pattern' / 'follow the F-pattern' as a layout goal" },
+      "severity": "warn",
+      "fix": "Design deliberate visual hierarchy (headings, grouping, emphasis) so the eye is GUIDED. The F-pattern emerging is a symptom of missing hierarchy.",
+      "folklore": true
+    },
+    {
+      "id": "folklore.maximize-data-ink",
+      "tier": 4,
+      "domain": "dataviz",
+      "claim": "OVERSTATED: 'always maximize data-ink / erase all chartjunk' (Tufte). The strong form is empirically contested: Bateman 2010 found embellished charts were no worse for comprehension and BETTER for long-term recall. Treat as taste, not law.",
+      "receipt": { "source": "Bateman et al., 'Useful Junk? The Effects of Visual Embellishment on Comprehension and Memorability of Charts'", "year": 2010, "venue": "ACM CHI 2010, pp.2573-2582", "note": "Counterpoint to Tufte 1983's data-ink orthodoxy. Embellishment helped recall of title/theme, not specific values." },
+      "check": { "kind": "deterministic", "predicate": "source text asserts 'maximize the data-ink ratio' or 'remove all chartjunk' as an absolute rule" },
+      "severity": "suggest",
+      "fix": "Hold data-ink as a default aesthetic, not a law. Purposeful, topic-matched embellishment can aid memorability without hurting comprehension.",
+      "folklore": true
+    },
+    {
+      "id": "tell.side-stripe-border",
+      "tier": 4,
+      "domain": "craft",
+      "claim": "AI-DESIGN TELL: thick colored left/right border on cards/alerts/callouts. Overused signature of AI-generated admin/dashboard UIs.",
+      "receipt": { "source": "Craft heuristic (impeccable detector, Bakaus). NOT a human-measurement — flagged as craft, tier-4.", "year": 2025, "venue": "impeccable design language", "note": "Included honestly as craft, not science." },
+      "check": { "kind": "deterministic", "predicate": "css declares border-left or border-right with width > 1px" },
+      "severity": "suggest",
+      "fix": "Use a different structure to signal status (icon, background tint, heading) rather than a colored side stripe.",
+      "folklore": false
+    },
+    {
+      "id": "tell.gradient-text",
+      "tier": 4,
+      "domain": "craft",
+      "claim": "AI-DESIGN TELL: gradient-filled text (background-clip:text + gradient). Overused, hurts legibility.",
+      "receipt": { "source": "Craft heuristic (impeccable detector, Bakaus). NOT science — craft, tier-4.", "year": 2025, "venue": "impeccable design language" },
+      "check": { "kind": "deterministic", "predicate": "css combines background-clip:text (or -webkit-) with a gradient background" },
+      "severity": "suggest",
+      "fix": "Use a solid text color. Reserve gradients for backgrounds/accents, not text fill.",
+      "folklore": false
+    },
+    {
+      "id": "tell.overused-font",
+      "tier": 4,
+      "domain": "craft",
+      "claim": "AI-DESIGN TELL: 'Inter' (or bare system defaults) as the brand font. Every model trained on the same SaaS templates reaches for Inter; it reads as AI-generated. Choose a distinctive typeface deliberately.",
+      "receipt": { "source": "Craft heuristic (impeccable, Bakaus — #1 listed AI font tell). NOT a human-measurement; craft, tier-4.", "year": 2025, "venue": "impeccable design language" },
+      "check": { "kind": "deterministic", "predicate": "font stack or class references Inter as the primary UI font" },
+      "severity": "suggest",
+      "fix": "Pick a distinctive typeface that fits the brand. If Inter is a deliberate choice for a specific reason, keep it — but decide, don't default.",
+      "folklore": false
+    }
+  ]
+}

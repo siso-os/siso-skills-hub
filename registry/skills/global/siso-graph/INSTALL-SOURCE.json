@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/siso-graph",
+  "original_sha256": [
+    {
+      "sha256": "0e552df576d94aa77a98f3de37fbf3cdf7c2426b34dad46281e2b450cb5c73b6",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

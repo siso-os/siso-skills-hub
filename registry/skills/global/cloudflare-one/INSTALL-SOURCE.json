@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/cloudflare-one",
+  "original_sha256": [
+    {
+      "sha256": "605336f84979367b6235a57da8ea43e4f3b856a97efd2c95d9e7f90e41bf17ec",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/sandbox-stable",
+  "original_sha256": [
+    {
+      "sha256": "6ced225f22f6180edd9490a8eae04b3f3819f3ac4a9d47e8f9677ac040790910",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

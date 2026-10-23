@@ -1,0 +1,21 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/siso-codex",
+  "original_sha256": [
+    {
+      "sha256": "279201d5f84aae73883254461b021fb80b19a09b75cb92b30d661dd9adf677fe",
+      "path": "scan.sh"
+    },
+    {
+      "sha256": "e43033547d1b52479005b849464f2570ba87789a2e75cf2cd7fb0b5f7c8d75ed",
+      "path": "CLAUDE_MD_SNIPPET.md"
+    },
+    {
+      "sha256": "195b47a7fa068ae15b7dcb10303663d374984c6ad9dcbe77c5433b5c337b9775",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

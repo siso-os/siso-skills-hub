@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.codex/skills/codex-in-app-browser",
+  "original_sha256": [
+    {
+      "sha256": "da3fca79addcc45595ff62f485e6ef45d16cc7fd6ec7eb8a237b1392ed457f78",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

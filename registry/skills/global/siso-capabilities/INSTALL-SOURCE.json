@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.codex/skills/siso-capabilities",
+  "original_sha256": [
+    {
+      "sha256": "b367545f014ebd3aa1cb810bcc31f29b4f47a1de6f15e13bdd6ca80ec1f0530a",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

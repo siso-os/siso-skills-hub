@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/falsifiable-investigation",
+  "original_sha256": [
+    {
+      "sha256": "d32bf4ed3969c413641476fcee2fd5e60b76e81ec0a51c4f80b2b23ff5767b9c",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

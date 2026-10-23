@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/pi-fleet",
+  "original_sha256": [
+    {
+      "sha256": "e56459e40b7d25bce025931cf91aa642e851ef2d71e84ac5b92eb8da6e0e428d",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

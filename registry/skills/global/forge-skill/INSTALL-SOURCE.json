@@ -1,0 +1,25 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/forge-skill",
+  "original_sha256": [
+    {
+      "sha256": "22b2348365c465682360d34892c115a02f07505e69f78c51a801482da42eb65d",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "c83f4e87eb19df6f28025e0b36b3bc2191192b624b4e75cdc869187fe5b7f917",
+      "path": "references/blind-forward-test.md"
+    },
+    {
+      "sha256": "db5689ded93940c43f749e7b654a7003b0ed7b25cd15feac667f52b6872265d1",
+      "path": "workflow/forge-round.js"
+    },
+    {
+      "sha256": "ea9920ad4ae7a1b498e332bd62e147e5f3843866d1331dcbb4d0c0769fff208b",
+      "path": "scripts/forge.sh"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

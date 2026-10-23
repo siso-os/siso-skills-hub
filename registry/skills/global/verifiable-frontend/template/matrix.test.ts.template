@@ -1,0 +1,57 @@
+// SISO verifiable-frontend — the CI consumer. Copy to verify/matrix.test.ts.
+// Ported from Anthropic cwc-workshops phase-3-verify (Apache-2.0).
+//
+// This runs the EXACT same code path as window.__verify.runAll() and the dashboard
+// "Run all" button. One pipeline, three consumers (CI, dashboard, agent).
+//
+// Requires a jsdom-style test env (vitest: `environment: "jsdom"`).
+
+import { describe, it, expect } from "vitest";
+import "./verifiers";   // side-effect registration
+import "./specs";       // side-effect registration
+import { allUnits } from "./core/registry";
+import { runUnit } from "./core/runner";
+
+// Keys are `${unitId}::${fixtureId}`. Anything listed here MUST verdict FAIL by design
+// (the planted-lie probes). Everything else MUST verdict PASS. This is what proves the
+// framework actually catches wrongness instead of rubber-stamping.
+const EXPECTED_FAIL = new Set<string>([
+  // "TodoStats::inconsistent-counts",
+]);
+
+const units = allUnits();
+
+it("has at least one verifiable unit registered", () => {
+  expect(units.length).toBeGreaterThan(0);
+});
+
+for (const unit of units) {
+  describe(unit.id, () => {
+    it("declares at least one probe fixture (no happy-path-only specs)", () => {
+      const probes = unit.fixtures.filter((f) => f.probe);
+      expect(
+        probes.length,
+        `${unit.id} has no probe fixture — it only replays the happy path`
+      ).toBeGreaterThan(0);
+    });
+
+    for (const fixture of unit.fixtures) {
+      const key = `${unit.id}::${fixture.id}`;
+      const mustFail = EXPECTED_FAIL.has(key);
+      it(`${fixture.id} → ${mustFail ? "FAIL (by design)" : "PASS"}`, async () => {
+        const results = await runUnit(unit);
+        const result = results.find((r) => r.fixtureId === fixture.id);
+        expect(result, `no result for ${key}`).toBeDefined();
+        if (mustFail) {
+          expect(result!.verdict, JSON.stringify(result!.checks, null, 2)).toBe(
+            "FAIL"
+          );
+        } else {
+          expect(result!.verdict, JSON.stringify(result!.checks, null, 2)).toBe(
+            "PASS"
+          );
+        }
+      });
+    }
+  });
+}
