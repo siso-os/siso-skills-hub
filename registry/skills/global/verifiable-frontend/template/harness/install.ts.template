@@ -1,0 +1,45 @@
+// SISO verifiable-frontend — install entry. Copy to harness/install.ts and import it ONCE
+// from your renderer entry point (e.g. main.tsx) so the agent surface exists at runtime:
+//
+//   import "./verify/harness/install";
+//
+// It pulls in all verifiers + specs (side-effect registration), installs window.__verify,
+// and ensures a #verify-result-json DOM host exists for DOM-only agents.
+
+import "../verifiers";      // registers schema, invariants, dom-contract
+import "../specs";          // registers every unit
+import { installVerifyHandle, setCurrentResult } from "./handle";
+import { runUnit } from "../core/runner";
+import { allUnits } from "../core/registry";
+
+// Ensure the DOM host for agents that can only read DOM (not eval JS).
+function ensureJsonHost() {
+  if (typeof document === "undefined") return;
+  if (!document.getElementById("verify-result-json")) {
+    const el = document.createElement("script");
+    el.id = "verify-result-json";
+    el.type = "application/json";
+    el.textContent = "";
+    document.body.appendChild(el);
+  }
+}
+
+ensureJsonHost();
+installVerifyHandle();
+
+// Optional: expose a one-shot that runs everything and parks the LAST result in the
+// DOM host too, so an agent can `runAll()` then read #verify-result-json.
+declare global {
+  interface Window {
+    __verifyRunAllToDom?: () => Promise<void>;
+  }
+}
+if (typeof window !== "undefined") {
+  window.__verifyRunAllToDom = async () => {
+    let last = null;
+    for (const u of allUnits()) {
+      for (const r of await runUnit(u)) last = r;
+    }
+    setCurrentResult(last);
+  };
+}

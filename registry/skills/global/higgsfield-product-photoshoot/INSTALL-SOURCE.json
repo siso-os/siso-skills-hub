@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/higgsfield-product-photoshoot",
+  "original_sha256": [
+    {
+      "sha256": "139c38f3b8a33a4ef37a1066850e4bcddc0976b4143cc6ea0c3b7ad9de3b3b9e",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

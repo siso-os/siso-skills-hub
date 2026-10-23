@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/prove-model-routing",
+  "original_sha256": [
+    {
+      "sha256": "9705170288c5ecaee61fce055e046a21b36389f89f7e6ac20bf973aa711843ce",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

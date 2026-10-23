@@ -1,6 +1,6 @@
 ---
 name: machine-reach
-description: Reach any SISO machine over ssh (laptop, Mac mini, siso-vps, halo-vps, Cam's MacBook) by the right alias, with the fallback routes in order (Tailscale, then home LAN, then the Cloudflare WARP route) and a short debug ladder for when one is down. Use before any ssh to these machines, when an alias times out, when a machine "looks down", or when a fleet tool says a box is unreachable.
+description: Use when connecting to the Mac mini or a SISO VPS, or diagnosing SSH reachability; resolve the current alias and try documented routes in order.
 ---
 
 # Reaching the machines

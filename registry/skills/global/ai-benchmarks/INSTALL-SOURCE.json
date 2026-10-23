@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/ai-benchmarks",
+  "original_sha256": [
+    {
+      "sha256": "460f4abbcfd0e972868c994eb23e0321c1dd4e9a4de8588a0d0b8d5d67e3de56",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "MelanoTresses Client Ops"
+  short_description: "Safely maintain and hand off MelanoTresses."
+  default_prompt: "Use $melanotresses-client-ops to triage client feedback, verify approved facts, configure safe preview hosting, and produce a documented handoff."

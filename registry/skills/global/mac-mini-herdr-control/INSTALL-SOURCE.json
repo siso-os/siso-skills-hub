@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/mac-mini-herdr-control",
+  "original_sha256": [
+    {
+      "sha256": "35139814722ba378835a085f6170c2a483a374b7bc595b603b5e8cc2a750a172",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

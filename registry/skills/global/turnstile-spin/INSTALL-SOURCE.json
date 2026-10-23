@@ -1,0 +1,61 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/turnstile-spin",
+  "original_sha256": [
+    {
+      "sha256": "e5c50413b3db0fc2e1bf5ae0147b093f36ed9a66567c5e39f6bd93b2c972f440",
+      "path": "README.md"
+    },
+    {
+      "sha256": "0d8df415c594c96ca5a4d393b70681d95d92365465e0eb14af3ab2eaa76d800b",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "6e2faeba9bf9ad24c062c6a723dc37c74644e5843dd7a06164999240e83d7a96",
+      "path": "references/astro.md"
+    },
+    {
+      "sha256": "a8e10a569937efd076c3f32f37b48a8083c8c52918c9aa309b770d35d5a03273",
+      "path": "references/nextjs-app.md"
+    },
+    {
+      "sha256": "bb01ca94b0e942c0e329c2fcaf50d0c5ff846f1ae166aa6d654d4c962d48fa9d",
+      "path": "references/vanilla-html.md"
+    },
+    {
+      "sha256": "f6fa729155fa682f6c77b157cbb75492caf172f7451bcc889bc417441a3f02a5",
+      "path": "references/nextjs-pages.md"
+    },
+    {
+      "sha256": "da8dbe10014a0a94d25c51e80010ffd4fb5f0719caa7226c42b9dacb3ae8933a",
+      "path": "references/sveltekit.md"
+    },
+    {
+      "sha256": "5bc91dca7264de9bcb163d4c8e21a20d64afcad7becdd69926f9c7a09d1bb05c",
+      "path": "references/hugo.md"
+    },
+    {
+      "sha256": "e92fedb23a709b104877733365162bddb2d2be7c8a25c1dec9483bbedddae46f",
+      "path": "tests/validation.md"
+    },
+    {
+      "sha256": "45af59068104650ac8b247cf2059d985fa17960d9c2f3d867287fc296771de81",
+      "path": "scripts/validate.sh"
+    },
+    {
+      "sha256": "ebc3ef13ef99f4f6f93400ce66ffc3848c1913aac0cb0876470c6378cf1d9fed",
+      "path": "scripts/widget-create.sh"
+    },
+    {
+      "sha256": "a54d7ab1f6e6ac98a6aeb45498d7bb3568d173669d2d3a7c6a08b56ed2c20182",
+      "path": "scripts/auth-probe.sh"
+    },
+    {
+      "sha256": "4fea0bcda9fded16dd63f77dad196474d3c15c1fe93ac4718b50517fa834330c",
+      "path": "scripts/persist-skill.sh"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

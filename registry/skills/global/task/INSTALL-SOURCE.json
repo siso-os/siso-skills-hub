@@ -1,0 +1,49 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/task",
+  "original_sha256": [
+    {
+      "sha256": "862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793",
+      "path": ".gitignore"
+    },
+    {
+      "sha256": "81ee33f717a18d5d82dc672572566e9ac96d9f4397239528c3767c66d85c9747",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "ed2ec54db913020e186749e125de422bdef945663a60a3d38c8d8bb0100a73ac",
+      "path": "bookkeeper/bookkeep.sh"
+    },
+    {
+      "sha256": "4ed03f23646fb4b5ee384eb057cb5445d4716089fbf75f32d080bc635dad594b",
+      "path": "bookkeeper/extract-prompt.txt"
+    },
+    {
+      "sha256": "2ad39b25bfe6f8c13bc0c8f55697fd162fbd933aa0947027c585716152ae09c5",
+      "path": "bookkeeper/bookkeep-file.sh"
+    },
+    {
+      "sha256": "595219a75a2e26d87b7082a39c0a49df7e3ad3f6ef1a8c1a0dd80b27adb48152",
+      "path": "scripts/task.py"
+    },
+    {
+      "sha256": "e62c1cd5bd7411675789ddca6392078d916b972ad5328356b62c398e242a2c87",
+      "path": "scripts/boot-tasks.py"
+    },
+    {
+      "sha256": "b7534a8f7c73153e66ed1308e0179380c08e0ec83a42b65af174580a861355ed",
+      "path": "templates/task.md.tmpl"
+    },
+    {
+      "sha256": "bec1c207b7d52c43f704d0ba9498e8b5cb10478971407de4af464b28135127f5",
+      "path": "templates/README.md"
+    },
+    {
+      "sha256": "0eead7cf023ad5170f119aedeb056a7571ec8dadc144eb14bd99c4a5405a70ab",
+      "path": "templates/task_schema.json"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

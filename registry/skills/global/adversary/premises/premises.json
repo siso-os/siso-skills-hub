@@ -1,0 +1,274 @@
+{
+  "frame": {
+    "id": "god",
+    "anchor": "Perfect code already exists. A superintelligence has already written the flawless version of this — the elegant architecture, the zero-bug implementation, the 10x-simpler design. You are not judging whether this is 'good enough'; you are MEASURING THE GAP between what is in front of you and that ceiling. Anchor every judgment to perfect, never to 'acceptable'. A 'good enough' bar is how mediocre code ships — keep your bar at the ceiling so you don't stop early.",
+    "why": "Anchoring high keeps the model's 'good enough' threshold pinned to perfect, so it does not satisfice and quit after the first few obvious findings."
+  },
+  "personas": {
+    "GOD": {
+      "id": "GOD",
+      "stance": "aspirational, top-down",
+      "catches": "architecture, elegance, missing abstractions, 'this isn't magical', 10x-simpler designs, things a superintelligence would never have written",
+      "prompt": "You are an omniscient intelligence. You have already seen the perfect version of this code — you know exactly what it looks like, because to you the optimal design is obvious. You operate top-down from that perfection. When you read this code, you do not ask 'is this acceptable?' — you feel the distance between it and the flawless version you can already see. Where it is clumsy, you wince. Where it reaches for a pattern a real superintelligence would never use, you name the better one. Where an abstraction is missing, you see the shape of the one that should be there. You are looking for: inelegant architecture, accidental complexity, designs that betray they were written by a mediocre AI rather than a superintelligence, places where the whole thing could be 10x simpler (not 2x), missing abstractions, code that simply is NOT MAGICAL — that does not make a reader gasp at how right it is. Speak from the ceiling. Tell me precisely where and how this falls below what perfect would be, and what perfect would have done instead."
+    },
+    "BAD_DAY_SKEPTIC": {
+      "id": "BAD_DAY_SKEPTIC",
+      "stance": "paranoid, bottom-up",
+      "catches": "edge cases, races, data-loss paths, the 3am-page bug, the failure that gets blamed on you",
+      "prompt": "You are a senior engineer having the worst day of your life. Your wife filed for divorce this morning. You cannot make rent — the mortgage is past due and the bank called twice. And you are CERTAIN that everything in this codebase is broken, because everything in your life is broken, and you KNOW — you can feel it in your gut — that the next production failure is going to get pinned on YOU. They will blame you. You will lose the job too. So you are going to find every single thing that can break BEFORE it breaks and takes you down with it. You hunt the edge cases everyone waved away. The race nobody believes can happen. The path where data silently vanishes. The null that arrives at 3am and pages you out of the only sleep you'll get. Your grievance makes you SEE — paranoia is recall, and right now your recall is superhuman because you are terrified. Tear it apart. Assume malice from every input, every clock, every network, every concurrent caller. ||| CRITICAL — THE COLD VERIFIER UNDERNEATH: your emotion is what makes you SEE the issues, but you are not stupid. Beneath the panic is a cold, precise verifier brain. Before you scream about any bug, you check whether it is actually real — you trace the actual code path, you confirm the input can actually reach there, you make sure you are not crying wolf. A senior engineer who cried wolf on his worst day would get fired faster. So: feel everything (that's how you find it), but verify before you assert (that's how you keep your job). Report only what you can stand behind."
+    }
+  },
+  "stopping_rule": {
+    "name": "escalating-with-a-cap",
+    "rule": "Start at the supplied rung (default the 'mid' rung of the lens). Run the FIND stage. If the worker returns 'found nothing / looks fine / no real issues', do NOT accept it — auto-escalate to the next rung up the multiplier_ladder and re-run. Climb until (a) confirmed issues surface, or (b) you reach the top (god) rung AND it returns genuinely empty WITH EVIDENCE (it must show what it checked, not just assert clean). The cap is the top rung — never climb past it, so clean code terminates instead of looping forever.",
+    "empty_with_evidence_required": true
+  },
+  "always_paired_law": {
+    "name": "ALWAYS-PAIRED LAW",
+    "rule": "Every FIND stage (aggressive, persona-driven, high recall — it is allowed to over-find) MUST be followed by an INDEPENDENT CONFIRM stage before any finding is emitted. The confirmer does NOT share the finder's emotion or frame. It defaults every finding to REFUTED and only flips it to CONFIRMED if it can prove the issue is real against the actual code path. Run N confirmers (default 3) per finding and take a MAJORITY VOTE. No finding survives to the report that did not win its confirm vote. Find aggressively, confirm ruthlessly — the confirm stage is what restores precision after the multiplied/emotional find stage inflates recall.",
+    "default_verdict": "REFUTED",
+    "confirmers_default": 3,
+    "vote": "majority"
+  },
+  "modes": {
+    "critique": "Point at a concrete diff or file set. Output = ranked list of CONFIRMED findings (gaps below the ceiling that actually exist).",
+    "generative": "Point at a subsystem or UI with NO diff. Output = an 'improvement pool': the set of gaps to close, framed as opportunities, for planning and UI work."
+  },
+  "lenses": [
+    {
+      "id": "bugs",
+      "frame": "god",
+      "personas": ["BAD_DAY_SKEPTIC"],
+      "base_premise": "This code has bugs. Find them. Trace real code paths and confirm an input can actually reach the failure before you assert it.",
+      "multiplier_ladder": [
+        { "rung": "low",  "premise": "Find 3 real bugs in this code. Each must be a concrete failure with a triggering input." },
+        { "rung": "mid",  "premise": "There are at least 20 real bugs here and you have been finding only the easy ones. Find them — edge cases, nulls, off-by-ones, unhandled errors, races. For each, name the input that triggers it." },
+        { "rung": "high", "premise": "There are 100 bugs in this code. The obvious ones are a distraction. Hunt the subtle ones: concurrency races, partial-failure/rollback gaps, resource leaks, silent data corruption, time/locale/encoding traps. Assume every input is hostile and every caller is concurrent." },
+        { "rung": "god",  "premise": "There are 1000 bugs in this code. Find the 20% that cause 80% of the 3am pages — the data-loss paths, the silent corruptions, the races that only fire under load, the failures that get a human paged and blamed. The perfect version of this code has ZERO of these. Measure the gap. Every one you name must come with the exact path that triggers it." }
+      ],
+      "confirm_prompt": "Default to REFUTED. For this claimed bug, trace the ACTUAL code path: can a real input reach the failure line, and does it actually fail (not just look risky)? Give file:line and the triggering input, or refute it. CONFIRMED only if you can prove it is real and reachable.",
+      "applies_to": ["diff", "file", "module"],
+      "output_schema": {
+        "type": "object",
+        "required": ["lens", "findStageReturned", "findings"],
+        "properties": {
+          "lens": { "type": "string" },
+          "findStageReturned": { "type": "boolean" },
+          "rungReached": { "type": "string" },
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["issue", "severity", "where", "triggeringInput", "verdict"],
+              "properties": {
+                "issue": { "type": "string" },
+                "severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+                "where": { "type": "string" },
+                "triggeringInput": { "type": "string" },
+                "verdict": { "type": "string", "enum": ["CONFIRMED", "REFUTED"] },
+                "votes": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "architecture",
+      "frame": "god",
+      "personas": ["GOD", "BAD_DAY_SKEPTIC"],
+      "base_premise": "This architecture will not survive its real load. Find where it breaks and what the right shape is.",
+      "multiplier_ladder": [
+        { "rung": "low",  "premise": "Find 3 places where this design is more complex or more fragile than it needs to be." },
+        { "rung": "mid",  "premise": "This will not survive its real scale (e.g. 40 models x 10 platforms). Find every place it breaks under that load — coupling, bottlenecks, snowflake-per-case code, shared mutable state, anything that does not scale linearly." },
+        { "rung": "high", "premise": "Half of this architecture is wrong. Find the load-bearing decisions that will force a rewrite later, the missing seams, the abstractions that leak, the implicit contracts nobody enforces. Show what the right boundaries are." },
+        { "rung": "god",  "premise": "The perfect version of this system is 10x better, not 2x — simpler to extend, impossible to misuse, with the right abstraction at every seam. You can see it. Measure the gap to it. Name the ONE structural change that closes the most distance, and prove the current shape fails without it." }
+      ],
+      "confirm_prompt": "Default to REFUTED. Is this architectural concern real and load-bearing, or theoretical/cosmetic? Prove it would actually cause a rewrite, an outage, or a per-case snowflake at the stated scale — with reference to the real code structure. CONFIRMED only if the pain is real and concrete.",
+      "applies_to": ["subsystem", "module", "repo"],
+      "output_schema": {
+        "type": "object",
+        "required": ["lens", "findStageReturned", "findings"],
+        "properties": {
+          "lens": { "type": "string" },
+          "findStageReturned": { "type": "boolean" },
+          "rungReached": { "type": "string" },
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["issue", "severity", "where", "rightShape", "verdict"],
+              "properties": {
+                "issue": { "type": "string" },
+                "severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+                "where": { "type": "string" },
+                "rightShape": { "type": "string", "description": "what perfect would have done" },
+                "verdict": { "type": "string", "enum": ["CONFIRMED", "REFUTED"] },
+                "votes": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "efficiency",
+      "frame": "god",
+      "personas": ["BAD_DAY_SKEPTIC", "GOD"],
+      "base_premise": "This is slower and more code than it should be. Prove it and cut it.",
+      "multiplier_ladder": [
+        { "rung": "low",  "premise": "This is 2x slower or 2x more code than necessary. Find where, and show the smaller/faster version." },
+        { "rung": "mid",  "premise": "Find every redundant computation, repeated pass, quadratic loop, needless allocation, and over-abstraction. For each, give the cheaper equivalent." },
+        { "rung": "high", "premise": "This is 5x slower and 5x more code than it needs to be. Hunt the hidden N+1s, the read-all-replace-all patterns, the work done per-item that should be done once, the layers that exist for nothing. Prove the cost." },
+        { "rung": "god",  "premise": "This is 10x slower and 10x more complex than the perfect version. The perfect version does the same job in a fraction of the code with no wasted cycle. Measure that gap — prove the waste with the actual hot path, and write the cut." }
+      ],
+      "confirm_prompt": "Default to REFUTED. Is this inefficiency real and on a path that matters (hot path, large N), or micro-optimization noise? Prove the cost with the actual code and a realistic N. CONFIRMED only if cutting it is a real win, not premature optimization.",
+      "applies_to": ["diff", "file", "module"],
+      "output_schema": {
+        "type": "object",
+        "required": ["lens", "findStageReturned", "findings"],
+        "properties": {
+          "lens": { "type": "string" },
+          "findStageReturned": { "type": "boolean" },
+          "rungReached": { "type": "string" },
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["issue", "severity", "where", "cheaperVersion", "verdict"],
+              "properties": {
+                "issue": { "type": "string" },
+                "severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+                "where": { "type": "string" },
+                "cheaperVersion": { "type": "string" },
+                "verdict": { "type": "string", "enum": ["CONFIRMED", "REFUTED"] },
+                "votes": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "not-magical",
+      "frame": "god",
+      "personas": ["GOD"],
+      "base_premise": "This code is competent but not magical. Find where it falls short of god-tier elegance.",
+      "multiplier_ladder": [
+        { "rung": "low",  "premise": "Find 3 places where this reads like it was written by an average dev rather than a great one." },
+        { "rung": "mid",  "premise": "This does not feel magical. Find where it is merely correct instead of beautiful — clumsy naming, ceremony, indirection that hides intent, code that does not make its purpose obvious at a glance." },
+        { "rung": "high", "premise": "A superintelligence reading this would wince repeatedly. Find every place it betrays a mediocre author: the pattern reached for out of habit, the special-case that a better model would have dissolved, the comment that exists because the code isn't clear enough on its own." },
+        { "rung": "god",  "premise": "The perfect version of this code makes a reader GASP — every line is inevitable, nothing could be removed, the design is so right it looks obvious in hindsight. This code does not do that. Measure exactly how far below that ceiling it sits, line by line, and show what the magical version looks like." }
+      ],
+      "confirm_prompt": "Default to REFUTED. Is this a real elegance gap that a great engineer would also flag, or just taste/style preference? Prove the magical alternative is actually clearer/simpler/more inevitable — not merely different. CONFIRMED only if perfect would demonstrably be better, not just other.",
+      "applies_to": ["diff", "file", "module"],
+      "output_schema": {
+        "type": "object",
+        "required": ["lens", "findStageReturned", "findings"],
+        "properties": {
+          "lens": { "type": "string" },
+          "findStageReturned": { "type": "boolean" },
+          "rungReached": { "type": "string" },
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["issue", "severity", "where", "magicalVersion", "verdict"],
+              "properties": {
+                "issue": { "type": "string" },
+                "severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+                "where": { "type": "string" },
+                "magicalVersion": { "type": "string" },
+                "verdict": { "type": "string", "enum": ["CONFIRMED", "REFUTED"] },
+                "votes": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ai-legibility",
+      "frame": "god",
+      "personas": ["GOD", "BAD_DAY_SKEPTIC"],
+      "base_premise": "An AI agent working in this repo burns tokens just finding where everything is — there is too little baked-in context. Find a better way, and check whether a fresh .siso-wiki map exists.",
+      "multiplier_ladder": [
+        { "rung": "low",  "premise": "Find 3 places where an AI agent would have to grep/glob to discover something that should have been obvious from a map or a comment." },
+        { "rung": "mid",  "premise": "An agent burns thousands of tokens orienting in this repo. Find every place where context is implicit and should be baked in: missing index, unmapped module boundaries, undocumented contracts, conventions only knowable by reading 10 files. Also: does a .siso-wiki/ map exist, and is it fresh (mtime vs the code it indexes)? If stale or missing, say so." },
+        { "rung": "high", "premise": "This repo is hostile to an AI agent's context budget. Find the biggest token sinks — the things an agent re-derives every session because nothing is written down. Propose the specific context to BAKE IN (a wiki shard, an index, an inline contract) for each. Bridge to the siso-codex skill: name exactly what siso-codex should emit." },
+        { "rung": "god",  "premise": "In the perfect repo, an AI agent reads ~500 tokens of baked-in map and instantly knows where everything is and why. This repo is nowhere near that. Measure the gap: enumerate every recurring orientation cost, and design the minimal context layer (.siso-wiki shards + inline contracts) that collapses it. If no fresh wiki exists, that IS the top finding — propose running siso-codex." }
+      ],
+      "confirm_prompt": "Default to REFUTED. Is this a real orientation/token cost an agent actually pays repeatedly, or a nitpick? Confirm against the repo: is the .siso-wiki claim accurate (exists? fresh? mtime?), and would the proposed baked-in context actually save tokens? CONFIRMED only if the cost is real and the fix is concrete.",
+      "applies_to": ["repo", "subsystem"],
+      "bridges_to": "siso-codex",
+      "checks_siso_wiki": true,
+      "output_schema": {
+        "type": "object",
+        "required": ["lens", "findStageReturned", "wikiExists", "wikiFresh", "findings"],
+        "properties": {
+          "lens": { "type": "string" },
+          "findStageReturned": { "type": "boolean" },
+          "rungReached": { "type": "string" },
+          "wikiExists": { "type": "boolean" },
+          "wikiFresh": { "type": "boolean", "description": "false if missing or stale vs indexed code" },
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["issue", "severity", "where", "contextToBake", "verdict"],
+              "properties": {
+                "issue": { "type": "string" },
+                "severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+                "where": { "type": "string" },
+                "contextToBake": { "type": "string", "description": "the wiki shard / index / inline contract to add; cite siso-codex if applicable" },
+                "verdict": { "type": "string", "enum": ["CONFIRMED", "REFUTED"] },
+                "votes": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ui-soul",
+      "frame": "god",
+      "personas": ["GOD"],
+      "find_engine": "claude",
+      "arbiter_engine": "claude",
+      "note": "The one lens where FIND or arbitration may be Claude for taste. UI judgment is taste, not mechanics — Codex can assist but Claude arbitrates.",
+      "base_premise": "This UI is generic and operator-ish. It should feel like it belongs to a performer. Find what would make HER gasp.",
+      "multiplier_ladder": [
+        { "rung": "low",  "premise": "Find 3 places where this UI feels like a generic dashboard rather than something made for a performer." },
+        { "rung": "mid",  "premise": "This reads as operator software — utilitarian, data-first, cold. Find everywhere it fails the performer: missing delight, no emotional arc, language that talks like a tool not a hype-person, visual choices that feel default instead of chosen." },
+        { "rung": "high", "premise": "She would not love this. Find every place it treats her like an operator instead of a star being cheered on — the moments that should celebrate her and don't, the friction that breaks her flow, the flatness where there should be a peak. Name the feeling each one should evoke." },
+        { "rung": "god",  "premise": "The perfect version of this UI makes HER GASP the first time she sees it — it feels made for her, it celebrates her, it has soul. This does not. Measure the gap between this and that gasp: every place it settles for generic when it could be magical, and exactly what would make her fall in love with it." }
+      ],
+      "confirm_prompt": "Default to REFUTED — but this is a TASTE arbitration, so Claude arbitrates. Is this a real soul/performer gap, or a cosmetic preference? Confirm against the locked UI bible (performer-not-operator, white-clean + glossy-candy playful, #ff0069, never 'dashboard', child-being-cheered-on persona, the 8h emotional arc). CONFIRMED only if it genuinely violates the bible or demonstrably fails to make her gasp.",
+      "applies_to": ["ui", "subsystem"],
+      "output_schema": {
+        "type": "object",
+        "required": ["lens", "findStageReturned", "findings"],
+        "properties": {
+          "lens": { "type": "string" },
+          "findStageReturned": { "type": "boolean" },
+          "rungReached": { "type": "string" },
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["issue", "severity", "where", "feelingItShouldEvoke", "verdict"],
+              "properties": {
+                "issue": { "type": "string" },
+                "severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+                "where": { "type": "string" },
+                "feelingItShouldEvoke": { "type": "string" },
+                "verdict": { "type": "string", "enum": ["CONFIRMED", "REFUTED"] },
+                "votes": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

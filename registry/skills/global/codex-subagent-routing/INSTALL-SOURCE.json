@@ -1,0 +1,17 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.codex/skills/codex-subagent-routing",
+  "original_sha256": [
+    {
+      "sha256": "95909cb8b982b5ef10292e7f6da44a934e5d3bd68d9e970b7807c602574e5376",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "7a8291652b67a17b0d78e060e78b2f70be3cfc0b84a6acf7ca726902194058aa",
+      "path": "agents/openai.yaml"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

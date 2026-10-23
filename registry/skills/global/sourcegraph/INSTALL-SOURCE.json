@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/sourcegraph",
+  "original_sha256": [
+    {
+      "sha256": "7c0f8cc7169831501b18451081540f830d9e014cba1090f2604d7c4f1142d098",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

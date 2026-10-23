@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DISPATCH VIEWER</title>
+<style>
+  /* ── Reset + Base ─────────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0d0f14;
+    --bg2:      #13161e;
+    --bg3:      #1a1e29;
+    --border:   #252b3b;
+    --text:     #c9d1e0;
+    --muted:    #5a6378;
+    --accent:   #4f8fff;
+    --green:    #3dd68c;
+    --red:      #ff5f5f;
+    --yellow:   #f5c842;
+    --orange:   #ff9640;
+    --purple:   #b48aff;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+    --radius:   6px;
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.5;
+    overflow: hidden;
+  }
+
+  /* ── Views ──────────────────────────────────────────────────────────── */
+  .view { display: none; height: 100vh; flex-direction: column; overflow: hidden; }
+  .view.active { display: flex; }
+
+  /* ── Topbar ──────────────────────────────────────────────────────────── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 16px;
+    height: 38px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+  }
+
+  .topbar .title {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: 0.15em;
+  }
+
+  .topbar .spacer { flex: 1; }
+
+  .live-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.35; }
+  }
+
+  /* ── Tabs ────────────────────────────────────────────────────────────── */
+  .tab-bar {
+    display: flex;
+    gap: 0;
+    padding: 0 16px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .tab-btn {
+    padding: 8px 16px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .tab-count {
+    display: inline-block;
+    margin-left: 5px;
+    padding: 0 5px;
+    background: var(--bg3);
+    border-radius: 10px;
+    font-size: 9px;
+    color: var(--muted);
+    vertical-align: middle;
+  }
+
+  /* ── Dashboard grid ──────────────────────────────────────────────────── */
+  #dashboard-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 12px;
+  }
+
+  .plan-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    position: relative;
+  }
+
+  .plan-card:hover {
+    border-color: var(--accent);
+    background: var(--bg3);
+  }
+
+  .plan-card .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .status-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+    word-break: break-word;
+  }
+
+  .card-slug {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 2px;
+    word-break: break-all;
+  }
+
+  .card-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 10px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+
+  .card-meta .phase-badge {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    color: var(--text);
+    font-size: 10px;
+  }
+
+  .card-activity {
+    font-size: 11px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-workers {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+
+  .worker-chip {
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .worker-chip.haiku  { background: #1a2f4a; color: var(--accent); }
+  .worker-chip.sonnet { background: #2a1f4a; color: var(--purple); }
+  .worker-chip.opus   { background: #1a2f1a; color: var(--green); }
+
+  .empty-tab {
+    color: var(--muted);
+    font-size: 12px;
+    padding: 40px 0;
+    text-align: center;
+    grid-column: 1 / -1;
+  }
+
+  /* ── Drill-down view ─────────────────────────────────────────────────── */
+  #drill-view {
+    overflow: hidden;
+  }
+
+  #drill-inner {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  #timeline-pane {
+    border-bottom: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 14px 16px;
+  }
+
+  #workers-pane {
+    overflow-y: auto;
+    padding: 14px 16px;
+  }
+
+  .back-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 3px 10px;
+    cursor: pointer;
+    transition: color 0.1s, border-color 0.1s;
+  }
+
+  .back-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+  .drill-status-indicator {
+    font-size: 13px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  /* ── Pane headers ─────────────────────────────────────────────────── */
+  .pane-header {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .pane-header span { color: var(--text); font-size: 12px; letter-spacing: 0; text-transform: none; }
+  .pane-header .meta { color: var(--muted); font-size: 11px; letter-spacing: 0; text-transform: none; }
+
+  /* ── Phase timeline ───────────────────────────────────────────────── */
+  .phase-list { display: flex; flex-direction: column; gap: 4px; }
+
+  .phase-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left-width: 3px;
+    border-radius: var(--radius);
+    padding: 9px 12px;
+    display: grid;
+    grid-template-columns: 18px 1fr auto;
+    gap: 8px;
+    align-items: start;
+  }
+
+  .phase-card.passed    { border-left-color: var(--green); }
+  .phase-card.failed    { border-left-color: var(--red); }
+  .phase-card.escalated { border-left-color: var(--orange); }
+  .phase-card.inprog    { border-left-color: var(--yellow); }
+  .phase-card.queued    { border-left-color: var(--border); opacity: 0.6; }
+  .phase-card.unknown   { border-left-color: var(--muted); }
+
+  .phase-icon { font-size: 14px; line-height: 1.4; }
+
+  .phase-name {
+    font-size: 12px;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .phase-result {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .phase-ts { font-size: 10px; color: var(--muted); white-space: nowrap; }
+
+  .phase-subs {
+    grid-column: 2 / -1;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 4px;
+    padding-left: 8px;
+    border-left: 2px solid var(--border);
+  }
+
+  /* ── Worker stream ────────────────────────────────────────────────── */
+  .worker-block { margin-bottom: 16px; }
+
+  .worker-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .worker-header::before,
+  .worker-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .model-badge {
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .model-badge.haiku   { background: #1a2f4a; color: var(--accent); }
+  .model-badge.sonnet  { background: #2a1f4a; color: var(--purple); }
+  .model-badge.opus    { background: #1a2f1a; color: var(--green); }
+  .model-badge.unknown { background: var(--bg3); color: var(--muted); }
+
+  .event-list { display: flex; flex-direction: column; gap: 3px; }
+
+  .event-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  .event-row:hover { background: var(--bg3); }
+
+  .event-row.tool    { color: var(--text); }
+  .event-row.result  { color: var(--muted); font-size: 11px; padding-left: 20px; }
+  .event-row.text    { color: var(--muted); font-style: italic; }
+  .event-row.thinking { color: var(--muted); font-style: italic; opacity: 0.7; }
+  .event-row.brief   { color: var(--purple); font-size: 11px; font-style: italic; }
+
+  .ev-icon { flex-shrink: 0; font-size: 13px; }
+  .ev-tool { color: var(--accent); }
+  .ev-target { color: var(--text); }
+  .ev-text { color: inherit; }
+
+  details summary { cursor: pointer; list-style: none; }
+  details summary::-webkit-details-marker { display: none; }
+  details .detail-body {
+    margin-top: 4px;
+    padding: 6px 10px;
+    background: var(--bg3);
+    border-radius: 4px;
+    font-size: 11px;
+    color: var(--muted);
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  /* ── Shared utils ─────────────────────────────────────────────────── */
+  .empty {
+    color: var(--muted);
+    font-size: 12px;
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  .loading {
+    color: var(--muted);
+    font-size: 11px;
+    padding: 8px 0;
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+  /* ── Recency filter buttons ──────────────────────────────────────── */
+  .recency-btn {
+    padding: 3px 10px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.1s, border-color 0.1s, background 0.1s;
+  }
+  .recency-btn:hover { color: var(--text); border-color: var(--accent); }
+  .recency-btn.active { color: var(--accent); border-color: var(--accent); background: #1a2f4a; }
+
+  .session-project {
+    font-size: 10px;
+    color: var(--purple);
+    background: #2a1f4a;
+    padding: 1px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+
+  .agent-meta-line {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 2px;
+    padding-left: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .agent-row {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+  .agent-row .agent-row-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  /* ── All Agents tab ───────────────────────────────────────────────── */
+  #all-agents-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+  }
+
+  .session-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .session-card.current {
+    border-color: var(--accent);
+  }
+
+  .session-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.12s;
+  }
+
+  .session-header:hover { background: var(--bg3); }
+
+  .session-uuid {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+  }
+
+  .session-current-badge {
+    font-size: 9px;
+    padding: 1px 6px;
+    background: #1a2f4a;
+    color: var(--accent);
+    border-radius: 10px;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .session-meta {
+    font-size: 10px;
+    color: var(--muted);
+    flex: 1;
+  }
+
+  .session-chevron {
+    font-size: 10px;
+    color: var(--muted);
+    flex-shrink: 0;
+    transition: transform 0.15s;
+  }
+
+  .session-card.expanded .session-chevron { transform: rotate(90deg); }
+
+  .session-agents {
+    display: none;
+    border-top: 1px solid var(--border);
+    padding: 8px 0;
+  }
+
+  .session-card.expanded .session-agents { display: block; }
+
+  .agent-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+
+  .agent-row:hover { background: var(--bg3); }
+
+  .agent-desc {
+    flex: 1;
+    font-size: 11px;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .agent-id {
+    font-size: 10px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .agent-ts {
+    font-size: 10px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  /* ── Agent stream view ────────────────────────────────────────────── */
+  #agent-view {
+    overflow: hidden;
+  }
+
+  #agent-stream-pane {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px 16px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     DASHBOARD VIEW
+═══════════════════════════════════════════════════════════════════ -->
+<div id="dash-view" class="view active">
+
+  <div class="topbar">
+    <span class="title">DISPATCH VIEWER</span>
+    <span style="color:var(--muted);font-size:11px;" id="poll-status">polling...</span>
+    <span class="spacer"></span>
+    <span style="color:var(--muted);font-size:11px;" id="last-poll"></span>
+    <span class="live-dot"></span>
+    <span style="color:var(--green);font-size:11px;">Live</span>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="active" onclick="switchTab('active')">
+      Active <span class="tab-count" id="cnt-active">0</span><span class="tab-count" id="cnt-active-agents" style="display:none;background:#1a2f4a;color:var(--accent);" title="active subagents (mtime &lt; 30s)">0</span>
+    </button>
+    <button class="tab-btn" data-tab="completed" onclick="switchTab('completed')">
+      Completed <span class="tab-count" id="cnt-completed">0</span>
+    </button>
+    <button class="tab-btn" data-tab="all" onclick="switchTab('all')">
+      All Time <span class="tab-count" id="cnt-all">0</span>
+    </button>
+    <button class="tab-btn" data-tab="agents" onclick="switchTab('agents')">
+      All Agents <span class="tab-count" id="cnt-agents">0</span>
+    </button>
+  </div>
+
+  <div id="dashboard-scroll">
+    <div class="card-grid" id="card-grid">
+      <div class="loading" style="grid-column:1/-1">Loading...</div>
+    </div>
+  </div>
+
+  <div id="all-agents-scroll" style="display:none;">
+    <div id="agents-controls" style="display:flex;gap:6px;margin-bottom:12px;align-items:center;flex-wrap:wrap;">
+      <span style="font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-right:4px;">Last:</span>
+      <button class="recency-btn active" data-since="1800">30m</button>
+      <button class="recency-btn" data-since="3600">1h</button>
+      <button class="recency-btn" data-since="86400">24h</button>
+      <button class="recency-btn" data-since="604800">7d</button>
+      <button class="recency-btn" data-since="0">all</button>
+      <span style="flex:1"></span>
+      <input type="text" id="agent-search" placeholder="filter by description..." style="background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:4px 8px;border-radius:4px;font-family:var(--font-mono);font-size:11px;width:240px;outline:none;">
+    </div>
+    <div id="all-agents-list"><div class="loading">Loading...</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     AGENT STREAM VIEW
+═══════════════════════════════════════════════════════════════════ -->
+<div id="agent-view" class="view">
+
+  <div class="topbar">
+    <button class="back-btn" onclick="showAllAgents()">&#8592; Back</button>
+    <span class="title" id="agent-title">AGENT STREAM</span>
+    <span class="spacer"></span>
+    <span class="live-dot"></span>
+    <span style="color:var(--green);font-size:11px;">Live</span>
+  </div>
+
+  <div id="agent-stream-pane"><div class="loading">Loading...</div></div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     DRILL-DOWN VIEW
+═══════════════════════════════════════════════════════════════════ -->
+<div id="drill-view" class="view">
+
+  <div class="topbar">
+    <button class="back-btn" onclick="showDashboard()">&#8592; Back</button>
+    <span class="title" id="drill-title">DISPATCH VIEWER</span>
+    <span id="drill-status-icon" class="drill-status-indicator"></span>
+    <span class="spacer"></span>
+    <span style="color:var(--muted);font-size:11px;" id="drill-last-poll"></span>
+    <span class="live-dot"></span>
+    <span style="color:var(--green);font-size:11px;">Live</span>
+  </div>
+
+  <div id="drill-inner">
+    <div id="timeline-pane"><div class="loading">Loading...</div></div>
+    <div id="workers-pane"><div class="loading">Loading...</div></div>
+  </div>
+
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   State
+═══════════════════════════════════════════════════════════════════ */
+const API = 'http://localhost:8765';
+
+let dashboards = [];       // /api/dashboards response
+let activeTab  = 'active'; // active | completed | all | agents
+let selectedPlan = null;   // slug string when in drill view
+let statusData = null;
+let workersData = [];
+let allAgentsData = [];    // /api/all-agents response
+let selectedAgentFile = null;  // output file path for agent stream view
+let activeAgentsCount = 0; // /api/active-agents count (subagents with mtime < 30s)
+let agentsRecencySecs = 1800;  // default: last 30 min
+let agentsSearch = '';
+
+/* ═══════════════════════════════════════════════════════════════════
+   Utils
+═══════════════════════════════════════════════════════════════════ */
+function escHtml(s) {
+  if (!s) return '';
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function fmtTime(isoStr) {
+  if (!isoStr) return '';
+  const d = new Date(isoStr);
+  return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+}
+
+function fmtAgo(isoStr) {
+  if (!isoStr) return '';
+  const secs = Math.floor((Date.now() - new Date(isoStr).getTime()) / 1000);
+  if (secs < 60) return `${secs}s ago`;
+  if (secs < 3600) return `${Math.floor(secs/60)}m ago`;
+  if (secs < 86400) return `${Math.floor(secs/3600)}h ago`;
+  return `${Math.floor(secs/86400)}d ago`;
+}
+
+function statusIcon(status) {
+  return { active: '🟢', completed: '✅', escalated: '🛑', failed: '❌', stale: '🔵' }[status] || '▪';
+}
+
+function phaseIcon(status) {
+  return { passed: '✅', failed: '❌', escalated: '🛑', inprog: '⏳', queued: '⏸' }[status] || '▪';
+}
+
+function modelBadgeHtml(model) {
+  const cls = ['haiku','sonnet','opus'].includes(model) ? model : 'unknown';
+  const label = cls === 'unknown' ? '?' : cls.toUpperCase();
+  return `<span class="model-badge ${cls}">${label}</span>`;
+}
+
+function shortPath(p) {
+  if (!p) return '';
+  return p.replace(/^\/(?:Users|home)\/[^/]+\//, '~/').slice(0, 80);
+}
+
+function toolIcon(tool) {
+  const icons = {
+    Read: '📄', Write: '✏️', Edit: '✂️', Bash: '⚡', Glob: '🔍',
+    Grep: '🔎', WebFetch: '🌐', WebSearch: '🔍', Skill: '🧩',
+    Agent: '👷', NotebookEdit: '📓',
+  };
+  return icons[tool] || '🔧';
+}
+
+async function apiFetch(path) {
+  const res = await fetch(API + path);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Views
+═══════════════════════════════════════════════════════════════════ */
+function showDashboard() {
+  selectedPlan = null;
+  statusData = null;
+  workersData = [];
+  document.getElementById('dash-view').classList.add('active');
+  document.getElementById('drill-view').classList.remove('active');
+  document.getElementById('agent-view').classList.remove('active');
+}
+
+function showAllAgents() {
+  selectedAgentFile = null;
+  document.getElementById('dash-view').classList.add('active');
+  document.getElementById('drill-view').classList.remove('active');
+  document.getElementById('agent-view').classList.remove('active');
+  // Re-activate the agents tab
+  activeTab = 'agents';
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === 'agents');
+  });
+  document.getElementById('dashboard-scroll').style.display = 'none';
+  document.getElementById('all-agents-scroll').style.display = 'block';
+}
+
+function showAgentStream(outputFile, agentId) {
+  selectedAgentFile = outputFile;
+  document.getElementById('agent-title').textContent = 'AGENT · ' + agentId.slice(-8);
+  document.getElementById('agent-stream-pane').innerHTML = '<div class="loading">Loading...</div>';
+  document.getElementById('dash-view').classList.remove('active');
+  document.getElementById('drill-view').classList.remove('active');
+  document.getElementById('agent-view').classList.add('active');
+  loadAgentStream(outputFile);
+}
+
+function showDrill(slug) {
+  selectedPlan = slug;
+  statusData = null;
+  workersData = [];
+  const card = dashboards.find(d => d.slug === slug);
+  document.getElementById('drill-title').textContent =
+    card ? card.title.toUpperCase() : slug.toUpperCase();
+  document.getElementById('drill-status-icon').textContent =
+    card ? statusIcon(card.status) : '';
+  document.getElementById('timeline-pane').innerHTML = '<div class="loading">Loading...</div>';
+  document.getElementById('workers-pane').innerHTML = '<div class="loading">Loading...</div>';
+  document.getElementById('dash-view').classList.remove('active');
+  document.getElementById('drill-view').classList.add('active');
+  loadDrill(slug);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Tabs
+═══════════════════════════════════════════════════════════════════ */
+function switchTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.tab === tab);
+  });
+  if (tab === 'agents') {
+    document.getElementById('dashboard-scroll').style.display = 'none';
+    document.getElementById('all-agents-scroll').style.display = 'block';
+    fetchAllAgents();
+  } else {
+    document.getElementById('dashboard-scroll').style.display = 'block';
+    document.getElementById('all-agents-scroll').style.display = 'none';
+    renderCards();
+  }
+}
+
+function tabFilter(d) {
+  if (activeTab === 'active')    return d.status === 'active';
+  if (activeTab === 'completed') return d.status === 'completed' || d.status === 'failed' || d.status === 'escalated';
+  return true; // all
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Dashboard rendering
+═══════════════════════════════════════════════════════════════════ */
+function renderCards() {
+  const active    = dashboards.filter(d => d.status === 'active');
+  const completed = dashboards.filter(d => ['completed','failed','escalated'].includes(d.status));
+  const all       = dashboards;
+
+  document.getElementById('cnt-active').textContent    = active.length;
+  document.getElementById('cnt-completed').textContent = completed.length;
+  document.getElementById('cnt-all').textContent       = all.length;
+
+  const agentsBadge = document.getElementById('cnt-active-agents');
+  if (activeAgentsCount > 0) {
+    agentsBadge.textContent = '+' + activeAgentsCount + ' agents';
+    agentsBadge.style.display = 'inline-block';
+  } else {
+    agentsBadge.style.display = 'none';
+  }
+
+  const filtered = dashboards.filter(tabFilter);
+  const grid = document.getElementById('card-grid');
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="empty-tab">No plans in this category</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(d => planCardHtml(d)).join('');
+
+  grid.querySelectorAll('.plan-card').forEach(el => {
+    el.addEventListener('click', () => showDrill(el.dataset.slug));
+  });
+}
+
+function planCardHtml(d) {
+  const wc = d.workerCounts || {};
+  const chips = [
+    wc.haiku  ? `<span class="worker-chip haiku">H:${wc.haiku}</span>`  : '',
+    wc.sonnet ? `<span class="worker-chip sonnet">S:${wc.sonnet}</span>` : '',
+    wc.opus   ? `<span class="worker-chip opus">O:${wc.opus}</span>`     : '',
+  ].join('');
+
+  // human-readable slug without leading date
+  const slugShort = d.slug.replace(/^\d{4}-\d{2}-\d{2}-/, '');
+
+  return `
+    <div class="plan-card" data-slug="${escHtml(d.slug)}">
+      <div class="card-header">
+        <span class="status-icon">${statusIcon(d.status)}</span>
+        <div>
+          <div class="card-title">${escHtml(d.title)}</div>
+          <div class="card-slug">${escHtml(slugShort)}</div>
+        </div>
+      </div>
+      <div class="card-meta">
+        <span class="phase-badge">${escHtml(d.phaseProgress)} phases</span>
+        ${d.started ? `<span>started ${escHtml(d.started)}</span>` : ''}
+        ${d.lastUpdate ? `<span>updated ${fmtAgo(d.lastUpdate)}</span>` : ''}
+      </div>
+      ${d.lastActivity ? `<div class="card-activity">${escHtml(d.lastActivity)}</div>` : ''}
+      ${chips ? `<div class="card-workers">${chips}</div>` : ''}
+    </div>`;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Drill-down rendering
+═══════════════════════════════════════════════════════════════════ */
+function renderTimeline() {
+  const s = statusData;
+  if (!s) {
+    document.getElementById('timeline-pane').innerHTML = '<div class="loading">Loading...</div>';
+    return;
+  }
+
+  const phases = s.phases || [];
+  const totalPhases = phases.length;
+  const passedCount = phases.filter(p => p.status === 'passed').length;
+
+  let headerMeta = '';
+  if (s.started) headerMeta += `Started: ${escHtml(s.started)}`;
+  if (s.last_update) headerMeta += `  ·  Updated: ${escHtml(s.last_update)}`;
+  if (totalPhases) headerMeta += `  ·  Phase ${passedCount}/${totalPhases}`;
+
+  let phaseHtml;
+  if (phases.length === 0) {
+    phaseHtml = '<div class="empty">No phase entries yet</div>';
+  } else {
+    phaseHtml = '<div class="phase-list">' + phases.map(p => {
+      const subsHtml = p.sub_entries && p.sub_entries.length
+        ? `<div class="phase-subs">${p.sub_entries.map(e => escHtml(e)).join('<br>')}</div>`
+        : '';
+      return `
+        <div class="phase-card ${p.status}">
+          <div class="phase-icon">${phaseIcon(p.status)}</div>
+          <div>
+            <div class="phase-name">Phase ${p.number}: ${escHtml(p.name)}</div>
+            <div class="phase-result">${escHtml(p.result)}</div>
+            ${subsHtml}
+          </div>
+          <div class="phase-ts">${p.timestamp ? p.timestamp.split(' ')[1] : ''}</div>
+        </div>`;
+    }).join('') + '</div>';
+  }
+
+  document.getElementById('timeline-pane').innerHTML = `
+    <div class="pane-header">
+      PLAN <span>${escHtml(selectedPlan)}</span>
+      <span class="meta">${headerMeta}</span>
+    </div>
+    ${phaseHtml}`;
+}
+
+function renderWorkers() {
+  const workers = workersData;
+  let workerHtml;
+
+  if (workers.length === 0) {
+    workerHtml = '<div class="empty">No worker output found</div>';
+  } else {
+    workerHtml = workers.map(w => {
+      const evHtml = w.events.map(ev => renderEvent(ev)).filter(Boolean).join('');
+      return `
+        <div class="worker-block">
+          <div class="worker-header">
+            ${modelBadgeHtml(w.model)} #${w.agent_id.slice(-6)} &nbsp;${fmtTime(w.mtime_iso)}
+          </div>
+          ${w.brief ? `<div class="event-row brief"><span class="ev-icon">💬</span><span class="ev-text">${escHtml(w.brief)}</span></div>` : ''}
+          <div class="event-list">${evHtml || '<div class="event-row text"><span class="ev-text">No parsed events</span></div>'}</div>
+        </div>`;
+    }).join('');
+  }
+
+  document.getElementById('workers-pane').innerHTML = `
+    <div class="pane-header">WORKER STREAM <span class="meta">${workers.length} agents</span></div>
+    ${workerHtml}`;
+}
+
+function renderEvent(ev) {
+  if (!ev || !ev.kind) return '';
+  if (ev.kind === 'brief') return '';
+
+  if (ev.kind === 'tool_use') {
+    const icon = toolIcon(ev.tool);
+    const target = ev.target ? `<span class="ev-target">${escHtml(shortPath(ev.target))}</span>` : '';
+    return `<div class="event-row tool">
+      <span class="ev-icon">${icon}</span>
+      <span class="ev-tool">${escHtml(ev.tool)}</span>
+      ${target}
+    </div>`;
+  }
+
+  if (ev.kind === 'tool_result') {
+    if (!ev.text || !ev.text.trim()) return '';
+    const truncated = ev.text.length > 120 ? ev.text.slice(0, 120) + '...' : ev.text;
+    return ev.text.length > 120
+      ? `<details><summary class="event-row result">
+           <span class="ev-icon">&#10003;</span><span>${escHtml(truncated)}</span>
+         </summary><div class="detail-body">${escHtml(ev.text)}</div></details>`
+      : `<div class="event-row result"><span class="ev-icon">&#10003;</span><span>${escHtml(truncated)}</span></div>`;
+  }
+
+  if (ev.kind === 'text') {
+    if (!ev.text || !ev.text.trim()) return '';
+    return `<div class="event-row text"><span class="ev-icon">&#x1F4AD;</span><span class="ev-text">${escHtml(ev.text.slice(0, 200))}</span></div>`;
+  }
+
+  return '';
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Data fetching
+═══════════════════════════════════════════════════════════════════ */
+async function fetchDashboards() {
+  try {
+    dashboards = await apiFetch('/api/dashboards');
+    renderCards();
+    document.getElementById('poll-status').textContent = '';
+  } catch (e) {
+    document.getElementById('poll-status').textContent = '⚠ server unreachable';
+  }
+  const now = new Date().toLocaleTimeString();
+  document.getElementById('last-poll').textContent = now;
+  document.getElementById('drill-last-poll').textContent = now;
+}
+
+async function loadDrill(slug) {
+  try {
+    statusData = await apiFetch(`/api/status?plan=${encodeURIComponent(slug)}`);
+  } catch (e) {
+    statusData = null;
+  }
+  renderTimeline();
+
+  try {
+    workersData = await apiFetch(`/api/workers?plan=${encodeURIComponent(slug)}`);
+  } catch (e) {
+    workersData = [];
+  }
+  renderWorkers();
+}
+
+async function refreshDrill() {
+  if (!selectedPlan) return;
+  await loadDrill(selectedPlan);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   All Agents rendering
+═══════════════════════════════════════════════════════════════════ */
+function renderAllAgents() {
+  const list = document.getElementById('all-agents-list');
+
+  // Apply client-side search filter
+  const q = agentsSearch.toLowerCase().trim();
+  const filtered = q
+    ? allAgentsData.map(sess => ({
+        ...sess,
+        agents: sess.agents.filter(a =>
+          (a.description || '').toLowerCase().includes(q) ||
+          (a.firstAction || '').toLowerCase().includes(q) ||
+          (a.project || '').toLowerCase().includes(q) ||
+          a.agentId.includes(q)
+        )
+      })).filter(s => s.agents.length > 0)
+    : allAgentsData;
+
+  const totalAgents = filtered.reduce((s, sess) => s + sess.agents.length, 0);
+  document.getElementById('cnt-agents').textContent = totalAgents;
+
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="empty">No agents in this window</div>';
+    return;
+  }
+
+  list.innerHTML = filtered.map(sess => {
+    const shortId = sess.sessionId.slice(0, 8);
+    const currentBadge = sess.isCurrent
+      ? '<span class="session-current-badge">&#9733; this chat</span>'
+      : '';
+    const expandedClass = sess.isCurrent ? ' expanded' : '';
+    const currentCardClass = sess.isCurrent ? ' current' : '';
+
+    // Use first agent's project as session-level label (most are same project)
+    const project = sess.agents[0]?.project || '';
+    const projectChip = project && project !== 'unknown'
+      ? `<span class="session-project">${escHtml(project)}</span>`
+      : '';
+
+    const agentRows = sess.agents.map(a => {
+      const desc = a.description || a.firstAction || a.agentId.slice(-8);
+      const model = a.model || 'unknown';
+      const toolMeta = a.toolCount
+        ? `${a.toolCount} tool calls`
+        : 'no tool calls yet';
+      const actionMeta = a.firstAction && a.description
+        ? ` · ${escHtml(a.firstAction)}`
+        : '';
+      return `<div class="agent-row" data-output-file="${escHtml(a.outputFile)}" data-agent-id="${escHtml(a.agentId)}">
+        <div class="agent-row-top">
+          ${modelBadgeHtml(model)}
+          <span class="agent-desc">${escHtml(desc)}</span>
+          <span class="agent-id">#${a.agentId.slice(-6)}</span>
+          <span class="agent-ts">${fmtAgo(a.ts)}</span>
+        </div>
+        <div class="agent-meta-line">${toolMeta}${actionMeta}</div>
+      </div>`;
+    }).join('');
+
+    return `<div class="session-card${currentCardClass}${expandedClass}" data-session-id="${escHtml(sess.sessionId)}">
+      <div class="session-header">
+        <span class="session-uuid">${escHtml(shortId)}</span>
+        ${projectChip}
+        ${currentBadge}
+        <span class="session-meta">${sess.agents.length} agents &middot; ${fmtAgo(sess.lastActivity)}</span>
+        <span class="session-chevron">&#9654;</span>
+      </div>
+      <div class="session-agents">${agentRows}</div>
+    </div>`;
+  }).join('');
+}
+
+// Event delegation — robust across UUID-as-string edge cases
+document.addEventListener('click', (e) => {
+  const agentRow = e.target.closest('.agent-row[data-output-file]');
+  if (agentRow) {
+    showAgentStream(agentRow.dataset.outputFile, agentRow.dataset.agentId);
+    return;
+  }
+  const sessionHeader = e.target.closest('.session-header');
+  if (sessionHeader) {
+    const card = sessionHeader.closest('.session-card');
+    if (card) card.classList.toggle('expanded');
+  }
+});
+
+async function fetchAllAgents() {
+  try {
+    const url = agentsRecencySecs > 0
+      ? `/api/all-agents?since=${agentsRecencySecs}`
+      : '/api/all-agents';
+    allAgentsData = await apiFetch(url);
+    renderAllAgents();
+  } catch (e) {
+    document.getElementById('all-agents-list').innerHTML = '<div class="empty">Error loading agents</div>';
+  }
+}
+
+// Wire recency filter buttons + search input
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.recency-btn');
+  if (!btn) return;
+  document.querySelectorAll('.recency-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  agentsRecencySecs = parseInt(btn.dataset.since, 10) || 0;
+  fetchAllAgents();
+});
+
+document.addEventListener('input', (e) => {
+  if (e.target && e.target.id === 'agent-search') {
+    agentsSearch = e.target.value;
+    renderAllAgents();
+  }
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   Agent stream view
+═══════════════════════════════════════════════════════════════════ */
+async function loadAgentStream(outputFile) {
+  try {
+    const data = await apiFetch('/api/agent-stream?file=' + encodeURIComponent(outputFile));
+    renderAgentStream(data.events, outputFile);
+  } catch (e) {
+    document.getElementById('agent-stream-pane').innerHTML = '<div class="empty">Error loading stream</div>';
+  }
+}
+
+function renderAgentStream(events, outputFile) {
+  const model = inferModelFromEvents(events);
+  const brief = events.find(e => e.kind === 'brief');
+
+  const evHtml = events
+    .filter(e => e.kind !== 'brief')
+    .map(ev => renderEvent(ev))
+    .filter(Boolean)
+    .join('');
+
+  document.getElementById('agent-stream-pane').innerHTML = `
+    <div class="pane-header">
+      AGENT STREAM ${modelBadgeHtml(model)}
+      <span class="meta">${escHtml(outputFile.split('/').slice(-1)[0])}</span>
+    </div>
+    ${brief ? `<div class="event-row brief"><span class="ev-icon">&#x1F4AC;</span><span class="ev-text">${escHtml(brief.text)}</span></div>` : ''}
+    <div class="event-list">${evHtml || '<div class="event-row text"><span class="ev-text">No parsed events</span></div>'}</div>`;
+}
+
+function inferModelFromEvents(events) {
+  for (const ev of events) {
+    const m = (ev.model || '').toLowerCase();
+    if (!m) continue;
+    if (m.includes('haiku') || m.includes('minimax') || m.includes('highspeed')) return 'haiku';
+    if (m.includes('sonnet')) return 'sonnet';
+    if (m.includes('opus')) return 'opus';
+  }
+  return 'unknown';
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Poll loop
+═══════════════════════════════════════════════════════════════════ */
+async function fetchActiveAgents() {
+  try {
+    const data = await apiFetch('/api/active-agents');
+    activeAgentsCount = data.count || 0;
+  } catch (e) {
+    activeAgentsCount = 0;
+  }
+}
+
+async function poll() {
+  await Promise.all([fetchDashboards(), fetchActiveAgents()]);
+  renderCards();
+  if (selectedPlan) await refreshDrill();
+  if (activeTab === 'agents') await fetchAllAgents();
+}
+
+(async () => {
+  await poll();
+  setInterval(poll, 2000);
+})();
+</script>
+</body>
+</html>

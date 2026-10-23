@@ -1,0 +1,53 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.codex/skills/implement",
+  "original_sha256": [
+    {
+      "sha256": "864c2afc692675841d7fd8885b8bba2e89154b72c0511cf58b7cd6545d2d8815",
+      "path": "BEST-PRINCIPLES.html"
+    },
+    {
+      "sha256": "a0a3a2b770e62b0a15cfc477de56faa6e964b7e3ef6dc2133d1c5e7685a70b4c",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "694f64d3134568a367ecdb13a4010cde55b1bb3a1cf396884848d6bfc191b600",
+      "path": "routing.json"
+    },
+    {
+      "sha256": "741915d8a02e124f1141904ef1539b914f69d320c1fc5fc3f93395035997dc9c",
+      "path": "tools/codex-exec-adapter.mjs"
+    },
+    {
+      "sha256": "a21807eb3dd7be970050096bedf9e8068fa4fe5b5db5b7a1406c6ee2d5e7b3ef",
+      "path": "tools/workflow-implement-sweep.js"
+    },
+    {
+      "sha256": "5f1cc73a2e1de9682bb19e8d759ef43c431ca4ed24f9895a5a656901586ee69a",
+      "path": "tools/validate-playbook-pack.mjs"
+    },
+    {
+      "sha256": "6b8857d599b97b4799bd6638d9c38cb656ddf475bca2e85f49f2515609b9a62e",
+      "path": "framework/execution-framework.md"
+    },
+    {
+      "sha256": "1e2803b318354437dbeccfb327f82dd6157a6eddf06fc20a21a1c9aaec9bf6c6",
+      "path": "framework/workflow-composition.md"
+    },
+    {
+      "sha256": "cbe6c3569ca4ff99a21634d83dfb1a7b8823e8cde1314d0bfdd19496e9c1a2d8",
+      "path": "framework/tier-router.md"
+    },
+    {
+      "sha256": "374c13a8f97b7424fa39eccdc7c9e9d039acc8bb01932eb9c0c7862480c692c6",
+      "path": "framework/rating-contract.md"
+    },
+    {
+      "sha256": "f0ce4c74bc4d80e2e8bb53e8f04ce3b99f58922b2b419b1fd0c339183710f720",
+      "path": "reports/.gitkeep"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

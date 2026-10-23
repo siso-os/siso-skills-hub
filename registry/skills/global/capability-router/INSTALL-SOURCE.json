@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/capability-router",
+  "original_sha256": [
+    {
+      "sha256": "040641838a0951a1dd3bd9407dc0d4a57221a81cdc6c2749b07a294358a2a0c8",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

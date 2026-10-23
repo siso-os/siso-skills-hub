@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Subagent Orchestration"
+  short_description: "Fan out, verify, and synthesize agent work"
+  default_prompt: "Use $codex-subagent-orchestration to coordinate and verify a mixed MiniMax and Luna fan-out."

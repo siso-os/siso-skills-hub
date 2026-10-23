@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/disk-cleanup",
+  "original_sha256": [
+    {
+      "sha256": "8f019431cbd954940c90b3f2305f98759ea4c674c614e3ef808f2970711d2152",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

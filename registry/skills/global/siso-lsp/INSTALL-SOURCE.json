@@ -1,0 +1,17 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/siso-lsp",
+  "original_sha256": [
+    {
+      "sha256": "ef130d7a10734a869350afcb0af367ac041b65a7498d17f03b74b6d08ee5a86b",
+      "path": "EXAMPLES.md"
+    },
+    {
+      "sha256": "f2e6765684ba406aceced256bb65c2eb99429f9d4355300f8727fc8e53e55dcc",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

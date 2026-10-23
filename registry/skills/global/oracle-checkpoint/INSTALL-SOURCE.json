@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.codex/skills/oracle-checkpoint",
+  "original_sha256": [
+    {
+      "sha256": "92f31ade43418498f0e78d698afb5078c45a391fee4ce881515ab46b9a4a1aab",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

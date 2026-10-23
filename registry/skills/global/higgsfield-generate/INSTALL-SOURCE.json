@@ -1,0 +1,60 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/higgsfield-generate",
+  "original_sha256": [
+    {
+      "sha256": "1bdfd5c907f89ccd561816dbb42e31614b08102b2584fba88760b612ee5236f6",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "7bbf52b4bd6bfc5e94fb8e881521a2a841262f8afaf1f51f43e410e906de1973",
+      "path": "references/marketing-ad-references.md"
+    },
+    {
+      "sha256": "d26e0d6d5379ccbc646182bd37b078e21ad027e3fa862e1c491421003d61e76e",
+      "path": "references/workflows.md"
+    },
+    {
+      "sha256": "b28c7cf1df62173d3cfa386c8cd90b8bab145e6ea001a9b078eedaccb1df0f62",
+      "path": "references/marketing-avatars.md"
+    },
+    {
+      "sha256": "29971319a86df2e68cc3bb7b20ca2012f4e7b880732ea8d154e17b83586714af",
+      "path": "references/troubleshooting.md"
+    },
+    {
+      "sha256": "2ac9021f73ae0d0595b8a2c270e4f42e36ca77bd7a26167917a30ee29b2cf2b8",
+      "path": "references/marketing-modes.md"
+    },
+    {
+      "sha256": "337c7a6813cb69d690b1d69272d3383d9d161ebee0205d2c7e6a33544a4d8dea",
+      "path": "references/model-catalog.md"
+    },
+    {
+      "sha256": "f00b261752dd349032ebb5104789a997d32186f0284cf8982f4f47ec5ff66ea7",
+      "path": "references/marketing-brand-kits.md"
+    },
+    {
+      "sha256": "4d12a3b5eef151f5dbb6a307256a847dd3882c6374168493bc6fcb88a92c0f06",
+      "path": "references/marketing-dtc-ads.md"
+    },
+    {
+      "sha256": "26e4d828d985ae21a450c5eb5f824ec2db70a2a2aa4feef8fc135f784cc41c44",
+      "path": "references/prompt-engineering.md"
+    },
+    {
+      "sha256": "fb50159ca600195623f3894cb547ced54b47b6deb31b800467c02a040360ae6a",
+      "path": "references/marketing-products.md"
+    },
+    {
+      "sha256": "c4ab96356e6805a8c0813dfe3c71a2681c7dc7f61c0c28bc06168ce5fb37ca94",
+      "path": "references/media-inputs.md"
+    },
+    {
+      "sha256": "1f2170abc4fbca87ab306d6de563e37c9ad3daea4a03f5a8d8b50f51e5f4a740",
+      "path": "references/marketing-setup-items.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

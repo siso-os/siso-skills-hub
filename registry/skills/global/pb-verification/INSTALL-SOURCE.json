@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/pb-verification",
+  "original_sha256": [
+    {
+      "sha256": "c642f07bcb86d1801d467d5b2246e3b471c13f9537d090562a257d0183abd938",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

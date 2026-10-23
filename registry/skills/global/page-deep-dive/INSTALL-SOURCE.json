@@ -1,0 +1,21 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/page-deep-dive",
+  "original_sha256": [
+    {
+      "sha256": "5366abbf25cab8122294eb6b89993f5c5830edf7e3b6e73072f4eed54af7f0b1",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "0d932bb8f2fc785e50561879cd641c38f96e32bc6906292964f43fe6b1cad410",
+      "path": "deliverables/flow-analysis.md"
+    },
+    {
+      "sha256": "9400e73a92b3870aa3ac9d1a4129bfc6f3025946f6f93d82cbbbe5302c708bbb",
+      "path": "deliverables/verify.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

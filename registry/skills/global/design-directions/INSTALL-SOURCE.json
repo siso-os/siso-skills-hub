@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/design-directions",
+  "original_sha256": [
+    {
+      "sha256": "7f1a8059f57540b4e6cb112d30e33e45584845657f4515463d1fdb34bcb4d8f3",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

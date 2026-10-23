@@ -1,0 +1,17 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/herdr",
+  "original_sha256": [
+    {
+      "sha256": "45361948d05608d10e0cd0735ceac28772b46f3b12912e9faeaeb207dfd16873",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "d128d5d445fdca14120ef90370561b1ca56a681c6bbaebb54b6ef244f6731408",
+      "path": "scripts/agent-packet.mjs"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

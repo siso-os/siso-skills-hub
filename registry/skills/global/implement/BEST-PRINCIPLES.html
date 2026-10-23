@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Implement Pack Best Principles</title>
+</head>
+<body>
+  <h1>Implement Pack Best Principles</h1>
+  <p>This file is append-only operating memory for the implement playbook. Every meaningful run should add reusable lessons here.</p>
+
+  <section id="seed-principles">
+    <h2>Seed Principles</h2>
+    <ul>
+      <li>Use the smallest tier that can honestly finish and verify the job.</li>
+      <li>Separate obvious edits from work that needs reasoning; run both lanes in parallel when independent.</li>
+      <li>Put code cognition on headless <code>codex exec</code>; keep Workflow agents as cheap glue unless a single final synthesis needs more taste.</li>
+      <li>Rate every plan, implementation, verifier result, and checkpoint out of <code>100</code>.</li>
+      <li>Blocked verification is not a pass. Document the blocker and cap the rating honestly.</li>
+      <li>Checkpoint first; do not auto-commit unless explicitly asked.</li>
+    </ul>
+  </section>
+
+  <section id="bifrost-transport-20260726">
+    <h2>Transport hardening under live load</h2>
+    <ul>
+      <li>Put one component in charge of retries. Layered retries turn one inference POST into an unbounded cost and duplicate-work risk.</li>
+      <li>A shadow-only observer should not sit inline with production traffic. Run it off-path, or make every hot-path side effect bounded, asynchronous, and fail-open.</li>
+      <li>Drain long-lived streams to zero before reloading a local inference gateway; prove the new PID, loaded environment, socket topology, and post-reload log window.</li>
+      <li>Scheduler priority protects transport responsiveness under build pressure, but it does not replace removing architectural choke points.</li>
+      <li>An independent verifier below the pass floor is a repair trigger, not a reporting footnote. Fix the blocker, reload safely, and re-score.</li>
+    </ul>
+  </section>
+</body>
+</html>

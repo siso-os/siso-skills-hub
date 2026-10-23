@@ -147,6 +147,7 @@ assert stats['count'] == 1 and stats['success_rate'] == 1.0
 
 run(["python3", "scripts/test_skills_installer.py"], stdout=subprocess.DEVNULL)
 run(["python3", "scripts/test_audit_contract.py"], stdout=subprocess.DEVNULL)
+run(["python3", "scripts/test_curation.py"], stdout=subprocess.DEVNULL)
 run(["python3", "scripts/test_writeback.py"], stdout=subprocess.DEVNULL)
 run(["python3", "-B", "-m", "unittest", "discover", "-s", "registry/skills/global/jev-judgment/tests", "-p", "test_*.py"], stdout=subprocess.DEVNULL)
 

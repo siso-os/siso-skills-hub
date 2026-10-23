@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/page-flow-analysis",
+  "original_sha256": [
+    {
+      "sha256": "6f3a3c9f40680c8cd8d75c9ba2635336d88dd5e09c5a39c8ef171231a3e49f51",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

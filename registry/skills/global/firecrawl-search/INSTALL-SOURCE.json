@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.codex/skills/firecrawl-search",
+  "original_sha256": [
+    {
+      "sha256": "405a27fe4261e3b837b8c939aa0c16b1508989e323eba6dbac4031a49119d535",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

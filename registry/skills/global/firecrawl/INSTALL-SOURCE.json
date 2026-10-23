@@ -1,0 +1,21 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/firecrawl",
+  "original_sha256": [
+    {
+      "sha256": "4d5364f2ef1572496759c9650fd680c2020fc85505e1aed1cd49bd31b61a306e",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "acf9e2e26929b5ccebd111f5777517ced42bf83e86766c1a01370f0e9f811681",
+      "path": "rules/install.md"
+    },
+    {
+      "sha256": "3d4661ee34bc5a4c5d529c998e86f81fc7c207e0b42618d37c403c8c1a39b24a",
+      "path": "rules/security.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

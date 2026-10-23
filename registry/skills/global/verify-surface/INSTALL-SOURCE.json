@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.codex/skills/verify-surface",
+  "original_sha256": [
+    {
+      "sha256": "3a208c4f7c51c43d03f706359e5ff8b64fbbf951e67a1575e1765dec73fe9243",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

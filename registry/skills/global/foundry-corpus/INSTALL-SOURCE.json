@@ -1,0 +1,20 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/foundry-corpus",
+  "original_sha256": [
+    {
+      "sha256": "813173d8080ae9bdffa7a6552af17e5793308397a7656aace679fdc424f05617",
+      "path": "foundry"
+    },
+    {
+      "sha256": "45fbdc74b63e5b4dd8eda03effbc06aad7a617fbf00bbdcc9eb010848b41f6ab",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "e889c48d2245831e8105ae17e1888afbccaab482c91f28b15b327fe2fa065034",
+      "path": "foundry-corpus"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

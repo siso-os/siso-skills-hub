@@ -1,0 +1,20 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/higgsfield-soul-id",
+  "original_sha256": [
+    {
+      "sha256": "1ce57e956e412a4dc9134683bd53a084643c5339a532899a8de5f944e76ef8ef",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "e2e7159fbd002cbd8d402325a846575a745910a35f3c0158a22daa8626cf545e",
+      "path": "references/troubleshooting.md"
+    },
+    {
+      "sha256": "c3c00f24b10b64ead0149b29f7c9d765d58e3f12e4be3a3c9c008d2278a0787e",
+      "path": "references/photo-guide.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

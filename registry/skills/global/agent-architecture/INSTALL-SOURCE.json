@@ -1,0 +1,137 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/agent-architecture",
+  "original_sha256": [
+    {
+      "sha256": "b18ca9cac06eed00743f5081ad7c784f038e35dada40a94096ef1e987f609218",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "8897f033548eafbb48c4526d7a23e20c87bea9c53c839a14fd1c172efc74be86",
+      "path": "playbook/PLAYBOOK.md"
+    },
+    {
+      "sha256": "5fde8f088d6175b59386b30dca25d7ff606ec922769b9d9112ce988add614828",
+      "path": "templates/.dependency-cruiser.cjs"
+    },
+    {
+      "sha256": "02bffe88872a3b3e50f8f72f343a6612e8342c18d37b38209be8a437746251a3",
+      "path": "templates/structure-score.mjs"
+    },
+    {
+      "sha256": "94ca83ddcdf32812a96e2880011d43ddaee1f51f014af4f8535e71f2cce2ecac",
+      "path": "templates/no-orphan-scripts.mjs"
+    },
+    {
+      "sha256": "ac0d6f277477a3eae64d09280e40c5dd8e51dade2d441ff5e016ab83f63c41e6",
+      "path": "templates/structure-ratchet.baseline.json"
+    },
+    {
+      "sha256": "4ec9aaa031a27cd936ae2e6b35c3ce3ceff40c025b43ac782062dc977e9e7984",
+      "path": "templates/INDEX.md"
+    },
+    {
+      "sha256": "3170de1f6e4a2231bc13f701886b6ead8e7952823f7ac3b3f106ad9156f31ae6",
+      "path": "templates/dep-ratchet.mjs"
+    },
+    {
+      "sha256": "80392c46d225ce48a3611f903dd69fc5250ed4d632fdfb218eeac3710bd37115",
+      "path": "templates/pre-commit.sh"
+    },
+    {
+      "sha256": "9fc69f87d3e08dbb7e533fc318939cabf2763c532b189e795fd762481a30b304",
+      "path": "templates/structure-ratchet.mjs"
+    },
+    {
+      "sha256": "b20ce9fba7fab1411d592d0c8c22c485a8476dcae18d2b239a4bda232b93760e",
+      "path": "templates/CLAUDE.md"
+    },
+    {
+      "sha256": "2d5402bf51db0c227d7231ae05d519cd958860a9c711c2e4a5e41d87fb9075d7",
+      "path": "templates/FILE-TREE.md"
+    },
+    {
+      "sha256": "881b138f6b87da99bf65ea09237caae6283bf94cfda3a3b4a62ee2103dd318dd",
+      "path": "templates/CONTEXT-BLOCK.template.ts"
+    },
+    {
+      "sha256": "24a4db1fa07e8fd2503cfacb7dfc5904f6d45fbd0fe0695e94d8044a59de0d68",
+      "path": "adrs/ADR-006-boot-md-state-html.md"
+    },
+    {
+      "sha256": "0e51b3ed215c161d6b3c88832a6bb8a4b78e588909991142f095d6c2def0d085",
+      "path": "adrs/ADR-015-first-read-map-and-certainty-gradient.md"
+    },
+    {
+      "sha256": "c1ce80d5595c685d272e8ade9f2dbf41f9d82e799b29ba2285df9ddbd016e1e0",
+      "path": "adrs/ADR-003-anti-degradation-ratchet.md"
+    },
+    {
+      "sha256": "44aa5bf449e914023d4fecf41e18059b28b1cdb2de54e14e5afa9a12d09552bd",
+      "path": "adrs/ADR-014-describe-bridge-move-and-existence-gate.md"
+    },
+    {
+      "sha256": "51b5deac1e738463d062fa3c2532d006d534a7ff52b5a76b3e786baf3cdca51e",
+      "path": "adrs/ADR-013-self-orienting-context-block.md"
+    },
+    {
+      "sha256": "592549f2bc2c1d96ade9acf961826891888317ed0764fce94a2d149e387f4cd2",
+      "path": "adrs/ADR-007-points-not-asserts-routing.md"
+    },
+    {
+      "sha256": "0c3330c12a691570b318cd5f6475d606ea29f557fe9e0c7c415f253c0b36ff8d",
+      "path": "adrs/ADR-004-structure-score.md"
+    },
+    {
+      "sha256": "236659b100a425fb4c1a671198ad1920a92f0e6c46c950c1beaa59e9e9fff950",
+      "path": "adrs/ADR-010-one-registry-no-side-lists.md"
+    },
+    {
+      "sha256": "0b04b43bf3d92990531e232195a68d513d8397eedefa5f26fd35d2fed25da973",
+      "path": "adrs/ADR-009-files-canonical-db-mirror.md"
+    },
+    {
+      "sha256": "bef05d9b14ec0fae253f43c2fdee8c5858441a9f671ec03625484a5aa8db8a4a",
+      "path": "adrs/ADR-012-worktree-per-task.md"
+    },
+    {
+      "sha256": "476500b6fea477ad834d01ed5ab65302172e05fcf10bc83d4018e8820b204e91",
+      "path": "adrs/ADR-008-volatility-sharded-spine.md"
+    },
+    {
+      "sha256": "1ab74d19bacb79e502c4d9eeefa55f1b146816bead5b8f2f824d7021b051ee7a",
+      "path": "adrs/ADR-016-detect-not-repair-and-self-instrumenting-hook.md"
+    },
+    {
+      "sha256": "a21f42773e6ecbd06751b3aec6a1c7e145758f6f66ee3c19be5d8d93a762f214",
+      "path": "adrs/INDEX.md"
+    },
+    {
+      "sha256": "3247d7164067b6345efc8f4123421f2ad29dc0ea1f6fd3ed2122a1baeb0f6247",
+      "path": "adrs/ADR-018-provenance-and-liveness-gates.md"
+    },
+    {
+      "sha256": "9e932c3d771505d838c3fde8d824deff3a1e75c2cd5f2181852a358ef9a97b54",
+      "path": "adrs/ADR-001-domain-not-layer-partitioning.md"
+    },
+    {
+      "sha256": "7afed5369486354df57fc077e11236ada03b3a2273ff2ebaef7b719e4d559132",
+      "path": "adrs/ADR-011-folder-is-boundary.md"
+    },
+    {
+      "sha256": "1c03dd02fde57e6560625022c0996023940637d9162630fd28c3e3023834e5c9",
+      "path": "adrs/ADR-002-executable-layout.md"
+    },
+    {
+      "sha256": "67e318812d83cebf80a08ca73cb192b8c42501f408dd7224c569bdfd0dd77922",
+      "path": "adrs/ADR-017-monorepo-structural-conventions.md"
+    },
+    {
+      "sha256": "0a3aee250192790537e192684ea66bc945518023137de04e636a38cbb5e7c44d",
+      "path": "adrs/ADR-005-warn-to-error-at-zero.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

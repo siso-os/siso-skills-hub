@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/runtime-reminders",
+  "original_sha256": [
+    {
+      "sha256": "80f5312c192f2beb411af9203b11d6c3f45e1fa170370ba8d7c81f342739979d",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

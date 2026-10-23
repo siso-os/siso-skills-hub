@@ -1,0 +1,60 @@
+// SISO verifiable-frontend — example spec template.
+// Copy this to specs/<YourUnit>.verify.ts, rename, and fill in.
+// One .verify.ts per unit. Each registers itself by side-effect import (see specs/index.ts).
+//
+// The four moving parts of a spec:
+//   propsSchema  — Zod shape; a refine() can encode a cross-field truth (e.g. total === done + active)
+//   fixtures     — named reproducible states. AT LEAST ONE must be `probe: true` (an adversarial edge).
+//   invariants   — predicates over the MOUNTED DOM (read data-verify-* via ctx.contract, never React internals)
+//   render       — how to mount the unit in isolation
+//
+// Rule the matrix test enforces: a unit with zero probe fixtures has only replayed the happy path.
+
+import { createElement } from "react";
+import { z } from "zod";
+import { registerUnit } from "../core/registry";
+// import { YourComponent, type YourComponentProps } from "../../<path>/YourComponent";
+
+const noop = () => {};
+
+// registerUnit<YourComponentProps>({
+registerUnit({
+  id: "YourUnit",
+  title: "YourUnit",
+  description: "One line: what this surface is.",
+  kind: "component", // "component" for a leaf, "feature" for a stateful slice
+
+  // render: (props) => createElement(YourComponent, props),
+  render: (_props) => createElement("div", { "data-verify-unit": "YourUnit" }),
+
+  // The static-shape half. A refine() turns a business rule into a schema FAIL.
+  propsSchema: z.object({
+    // total: z.number().int().nonnegative(),
+  }),
+
+  fixtures: [
+    {
+      id: "default",
+      description: "Happy path.",
+      props: {},
+    },
+    {
+      id: "edge-violation",
+      probe: true, // 🔍 REQUIRED: at least one probe per unit
+      description:
+        "Probe: an adversarial state the surface must handle (empty / overflow / inconsistent). " +
+        "If this is supposed to FAIL by design, list it in EXPECTED_FAIL in the matrix test.",
+      props: {},
+    },
+  ],
+
+  invariants: [
+    {
+      id: "contract-present",
+      description: "rendered DOM emits its data-verify contract",
+      // ctx = { root, props, fixture, contract }. Return true | false | "why it failed".
+      check: ({ contract }) =>
+        Object.keys(contract).length > 0 || "no data-verify-* attrs found",
+    },
+  ],
+});

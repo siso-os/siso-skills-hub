@@ -1,0 +1,462 @@
+#!/usr/bin/env python3
+"""
+foundry — read-only query primitive over the WHOLE Foundry information organ.
+
+Shaan's ask (GQ-006): "we have 1.2M repos on the mini but the agents don't know
+how to check them — that should be baked into the harness… same for daily YouTube
+transcripts, news, Twitter, GitHub — all valuable data for our AIs to mine and
+learn from." This is that primitive. One CLI, four read-only domains:
+
+  repos        1.36M GitHub repo cards, 328k value-rated, 40k saucy   (identity.sqlite)
+  transcripts  YouTube creator transcripts — search + fetch the body  (queue.db + .md files)
+  insights     915 mined self-learning insights (news/YT/GitHub, FTS)  (insights.db)
+  people       the god-source creator/people graph (GQ-003 absorbed)   (people.sqlite)
+  status       one-shot freshness/health of every collector           (all DBs + launchd)
+
+HOUSE LAW (Foundry FOUNDRY.html): the mini owns + WRITES every canonical DB
+(single-writer-per-DB). This tool opens them READ-ONLY (mode=ro) over Tailscale
+ssh (or locally if on the mini). It NEVER writes.
+
+Machine contract: --json on any subcommand → stable JSON on stdout.
+Exit 0 ok · 2 usage · 3 NOT FOUND · 4 engine unreachable.
+
+For the GitHub-repos domain a thin alias `foundry-corpus` also exists (same code
+path); `foundry repos …` is the canonical form.
+"""
+import argparse
+import json
+import os
+import shlex
+import subprocess
+import sys
+
+MINI_HOST = os.environ.get("FOUNDRY_MINI_HOST", "mac-mini")
+DB_IDENTITY = os.environ.get(
+    "FOUNDRY_IDENTITY_DB",
+    "$HOME/foundry-data/domains/github/identity/identity.sqlite")
+DB_QUEUE = os.environ.get(
+    "FOUNDRY_QUEUE_DB",
+    "$HOME/Projects/youtube-ai-research/database/queue.db")
+DB_INSIGHTS = os.environ.get(
+    "FOUNDRY_INSIGHTS_DB",
+    "$HOME/Projects/research-os/insights.db")
+DB_PEOPLE = os.environ.get(
+    "FOUNDRY_PEOPLE_DB",
+    "$HOME/foundry-data/domains/people/people.sqlite")
+
+EXIT_OK, EXIT_USAGE, EXIT_NOTFOUND, EXIT_ENGINE = 0, 2, 3, 4
+
+
+def _on_mini():
+    try:
+        h = subprocess.run(["hostname"], capture_output=True, text=True,
+                           timeout=5).stdout.strip().lower()
+    except Exception:
+        return False
+    return "mac-mini" in h
+
+
+def _remote(cmd_str):
+    """Wrap a shell command for local (on mini) or ssh (from laptop) execution."""
+    if _on_mini():
+        return ["bash", "-lc", cmd_str]
+    return ["ssh", "-o", "RemoteCommand=none", "-o", "ConnectTimeout=10",
+            "-o", "BatchMode=yes", MINI_HOST, cmd_str]
+
+
+def _run(cmd_str, timeout=90):
+    try:
+        p = subprocess.run(_remote(cmd_str), capture_output=True, text=True,
+                          timeout=timeout)
+    except subprocess.TimeoutExpired:
+        sys.stderr.write("ENGINE TIMEOUT\n"); raise SystemExit(EXIT_ENGINE)
+    except Exception as e:
+        sys.stderr.write(f"ENGINE UNREACHABLE ({MINI_HOST}): {e}\n")
+        raise SystemExit(EXIT_ENGINE)
+    if p.returncode != 0:
+        err = (p.stderr or "").strip()
+        if any(s in err for s in ("Could not resolve", "Connection", "ssh:", "Operation timed out")):
+            sys.stderr.write(f"ENGINE UNREACHABLE ({MINI_HOST}): {err}\n")
+            raise SystemExit(EXIT_ENGINE)
+        sys.stderr.write(f"QUERY ERROR: {err}\n"); raise SystemExit(EXIT_ENGINE)
+    return p.stdout
+
+
+def _sql(db, sql, mode="-json"):
+    remote = f'sqlite3 {mode} "file:{db}?mode=ro" {shlex.quote(sql)}'
+    out = _run(remote).strip()
+    if mode == "-json":
+        return json.loads(out) if out else []
+    return out
+
+
+def _cat(path):
+    """Read a remote file body (read-only)."""
+    return _run(f'cat {shlex.quote(path)}')
+
+
+def _lit(s):
+    return "'" + s.replace("'", "''") + "'"
+
+
+def _emit(obj, as_json, human):
+    if as_json:
+        print(json.dumps(obj, indent=2, ensure_ascii=False))
+    else:
+        human()
+
+
+# ============================================================ REPOS
+def cmd_repos(a):
+    q = a.query.strip()
+    like = _lit(f"%{q}%")
+    where = [f"(c.full_name LIKE {like} OR c.description LIKE {like} OR c.topics_json LIKE {like})"]
+    if a.lang: where.append(f"c.language = {_lit(a.lang)}")
+    if a.min_stars: where.append(f"c.stars >= {int(a.min_stars)}")
+    join = sel = ""
+    if a.saucy or a.category:
+        join = ("JOIN repo_category rc ON rc.full_name = c.full_name "
+                "LEFT JOIN category cat ON cat.id = rc.category_id")
+        sel = ", rc.overall_value AS value, rc.saucy, rc.why, cat.name AS category"
+        if a.saucy: where.append("rc.saucy = 1")
+        if a.category: where.append(f"cat.name LIKE {_lit('%'+a.category+'%')}")
+    order = "rc.overall_value DESC, c.stars DESC" if (a.saucy or a.category) else "c.stars DESC"
+    sql = (f"SELECT DISTINCT c.full_name, c.stars, c.language, "
+           f"substr(c.description,1,110) AS description{sel} FROM repo_card c {join} "
+           f"WHERE {' AND '.join(where)} ORDER BY {order} LIMIT {int(a.limit)};")
+    rows = _sql(DB_IDENTITY, sql)
+    if not rows:
+        hint = "no repos match this exact substring — search matches VERBATIM; try 1-2 keywords + --lang/--min-stars flags"
+        _emit({"query": q, "count": 0, "results": [], "hint": hint}, a.json,
+              lambda: print(f"NOT FOUND: {hint}")); raise SystemExit(EXIT_NOTFOUND)
+    def human():
+        print(f"# {len(rows)} repos matching {q!r}" + ("  [saucy]" if a.saucy else "")
+              + (f"  [cat~{a.category}]" if a.category else ""))
+        for r in rows:
+            tag = "  ★SAUCY" if r.get("saucy") else (f"  val={r['value']}" if r.get("value") is not None else "")
+            print(f"  {r['full_name']:<44} {r.get('stars') or 0:>7}★ {r.get('language') or '-':<12}{tag}")
+            if r.get("description"): print(f"      {r['description']}")
+            if r.get("why"): print(f"      why: {r['why']}")
+    _emit({"query": q, "count": len(rows), "results": rows}, a.json, human)
+
+
+def cmd_repo(a):
+    name = a.name.strip()
+    cards = _sql(DB_IDENTITY,
+        f"SELECT full_name, stars, forks, language, description, url, homepage, license, "
+        f"pushed_at, created_at, archived, fork, canonical_id "
+        f"FROM repo_card WHERE full_name = {_lit(name)} LIMIT 1;")
+    if not cards:
+        _emit({"repo": name, "found": False}, a.json,
+              lambda: print(f"NOT FOUND: {name} is not in the corpus")); raise SystemExit(EXIT_NOTFOUND)
+    card = cards[0]
+    cats = _sql(DB_IDENTITY,
+        f"SELECT cat.name AS category, rc.role, rc.confidence, rc.overall_value, rc.reuse_value, "
+        f"rc.info_value, rc.saucy, rc.value_type, rc.legal_lane, rc.unit_class, rc.why "
+        f"FROM repo_category rc LEFT JOIN category cat ON cat.id = rc.category_id "
+        f"WHERE rc.full_name = {_lit(name)} ORDER BY rc.role, rc.overall_value DESC;")
+    def human():
+        print(f"# {card['full_name']}")
+        print(f"  {card.get('stars') or 0}★  {card.get('forks') or 0} forks  "
+              f"{card.get('language') or '-'}  {card.get('license') or 'no-license'}")
+        if card.get("description"): print(f"  {card['description']}")
+        if card.get("url"): print(f"  git clone {card['url'].rstrip('/')}.git" if not (card['url'] or '').endswith('.git') else f"  git clone {card['url']}")
+        print(f"  pushed: {card.get('pushed_at') or '?'}   created: {card.get('created_at') or '?'}"
+              + ("   [ARCHIVED]" if card.get("archived") else "") + ("   [FORK]" if card.get("fork") else ""))
+        if not cats: print("  (not yet value-categorized)")
+        for c in cats:
+            print(f"  ── [{c.get('role')}] {c.get('category')}  val={c.get('overall_value')} "
+                  f"reuse={c.get('reuse_value')} info={c.get('info_value')} conf={c.get('confidence')}"
+                  + (" ★SAUCY" if c.get("saucy") else ""))
+            meta = " ".join(x for x in [f"type={c['value_type']}" if c.get('value_type') else "",
+                    f"legal={c['legal_lane']}" if c.get('legal_lane') else "",
+                    f"class={c['unit_class']}" if c.get('unit_class') else ""] if x)
+            if meta: print(f"        {meta}")
+            if c.get("why"): print(f"        why: {c['why']}")
+    _emit({"repo": name, "found": True, "card": card, "categories": cats}, a.json, human)
+
+
+def cmd_category(a):
+    if not a.name:
+        rows = _sql(DB_IDENTITY,
+            "SELECT cat.name, COUNT(rc.id) AS repos, SUM(rc.saucy) AS saucy "
+            "FROM category cat LEFT JOIN repo_category rc ON rc.category_id = cat.id "
+            "GROUP BY cat.id ORDER BY repos DESC;")
+        _emit({"count": len(rows), "categories": rows}, a.json,
+              lambda: [print(f"# {len(rows)} categories (by repo count)")] +
+                      [print(f"  {r['name']:<48} {r.get('repos') or 0:>7} repos  {r.get('saucy') or 0:>5} saucy") for r in rows])
+        return
+    like = _lit(f"%{a.name}%")
+    rows = _sql(DB_IDENTITY,
+        f"SELECT c.full_name, c.stars, c.language, cat.name AS category, rc.overall_value AS value, "
+        f"rc.saucy, substr(rc.why,1,90) AS why FROM repo_category rc "
+        f"JOIN category cat ON cat.id = rc.category_id JOIN repo_card c ON c.full_name = rc.full_name "
+        f"WHERE cat.name LIKE {like} " + ("AND rc.saucy=1 " if a.saucy else "")
+        + f"ORDER BY rc.overall_value DESC, c.stars DESC LIMIT {int(a.limit)};")
+    if not rows:
+        _emit({"category": a.name, "count": 0, "results": []}, a.json,
+              lambda: print(f"NOT FOUND: no category matches {a.name!r}")); raise SystemExit(EXIT_NOTFOUND)
+    def human():
+        print(f"# {len(rows)} repos in category ~{rows[0].get('category', a.name)!r}" + ("  [saucy]" if a.saucy else ""))
+        for r in rows:
+            print(f"  {r['full_name']:<44} {r.get('stars') or 0:>7}★ val={r.get('value')}"
+                  + (" ★" if r.get("saucy") else "") + f"  {r.get('language') or '-'}")
+            if r.get("why"): print(f"      {r['why']}")
+    _emit({"category": a.name, "count": len(rows), "results": rows}, a.json, human)
+
+
+# ============================================================ TRANSCRIPTS
+def cmd_transcripts(a):
+    q = a.query.strip()
+    like = _lit(f"%{q}%")
+    where = [f"(title LIKE {like} OR channel_name LIKE {like})"]
+    if a.channel: where.append(f"channel_name LIKE {_lit('%'+a.channel+'%')}")
+    if a.done: where.append("status='completed' AND transcript_path IS NOT NULL")
+    sql = (f"SELECT video_id, channel_name, substr(title,1,80) AS title, upload_date, "
+           f"status, transcript_path FROM video_queue WHERE {' AND '.join(where)} "
+           f"ORDER BY upload_date DESC LIMIT {int(a.limit)};")
+    rows = _sql(DB_QUEUE, sql)
+    if not rows:
+        _emit({"query": q, "count": 0, "results": []}, a.json,
+              lambda: print(f"NOT FOUND: no transcripts match {q!r}"
+                            + (f" for channel ~{a.channel}" if a.channel else ""))); raise SystemExit(EXIT_NOTFOUND)
+    def human():
+        print(f"# {len(rows)} videos matching {q!r}" + ("  [transcript ready]" if a.done else ""))
+        for r in rows:
+            ready = "✓" if r.get("transcript_path") else ("…" if r.get("status")=="fetching" else "✗")
+            print(f"  [{ready}] {r['video_id']}  {r.get('channel_name') or '?':<22} {r.get('upload_date') or '?':<11} {r.get('title')}")
+        print(f"\n  fetch a body:  foundry transcript <video_id>")
+    _emit({"query": q, "count": len(rows), "results": rows}, a.json, human)
+
+
+def cmd_transcript(a):
+    vid = a.video_id.strip()
+    rows = _sql(DB_QUEUE,
+        f"SELECT video_id, channel_name, title, upload_date, status, transcript_path "
+        f"FROM video_queue WHERE video_id = {_lit(vid)} LIMIT 1;")
+    if not rows:
+        _emit({"video_id": vid, "found": False}, a.json,
+              lambda: print(f"NOT FOUND: {vid} not in the queue")); raise SystemExit(EXIT_NOTFOUND)
+    r = rows[0]
+    path = r.get("transcript_path")
+    if not path:
+        _emit({"video_id": vid, "found": True, "transcript": None, "status": r.get("status")}, a.json,
+              lambda: print(f"# {r.get('title')}\n  status={r.get('status')} — no transcript fetched yet")); raise SystemExit(EXIT_NOTFOUND)
+    body = _cat(path)
+    obj = {"video_id": vid, "found": True, "channel": r.get("channel_name"),
+           "title": r.get("title"), "upload_date": r.get("upload_date"),
+           "transcript_path": path, "transcript": body}
+    def human():
+        print(f"# {r.get('title')}  ({r.get('channel_name')}, {r.get('upload_date')})")
+        print(f"# {path}\n")
+        print(body if not a.head else "\n".join(body.splitlines()[:a.head]))
+    _emit(obj, a.json, human)
+
+
+# ============================================================ INSIGHTS (self-learning corpus)
+def cmd_insights(a):
+    q = a.query.strip()
+    # FTS5 MATCH; quote the query so multi-word is an AND-phrase-ish match
+    fts = _lit(q)
+    where = [f"i.id IN (SELECT rowid FROM insights_fts WHERE insights_fts MATCH {fts})"]
+    if a.lane: where.append(f"i.source_lane = {_lit(a.lane)}")
+    if a.min_action: where.append(f"i.actionability >= {int(a.min_action)}")
+    sql = (f"SELECT i.source_lane, i.source_creator, i.title, substr(i.body,1,160) AS body, "
+           f"i.actionability, i.category, i.source_url FROM insights i "
+           f"WHERE {' AND '.join(where)} ORDER BY i.actionability DESC, i.seen_count DESC LIMIT {int(a.limit)};")
+    rows = _sql(DB_INSIGHTS, sql)
+    if not rows:
+        _emit({"query": q, "count": 0, "results": []}, a.json,
+              lambda: print(f"NOT FOUND: no insights match {q!r} (FTS — try single keywords)")); raise SystemExit(EXIT_NOTFOUND)
+    def human():
+        print(f"# {len(rows)} insights matching {q!r}  (self-learning corpus: news/YT/GitHub mined)")
+        for r in rows:
+            print(f"  [{r.get('source_lane')}·act{r.get('actionability')}] {r.get('title')}")
+            print(f"      {r.get('body')}")
+            src = r.get("source_creator") or ""
+            if src or r.get("source_url"): print(f"      — {src}  {r.get('source_url') or ''}")
+    _emit({"query": q, "count": len(rows), "results": rows}, a.json, human)
+
+
+# ============================================================ PEOPLE (god-source creator graph)
+def cmd_people(a):
+    if a.name:
+        like = _lit(f"%{a.name}%")
+        rows = _sql(DB_PEOPLE,
+            f"SELECT p.person_id, p.name, p.primary_tier, p.origin, p.role, p.rank_score, "
+            f"v.in_youtube, v.in_github, v.in_registry, v.layer_count "
+            f"FROM person p LEFT JOIN v_person_layers v ON v.person_id = p.person_id "
+            f"WHERE p.name LIKE {like} OR p.person_id LIKE {like} "
+            f"ORDER BY v.layer_count DESC, p.rank_score DESC LIMIT {int(a.limit)};")
+        if not rows:
+            _emit({"query": a.name, "count": 0, "results": []}, a.json,
+                  lambda: print(f"NOT FOUND: no person matches {a.name!r}")); raise SystemExit(EXIT_NOTFOUND)
+        # attach external ids for single strong match
+        for r in rows[:1]:
+            ids = _sql(DB_PEOPLE,
+                f"SELECT platform, value FROM external_ids WHERE person_id = {_lit(r['person_id'])};")
+            r["external_ids"] = ids
+        def human():
+            print(f"# {len(rows)} people matching {a.name!r}")
+            for r in rows:
+                layers = "".join([("Y" if r.get("in_youtube") else "-"),
+                                  ("G" if r.get("in_github") else "-"),
+                                  ("R" if r.get("in_registry") else "-")])
+                print(f"  {r['name']:<30} tier={r.get('primary_tier') or '-':<3} [{layers}] "
+                      f"origin={r.get('origin')} score={r.get('rank_score')}")
+                for i in r.get("external_ids", []):
+                    print(f"      {i['platform']}: {i['value']}")
+        _emit({"query": a.name, "count": len(rows), "results": rows}, a.json, human)
+        return
+    # no name → list top god-source (multi-layer) people
+    rows = _sql(DB_PEOPLE,
+        f"SELECT p.name, p.primary_tier, p.origin, v.in_youtube, v.in_github, v.in_registry, "
+        f"v.layer_count, p.rank_score FROM person p "
+        f"JOIN v_person_layers v ON v.person_id = p.person_id "
+        f"ORDER BY v.layer_count DESC, p.rank_score DESC NULLS LAST LIMIT {int(a.limit)};")
+    def human():
+        print(f"# top {len(rows)} god-source people (by cross-platform layer count)")
+        print(f"  layers: Y=youtube G=github R=registry")
+        for r in rows:
+            layers = "".join([("Y" if r.get("in_youtube") else "-"),
+                              ("G" if r.get("in_github") else "-"),
+                              ("R" if r.get("in_registry") else "-")])
+            print(f"  [{layers}·{r.get('layer_count')}L] {r['name']:<30} tier={r.get('primary_tier') or '-'}  {r.get('origin')}")
+    _emit({"count": len(rows), "results": rows}, a.json, human)
+
+
+# ============================================================ RESEARCH (L4 harness v1)
+def cmd_research(a):
+    """Dispatch a god-question to the mini: MiniMax fan-out over the God-source slice."""
+    args = [a.question]
+    if a.category: args += ["--category", a.category]
+    if a.saucy: args += ["--saucy"]
+    if a.limit: args += ["--limit", str(a.limit)]
+    if a.deep: args += ["--deep", str(a.deep)]
+    if a.max_calls: args += ["--max-calls", str(a.max_calls)]
+    cmd_str = "python3 ~/foundry-ops/research_runner.py " + " ".join(shlex.quote(x) for x in args)
+    # long-running: stream output live rather than capture
+    proc = subprocess.Popen(_remote(cmd_str), stdout=subprocess.PIPE,
+                            stderr=subprocess.STDOUT, text=True)
+    for line in proc.stdout:
+        print(line, end="", flush=True)
+    proc.wait()
+    raise SystemExit(proc.returncode)
+
+
+# ============================================================ SIGNAL (the organ's daily push to the harness)
+def cmd_signal(a):
+    """Read the mini's daily signal digest (heartbeat + momentum movers + fresh insights + new answers)."""
+    out = _run("cat ~/foundry-data/daily-signal.md 2>/dev/null || echo 'NO SIGNAL YET (job runs 07:45 mini-local)'")
+    print(out)
+
+
+# ============================================================ STATUS (organ health)
+def cmd_status(a):
+    # one round-trip script for all freshness signals
+    script = r'''
+IDENT="$HOME/foundry-data/domains/github/identity/identity.sqlite"
+QUEUE="$HOME/Projects/youtube-ai-research/database/queue.db"
+INS="$HOME/Projects/research-os/insights.db"
+PPL="$HOME/foundry-data/domains/people/people.sqlite"
+echo "repo_cards|$(sqlite3 "file:$IDENT?mode=ro" 'SELECT COUNT(*) FROM repo_card')"
+echo "categorized|$(sqlite3 "file:$IDENT?mode=ro" 'SELECT COUNT(DISTINCT full_name) FROM repo_category')"
+echo "saucy|$(sqlite3 "file:$IDENT?mode=ro" 'SELECT COUNT(*) FROM repo_category WHERE saucy=1')"
+echo "last_categorize|$(sqlite3 "file:$IDENT?mode=ro" 'SELECT MAX(built_at) FROM repo_category')"
+echo "categorizer_loaded|$(launchctl list 2>/dev/null | grep -q foundry-github-categorize && echo yes || echo no)"
+echo "transcripts_done|$(sqlite3 "file:$QUEUE?mode=ro" "SELECT COUNT(*) FROM video_queue WHERE status='completed'")"
+echo "transcripts_failed|$(sqlite3 "file:$QUEUE?mode=ro" "SELECT COUNT(*) FROM video_queue WHERE status='failed'")"
+echo "last_transcript|$(sqlite3 "file:$QUEUE?mode=ro" "SELECT MAX(updated_at) FROM video_queue WHERE status='completed'")"
+echo "ytworker_loaded|$(launchctl list 2>/dev/null | grep -q youtube-worker && echo yes || echo no)"
+echo "insights|$(sqlite3 "file:$INS?mode=ro" 'SELECT COUNT(*) FROM insights')"
+echo "last_insight|$(sqlite3 "file:$INS?mode=ro" 'SELECT MAX(last_seen_date) FROM insights')"
+echo "people|$(sqlite3 "file:$PPL?mode=ro" 'SELECT COUNT(*) FROM person')"
+'''
+    out = _run(script)
+    d = {}
+    for line in out.strip().splitlines():
+        if "|" in line:
+            k, _, v = line.partition("|")
+            d[k] = v
+    def human():
+        print("# Foundry information organ — health (read live off the mini)")
+        print(f"  GitHub corpus:  {d.get('repo_cards','?'):>10} cards  {d.get('categorized','?'):>9} categorized  {d.get('saucy','?'):>7} saucy")
+        print(f"                  last categorize write: {d.get('last_categorize','?')}   categorizer loaded: {d.get('categorizer_loaded','?')}")
+        print(f"  Transcripts:    {d.get('transcripts_done','?'):>10} done   {d.get('transcripts_failed','?'):>9} failed")
+        print(f"                  last transcript:       {d.get('last_transcript','?')}   worker loaded: {d.get('ytworker_loaded','?')}")
+        print(f"  Insights:       {d.get('insights','?'):>10}   last: {d.get('last_insight','?')}")
+        print(f"  People graph:   {d.get('people','?'):>10} people")
+    _emit(d, a.json, human)
+
+
+def build_parser():
+    p = argparse.ArgumentParser(prog="foundry",
+        description="Read-only query primitive over the whole Foundry information organ (repos·transcripts·insights·people) on the Mac mini.",
+        epilog="Read-only (single-writer law). --json on any subcommand for a machine contract.")
+    p.add_argument("--json", action="store_true")
+    common = argparse.ArgumentParser(add_help=False)
+    common.add_argument("--json", action="store_true", help=argparse.SUPPRESS)
+    sub = p.add_subparsers(dest="cmd", required=True)
+
+    sp = sub.add_parser("repos", parents=[common], help="search GitHub corpus: repos that do X")
+    sp.add_argument("query"); sp.add_argument("--lang"); sp.add_argument("--category")
+    sp.add_argument("--saucy", action="store_true"); sp.add_argument("--min-stars", type=int, default=0, dest="min_stars")
+    sp.add_argument("--limit", type=int, default=20); sp.set_defaults(fn=cmd_repos)
+
+    rp = sub.add_parser("repo", parents=[common], help="one repo: card + value categories + why")
+    rp.add_argument("name"); rp.set_defaults(fn=cmd_repo)
+
+    cp = sub.add_parser("category", parents=[common], help="list the 264-cat taxonomy, or repos in one")
+    cp.add_argument("name", nargs="?"); cp.add_argument("--saucy", action="store_true")
+    cp.add_argument("--limit", type=int, default=30); cp.set_defaults(fn=cmd_category)
+
+    tp = sub.add_parser("transcripts", parents=[common], help="search YouTube creator videos/transcripts")
+    tp.add_argument("query"); tp.add_argument("--channel"); tp.add_argument("--done", action="store_true", help="only videos with a fetched transcript")
+    tp.add_argument("--limit", type=int, default=20); tp.set_defaults(fn=cmd_transcripts)
+
+    tb = sub.add_parser("transcript", parents=[common], help="fetch one transcript body by video_id")
+    tb.add_argument("video_id"); tb.add_argument("--head", type=int, default=0, help="first N lines only")
+    tb.set_defaults(fn=cmd_transcript)
+
+    ip = sub.add_parser("insights", parents=[common], help="FTS the mined self-learning corpus (news/YT/GitHub)")
+    ip.add_argument("query"); ip.add_argument("--lane", help="github | youtube")
+    ip.add_argument("--min-action", type=int, default=0, dest="min_action", help="min actionability 0-5")
+    ip.add_argument("--limit", type=int, default=15); ip.set_defaults(fn=cmd_insights)
+
+    pp = sub.add_parser("people", parents=[common], help="god-source creator/people graph (name, or list top)")
+    pp.add_argument("name", nargs="?"); pp.add_argument("--limit", type=int, default=25); pp.set_defaults(fn=cmd_people)
+
+    rsp = sub.add_parser("research", parents=[common], help="L4: fan MiniMax over a God-source slice on the mini, synthesize an answer")
+    rsp.add_argument("question")
+    rsp.add_argument("--category", help="restrict slice to a category (fuzzy)")
+    rsp.add_argument("--saucy", action="store_true", help="saucy repos only")
+    rsp.add_argument("--limit", type=int, default=200, help="max repos in the slice")
+    rsp.add_argument("--deep", type=int, default=36, help="repos to deep-read (1 MiniMax call each)")
+    rsp.add_argument("--max-calls", type=int, default=40, dest="max_calls")
+    rsp.set_defaults(fn=cmd_research)
+
+    sgp = sub.add_parser("signal", parents=[common], help="the organ's daily push: health + movers + fresh insights + new answers")
+    sgp.set_defaults(fn=cmd_signal)
+
+    stp = sub.add_parser("status", parents=[common], help="freshness/health of every collector")
+    stp.set_defaults(fn=cmd_status)
+
+    # back-compat: `stats` == repos-only stats via status
+    stt = sub.add_parser("stats", parents=[common], help="(alias) corpus stats — see `status` for the full organ")
+    stt.set_defaults(fn=cmd_status)
+    return p
+
+
+def main():
+    p = build_parser()
+    a = p.parse_args()
+    if not getattr(a, "json", False):
+        a.json = "--json" in sys.argv
+    try:
+        a.fn(a)
+    except BrokenPipeError:
+        pass
+
+
+if __name__ == "__main__":
+    main()

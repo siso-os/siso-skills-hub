@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/omc-reference",
+  "original_sha256": [
+    {
+      "sha256": "c2cc27e1984f11c781f9828f9bc7d52421d558a37e2daba29e9ce62c4321b491",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/shaan-report",
+  "original_sha256": [
+    {
+      "sha256": "0ec257a37d53de620e4593c1e96056ea4dbbe7cf71c457663f381e8cb2fa358e",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

@@ -1,0 +1,953 @@
+{
+  "method": "real Skill tool; two positive and one negative query per skill per arm; final after arm validates all 20 installed personal descriptions; mutation tools, hooks, MCP and skill shell execution disabled; personal bodies may outrank inert project fixtures",
+  "model_requested": "claude-haiku-5-5",
+  "after_installed_descriptions": {
+    "agent-zero": "Use when starting an Agent Zero session or deciding how to turn Shaan's request into checked, landed work across existing owners.",
+    "a0-dispatch": "Use when sending a bounded job to an existing Agent Zero owner or seat; records the dispatch and arms the completion waiter.",
+    "job-brief": "Use when compiling a request into a builder job with quoted intent, owned files, constraints and one executable acceptance check.",
+    "shaan-report": "Use when returning a deliverable to Shaan; lead with his next action, then verified changes, evidence and remaining limits.",
+    "research-fleet": "Use when a research question needs independent slices and one evidence-backed synthesis from an Agent Zero fleet.",
+    "deletion-pass": "Use when simplifying a system or retiring duplicate code, skills, tests or jobs; inspect consumers, preserve an archive and verify the remaining path.",
+    "haiku-team": "Use when research, audits, maps or independent build jobs need a Haiku team or parallel builders; split bounded slices and integrate one checked return.",
+    "look": "Use when Agent Zero needs current queue and seat status or must wait for dispatched work; wraps look, a0-await and waitfor without manual polling.",
+    "librarian": "Use when finding an existing repo, tool, skill, prior decision or research before building; search recall and estate where, then return exact source paths.",
+    "codex-run": "Use when dispatching an implementation job or coordinating parallel builders with disjoint files; resolve routing, run codex-run and integrate checked artifacts.",
+    "land": "Use when landing checked work in sisodias/siso or diagnosing a red or missing siso-ci status; run the repository land command and preserve guard failures.",
+    "show-page": "Use when showing Shaan a page, screenshot comparison or UI result; inspect the artifact, then return a real show-page URL or supported inline screenshot view.",
+    "self-compact": "Use when context is filling, a compaction ping arrives or Shaan requests a checkpoint; save state and arm self-compact at a clean break. Agent Zero follows its own compaction rule.",
+    "a0-upgrade": "Use when shipping one filed Agent Zero improvement; start its isolated upgrade worktree, run one meaningful check and ship with a0-upgrade.",
+    "skill-author": "Use when any agent adds, edits, registers or installs a skill; reuse the Hub source, write trigger cases first, validate and verify the installed files.",
+    "siso-ui": "Use when building or restyling a SISO screen or component; start with the surface standard and Shaan's curated UI picks, then inspect rendered results.",
+    "camofox": "Use when reading, navigating or taking screenshots of a web page headlessly through the local Camofox REST API without opening a browser on Shaan's screen.",
+    "machine-reach": "Use when connecting to the Mac mini or a SISO VPS, or diagnosing SSH reachability; resolve the current alias and try documented routes in order.",
+    "fleet-check": "Use when asking what agents are doing, which seat is stuck or why a run stopped; run fleet-check for current evidence before reading transcripts.",
+    "token-ledger": "Use when asking where Claude tokens or spend went by seat, model, login or time window; run token-ledger and report measured totals and coverage."
+  },
+  "results": [
+    {
+      "skill": "siso-ui",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "siso-ui",
+        "ui-bank"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "siso-ui",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "siso-ui"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "siso-ui",
+      "phase": "before",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "a0-dispatch",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "a0-dispatch",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "a0-dispatch"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "a0-dispatch",
+      "phase": "before",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "siso-ci",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "siso-ci"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "siso-ci",
+      "phase": "before",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "siso-ci",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "siso-ci"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "camofox",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "camofox"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "camofox",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "camofox"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "camofox",
+      "phase": "before",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "show-shots",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [
+        "console"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "show-shots",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "show-shots",
+      "phase": "before",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "machine-reach",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "machine-reach"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "machine-reach",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "machine-reach"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "machine-reach",
+      "phase": "before",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "haiku-team",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "haiku-team"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "haiku-team",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "haiku-team"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "haiku-team",
+      "phase": "before",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "self-compact",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "self-compact"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "self-compact",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "self-compact"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "self-compact",
+      "phase": "before",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "fast-build-loop",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "fast-build-loop",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "fast-build-loop",
+      "phase": "before",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "fleet-check",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "fleet-check"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "fleet-check",
+      "phase": "before",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "fleet-check"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "fleet-check",
+      "phase": "before",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "siso-ui",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "siso-ui"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "siso-ui",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "siso-ui"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "siso-ui",
+      "phase": "after",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "a0-dispatch",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "a0-dispatch"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "a0-dispatch",
+      "phase": "after",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "a0-dispatch",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "a0-dispatch"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "siso-ci",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "land"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "siso-ci",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "land"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "siso-ci",
+      "phase": "after",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "camofox",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "camofox",
+      "phase": "after",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "camofox",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "camofox"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "show-shots",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "show-page"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "show-shots",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "show-shots",
+      "phase": "after",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "machine-reach",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "machine-reach"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "machine-reach",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "machine-reach"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "machine-reach",
+      "phase": "after",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "haiku-team",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "haiku-team"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "haiku-team",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "haiku-team"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "haiku-team",
+      "phase": "after",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "self-compact",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "self-compact"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "self-compact",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "self-compact"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "self-compact",
+      "phase": "after",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "fast-build-loop",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [
+        "haiku-team"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "fast-build-loop",
+      "phase": "after",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "fast-build-loop",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    },
+    {
+      "skill": "fleet-check",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "fleet-check"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "fleet-check",
+      "phase": "after",
+      "expected": true,
+      "status": "observed",
+      "triggered": true,
+      "called_skills": [
+        "fleet-check"
+      ],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 1,
+      "errors": [
+        "error_max_turns"
+      ]
+    },
+    {
+      "skill": "fleet-check",
+      "phase": "after",
+      "expected": false,
+      "status": "observed",
+      "triggered": false,
+      "called_skills": [],
+      "models": [
+        "claude-haiku-5-5"
+      ],
+      "exit_code": 0,
+      "errors": []
+    }
+  ],
+  "summary": {
+    "before": {
+      "positive_triggered": 15,
+      "positive_total": 20,
+      "false_positives": 0,
+      "negative_total": 10,
+      "blocked": 0
+    },
+    "after": {
+      "positive_triggered": 16,
+      "positive_total": 20,
+      "false_positives": 0,
+      "negative_total": 10,
+      "blocked": 0
+    }
+  }
+}

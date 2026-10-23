@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/pi-dispatch",
+  "original_sha256": [
+    {
+      "sha256": "31fea21abfb52fa3ecfe50ebd3711e239ae93f56d673f36e3bd52ba852db96c4",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

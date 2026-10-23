@@ -1,0 +1,124 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/higgsfield-brandkit",
+  "original_sha256": [
+    {
+      "sha256": "614a3abe1a0ea52f16d04d191959ab1823a8bf4712f67e2ea77ad53a750d4c4b",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "0dde5091f8bb015fac012ddadc632178c004afa9fd83634da99beae07363cc25",
+      "path": "references/logo-export-payloads.md"
+    },
+    {
+      "sha256": "36e2c69342b4147d74d630efb42650ce5a011a4382b90a62334aefecabb64c24",
+      "path": "references/logo-prompt-enhancer.md"
+    },
+    {
+      "sha256": "d134a0ef463b34a8b9f0621c3b5b75e8d93cb4cfe25378e5c3d42e5c33285265",
+      "path": "references/preview-payloads.md"
+    },
+    {
+      "sha256": "2ea7529381411bb4de4f2d34e58121776f5a3dfddb5015476b26135f6687f4c6",
+      "path": "references/merchandise.md"
+    },
+    {
+      "sha256": "cf98ac911ded4b9318d9c9a88a7e3f590def47253e1e0753f035037a59002f76",
+      "path": "references/logo.md"
+    },
+    {
+      "sha256": "e21c3a227671b405ee5bac145e02742b52a4679a83402b3c2bd2fb98602cd103",
+      "path": "references/presentation-deck.md"
+    },
+    {
+      "sha256": "829f41907200308997d7a14f9ba23a01804d6bad1e0cc3aaab03542c6f960ade",
+      "path": "references/packaging.md"
+    },
+    {
+      "sha256": "c762054cf5b41a27a071aaaabed38bac85a99851febbc24de2c8e81e41bde2cd",
+      "path": "references/posters-banners.md"
+    },
+    {
+      "sha256": "dd9b804c4f1a40fa3a80cd2ef2906d68024a35e861a769a7e592ba97ac76364c",
+      "path": "references/social-templates.md"
+    },
+    {
+      "sha256": "0cdc7b42d6c099dcb0c9db0cb74f1b22b32ea329ca482711c741ceedbbfac408",
+      "path": "references/signage.md"
+    },
+    {
+      "sha256": "143c269a278eeac88814f851f600c59a9b9eb0ce8842432b6b618043db05e924",
+      "path": "references/brand-lock.md"
+    },
+    {
+      "sha256": "9f727270dd9a668292b13cbf1dafc681ad3206960e8e87dedb9e7c69b38fda2e",
+      "path": "references/state-payloads.md"
+    },
+    {
+      "sha256": "cec03829bc1a41429bc7952c9f41d204705071d6eab6204f4f8629957a1b7101",
+      "path": "references/prerequisites.md"
+    },
+    {
+      "sha256": "7ffc004e83a26aec51c15a76270b22a3ba1bb7e5993d8f5d7e38f68148fcac06",
+      "path": "references/brandbook.md"
+    },
+    {
+      "sha256": "b6486ba21a9e7dd304d9ca202f00d9e31c531fb7ae2159cba3c9002097428de1",
+      "path": "references/intake.md"
+    },
+    {
+      "sha256": "187cdb5c3f758f08c0e8fc264674032b2db034d5cefad7a89d5a764a5a3e24ea",
+      "path": "references/asset-analysis.md"
+    },
+    {
+      "sha256": "2718bdc5fe5baf189a3b3cf058c6a9469d2d9a9325f7069e38aeaf160ce44531",
+      "path": "references/typography.md"
+    },
+    {
+      "sha256": "b4733990ae79f9cf48375e6f712a4fbe904ea0ef62aabdb2cbc2e0f502b251df",
+      "path": "references/mockups.md"
+    },
+    {
+      "sha256": "273cf25b5c4f4f4c4395eb942c6b7b57876a06dbb91ac891c28d8cab161b232e",
+      "path": "references/inline-widgets.md"
+    },
+    {
+      "sha256": "5b0bcd85031bdd69b965b1dd5fabb65d00b1ef64693a371d2ab9350c662062c7",
+      "path": "references/palette.md"
+    },
+    {
+      "sha256": "e6305a9c66a594735a6f113e4406ed2959bd9d0a58b96716f93058a02408f3c1",
+      "path": "references/qa-and-iteration.md"
+    },
+    {
+      "sha256": "a3cfb4e23e94954d21659e07a335acecc490accf0ab3e9426584d3c4b41fba31",
+      "path": "references/handoff.md"
+    },
+    {
+      "sha256": "7e0f307cb47593e34ccea800f485cf79bf9a2f08042e435c9a445f8d5cc0bf01",
+      "path": "references/concept-boards.md"
+    },
+    {
+      "sha256": "8f44aaaf56dbbc4557be5bdcbf54c793246e0e650e2df53629ddabc42957bda1",
+      "path": "references/brandkit-design-brain.md"
+    },
+    {
+      "sha256": "f932b588c1a907a11ecbeb1cbae72aded4a30b29025c1b2749bf75d4e0bb1d4f",
+      "path": "agents/openai.yaml"
+    },
+    {
+      "sha256": "17c36a877d24d4a96c6ec7de114e96ac114d9c324bb6414b92ce06fc68a5e9d8",
+      "path": "scripts/build_brandbook.py"
+    },
+    {
+      "sha256": "474ae06c2d43443b4d05d92d71c79ca2a8048ba3b1ea2a31f1677fdb908a45f0",
+      "path": "scripts/render_brandbook_pdf.py"
+    },
+    {
+      "sha256": "e643f465a7f3d78129e1f24591226f31210a0076d276e8d059879487cc43bd54",
+      "path": "scripts/brandkit.py"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

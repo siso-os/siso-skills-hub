@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/legibility-floor",
+  "original_sha256": [
+    {
+      "sha256": "cd0e9b0169dd2821763e57623556e01186a5a1c014f0f59a5a0af320eac4dc87",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

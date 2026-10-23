@@ -1,0 +1,204 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/higgsfield-websites",
+  "original_sha256": [
+    {
+      "sha256": "67951a933e90cb9d42037cc50e84a35a3400dd8b60af4769579e05c9b55f39be",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "a1611e9d55635aaf71fdcc52127b37e40c3318de9f5ad1dfe5087e402284eba6",
+      "path": "references/app-layouts.md"
+    },
+    {
+      "sha256": "82e220a14f8a4ccc014ce95cb12e94976659e42bf81c6d346a2f286355901530",
+      "path": "references/app-cover.md"
+    },
+    {
+      "sha256": "cdb4dbcbe68fdf70f6c2c8706b8c6a27319edacdd7e6f189304d6915b175263e",
+      "path": "references/game-audio.md"
+    },
+    {
+      "sha256": "8f74e5723cecdbde09fcd90b65813ef96a2d5d00337abeb798b2e88d85150e05",
+      "path": "references/wow-catalog.md"
+    },
+    {
+      "sha256": "fdcbfb81c5c827ba8e42dffbaf03c9376722622653e23010886a5ac1971100ff",
+      "path": "references/game-design-system.md"
+    },
+    {
+      "sha256": "8088cce5603c54d82b74675ee8b0c5b094571de7ce1ef303cf7f30062c2c0deb",
+      "path": "references/image-to-code.md"
+    },
+    {
+      "sha256": "53e7e529fb1af9e3cbcfd27414a747e497c040d04f3baf41b3847957c950c6e4",
+      "path": "references/fnf-sdk.md"
+    },
+    {
+      "sha256": "366f8b04fae6038c7a6651d6ba36161097e6b2edfc1d97260ae7a33a1878f05d",
+      "path": "references/asset-system.md"
+    },
+    {
+      "sha256": "bd6ba4df1e017192a4ad9bef2c0f8137843bd3e3cbf9a2c51bb558da9559af8b",
+      "path": "references/game-2d-animation.md"
+    },
+    {
+      "sha256": "06b7b97e9b0916904fffa5a069301158a60835d3e446661c97c158368b5a120d",
+      "path": "references/scroll-scrub.md"
+    },
+    {
+      "sha256": "0158bf018aee2113f364d06ab9c8d25cbabe84141ba56815f7ab159fb7c57766",
+      "path": "references/website-flow.md"
+    },
+    {
+      "sha256": "221a9ce2ec00144693c8f8fd88c9d085b51948108af47119a6531d50460fe41c",
+      "path": "references/wow-maker.md"
+    },
+    {
+      "sha256": "da80f52610433b77d113c49af9b3dab9a326062f8f23a643fa07e9421c255060",
+      "path": "references/design-recipe.md"
+    },
+    {
+      "sha256": "e3968f021a6ca71c859d1ab794cdf4691d1c96703b1073eddfa897eea841cdfa",
+      "path": "references/game-meshy-api.md"
+    },
+    {
+      "sha256": "c858419055ebc380a27485043ffadf3e46ca88ad96ac4976c9b2cbddfd0e13d9",
+      "path": "references/scroll-scrub-asset-react.md"
+    },
+    {
+      "sha256": "92f74038491aaf106486eb4cc4f6dbc05cd4f2ae8d35bc96eb084f5d86e76d87",
+      "path": "references/app-quickstart.md"
+    },
+    {
+      "sha256": "4adac4ec86a1f125d7cb25314583fa8707e61cb482f502be3ccf518bbd3ec6e0",
+      "path": "references/scroll-scrub-asset-video.md"
+    },
+    {
+      "sha256": "7e0066e1fa634aade663f03c8baa4f88ce422ae85733b8e65d9dc65723b0fb25",
+      "path": "references/game-procedural-animation.md"
+    },
+    {
+      "sha256": "c088f089f365fae621dac90db77b56abdc47463becb2dbd182bd0cd04de98ee7",
+      "path": "references/seo.md"
+    },
+    {
+      "sha256": "0942445a86003e47d6fedc8e5d7c35bb185ad5e92a22e4e44fb08a6f47ab4790",
+      "path": "references/game-stylization.md"
+    },
+    {
+      "sha256": "c568790d9f6ceef168164f03598383685c9c14a468b89da10c414c1e40f76bb1",
+      "path": "references/auth.md"
+    },
+    {
+      "sha256": "98af49b5c194a5ba712d4a00bca1b6cd30a86ff3777a4601a40f8b1efaeef16e",
+      "path": "references/game-3d-animation.md"
+    },
+    {
+      "sha256": "ea4c467817f7668156ca0c6a69fc37c8834cb458c7457af506de36e0ebffbefc",
+      "path": "references/cover-animator.md"
+    },
+    {
+      "sha256": "51273b86edd657ce24c357dc379802299d5329a710744b130a62a3574452eee8",
+      "path": "references/design-taste-frontend.md"
+    },
+    {
+      "sha256": "889010276605053d3bfb85f0bbd22fc14a5122748ab23e0f856dbbcf91e7b12b",
+      "path": "references/scroll-scrub-asset-css.md"
+    },
+    {
+      "sha256": "86e4a433ad52bac63438c4a19d73cf21d0f2b5a54f110dcfc753ef9410dd8e50",
+      "path": "references/review-rubric.md"
+    },
+    {
+      "sha256": "fad9d864c3ddc094b677bbd0484a5372eec00e3cb872cd452746a040e81dc616",
+      "path": "references/game-textures.md"
+    },
+    {
+      "sha256": "35c0424d7ccbf49556ca934d307e2d2d17b4d5c2ab61630daa43c68746a9da50",
+      "path": "references/fnf-react.md"
+    },
+    {
+      "sha256": "bf66352536655202cfc679606a7f3df151178898c7c3fd4f2f3d19eac98edfe1",
+      "path": "references/game-flow.md"
+    },
+    {
+      "sha256": "50384d0408e6cb4888c80bc5d3b7517f8b619dc2d49e4331160d3fd66cea38eb",
+      "path": "references/reference-boards.md"
+    },
+    {
+      "sha256": "c693880211b2a5eb51f03bd4f0f6467fc47c046a942544d062505a4a40c7ba00",
+      "path": "references/app-flow.md"
+    },
+    {
+      "sha256": "b8de81c027443c10a711f193234c62409486ab7465028b12d57e15d2af4725ba",
+      "path": "references/containers.md"
+    },
+    {
+      "sha256": "4cd8264e108c3ffb7e35a19d501a5b02dbb469cf8896ba8e3552ea6e597127bc",
+      "path": "references/contest.md"
+    },
+    {
+      "sha256": "d43c413dae97c2b503345fc2f0399b8431c78f936187d953e8698ae62ffe66b1",
+      "path": "references/security.md"
+    },
+    {
+      "sha256": "23411f35823c871645aa7489e04f631cdc5da4b3ab11e0eab196fd73be931ebc",
+      "path": "references/runtime-and-infra.md"
+    },
+    {
+      "sha256": "e8d058e579e896bcdc2046e3435dcd4050127e1fb4cd9239b9abcc4ea78171f2",
+      "path": "references/game-meshy-input-rules.md"
+    },
+    {
+      "sha256": "a5b804b68792599a15521365072e62d89b1566930a3f58f0a3ca90d912cc43ac",
+      "path": "references/quanta-design.md"
+    },
+    {
+      "sha256": "77566c01a29590035db7121b55c152bc30525c24ec01dd3fa9c34a04be190984",
+      "path": "scripts/glb_patch.py"
+    },
+    {
+      "sha256": "9e86d5e20d2f86bada6aeac442384eaa68a3f4b7149fe19b16a4815853c9f7de",
+      "path": "scripts/glb_inspect.py"
+    },
+    {
+      "sha256": "c38f350eee6475fb16ec7db45bdbb83791946a2def32998324df54bbfc8deeae",
+      "path": "scripts/seamless.py"
+    },
+    {
+      "sha256": "37e8421c748bcd61c848d70b48b33bd185d16216bb854286b5df1ba85a2527e7",
+      "path": "scripts/fbx2glb.py"
+    },
+    {
+      "sha256": "9c89bbb1084ca20624ee6fe0cf8ac0bc2998b6eec04f13f4ee44117b74264833",
+      "path": "scripts/proc_rig_dragon.py"
+    },
+    {
+      "sha256": "59597690de9f415793776d0dbbd6f65b8279a5294ebb71e2b829199609add34b",
+      "path": "scripts/rig_transfer.py"
+    },
+    {
+      "sha256": "7bf06cd4e6fe70866cb11f0893ffb5fd6f11edb5cf7919c5496a31844ca60aa3",
+      "path": "scripts/merge_anim_glbs.py"
+    },
+    {
+      "sha256": "dcefb493d002e0ac77197c5467b56080ddb492f98ea136bacdd9c8d42e6ab678",
+      "path": "scripts/proc_weights.py"
+    },
+    {
+      "sha256": "5a2d7859f21fc03182adb8089f859757907e867b84d46dbedf9ed496a67ee567",
+      "path": "scripts/pipeline.py"
+    },
+    {
+      "sha256": "bef0e1fa9e690406bfd90a1ec77a3fa7647d55fdd75d83bd94cad0119bdbe501",
+      "path": "scripts/glb_merge_anims.py"
+    },
+    {
+      "sha256": "969f404fa6472566c8c5b8ed61524e66871b8fc10b56f4d8159b06c7d892aeaf",
+      "path": "scripts/proc_anim_dragon.py"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

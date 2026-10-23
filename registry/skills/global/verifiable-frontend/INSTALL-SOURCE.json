@@ -1,0 +1,69 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/verifiable-frontend",
+  "original_sha256": [
+    {
+      "sha256": "db18f07dc82bb60377253bb19f440be0486892ff74fbbd027b81c7a820d95713",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "e8bda87f3969d446aa1fa79f3763c7707c51f2e87716f2ff4ae494638549ead3",
+      "path": "runner/run-verify.mjs"
+    },
+    {
+      "sha256": "b97355274370a261c0323057d85c944f0de4c18da5da7aad074a8a820a84044f",
+      "path": "template/matrix.test.ts.template"
+    },
+    {
+      "sha256": "d99f4656aa8559ae06836474c1dd6a1b725143c787a8e2069f139b2d64cf49e3",
+      "path": "template/core/contract.ts"
+    },
+    {
+      "sha256": "53035282cce0aa688b79dc8206659d8d004fd94a5ed5e89b65ce1f8ac0f5d5f8",
+      "path": "template/core/types.ts"
+    },
+    {
+      "sha256": "3f51a8c0406e1cdfbc63cc54b5b45a55263e845c0e22a7556eab5ca5526033b0",
+      "path": "template/core/registry.ts"
+    },
+    {
+      "sha256": "15414c131d7fa9f8c4e62cdc37d4f7a9e49816856e38a94388f11d178e2936d2",
+      "path": "template/core/runner.ts"
+    },
+    {
+      "sha256": "89a06adceee104cc0b5c8b3d28ba525ad019be653e5777c02d767fe4e07ea5ba",
+      "path": "template/specs/index.ts.template"
+    },
+    {
+      "sha256": "4572bf9c9fc985fc07059f4c5ea757ac3df09177330fbf88b0bf98bb8c3a7f9c",
+      "path": "template/specs/Example.verify.ts.template"
+    },
+    {
+      "sha256": "f4b5544db0a693a2feb8d7af742bda65927a6fa89cd8e9bdb8ee936dcf81c83d",
+      "path": "template/verifiers/schema.ts"
+    },
+    {
+      "sha256": "bf964ba0d843c28628cb0beacd6b071818d148f259840846eae555e2d8f291e6",
+      "path": "template/verifiers/invariants.ts"
+    },
+    {
+      "sha256": "d11a26b757b8a3dd848856fbb59bc9d7b16fa2718425f3d5e27634cd142a11c7",
+      "path": "template/verifiers/dom-contract.ts"
+    },
+    {
+      "sha256": "03cf5196643a069bf43c2eaa463cad109a0cfd6b9b5fa504dd4aa87afa320862",
+      "path": "template/verifiers/index.ts"
+    },
+    {
+      "sha256": "85bc6a7f068fadc6b4a86e2d97640876075e9da941a46e60c895f548402fb004",
+      "path": "template/harness/handle.ts"
+    },
+    {
+      "sha256": "fee6f3403c669e6c744c9ee20445369de54c550fa84fea475711f411377bbefd",
+      "path": "template/harness/install.ts.template"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

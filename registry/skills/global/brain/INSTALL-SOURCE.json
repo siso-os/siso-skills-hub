@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.codex/skills/brain",
+  "original_sha256": [
+    {
+      "sha256": "69f92dcf9c97f009a4ca89ccf2d5439476c2520d4a29f993844b254d83055f8b",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

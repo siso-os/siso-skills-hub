@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/seat-launch",
+  "original_sha256": [
+    {
+      "sha256": "37ae1192ab40427ec8150a7f917776ffd63d3161c29eaa0deaad2fd6b718db86",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

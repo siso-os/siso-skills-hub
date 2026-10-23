@@ -1,0 +1,51 @@
+{
+  "pack": "implement",
+  "version": 1,
+  "sourceRoot": "SISO_Agent_Base/templates/profile/skills/implement",
+  "modelRouting": {
+    "glue": {
+      "default": "haiku",
+      "rule": "All bulk agent() calls and coordination prompts default to Haiku."
+    },
+    "cognition": {
+      "engine": "headless_codex_exec",
+      "command": "codex exec --dangerously-bypass-approvals-and-sandbox",
+      "rule": "Deep code reasoning, edits, and verification probes run in headless Codex, not interactive panes."
+    },
+    "tasteOrFinalSynthesis": {
+      "allowed": ["opus", "sonnet"],
+      "maxUsesPerRun": 1,
+      "rule": "Use once only when a final synthesis or taste judgment benefits from it."
+    }
+  },
+  "ratings": {
+    "scale": 100,
+    "passFloor": 85,
+    "maxCyclesPerItem": 3,
+    "requiredEverywhere": ["plan", "implementation", "verification", "checkpoint"],
+    "blockedIsPass": false
+  },
+  "tiers": [
+    { "id": "XS", "agents": "1", "passes": 1, "useWhen": "Single obvious edit or smoke-only fix." },
+    { "id": "S", "agents": "2-3", "passes": 1, "useWhen": "Small change with one independent verifier." },
+    { "id": "M", "agents": "5-8", "passes": 2, "useWhen": "Multi-file change or review report with related gaps." },
+    { "id": "L", "agents": "12-16", "passes": 2, "useWhen": "Cross-module behavior or high blast radius." },
+    { "id": "XL", "agents": "fan-out", "passes": 3, "useWhen": "Product/system change with multiple surfaces." },
+    { "id": "Super", "agents": "as-needed", "passes": "until-dry", "useWhen": "Open-ended hardening where new findings may keep appearing." }
+  ],
+  "lanes": {
+    "justDoIt": {
+      "engine": "tools/codex-exec-adapter.mjs",
+      "criteria": ["obvious local edit", "low blast radius", "clear verifier"]
+    },
+    "needsReasoning": {
+      "composition": "tools/workflow-implement-sweep.js",
+      "criteria": ["ambiguous", "cross-cutting", "requires plan before edit"]
+    }
+  },
+  "artifacts": {
+    "ledger": "ledger/runs.jsonl",
+    "principles": "BEST-PRINCIPLES.html",
+    "reports": "reports/"
+  }
+}

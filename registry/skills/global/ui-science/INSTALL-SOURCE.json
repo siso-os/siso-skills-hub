@@ -1,0 +1,45 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/ui-science",
+  "original_sha256": [
+    {
+      "sha256": "1092f3e8da84d84df04ab2c74dce7567e05bd1439c0fda3d4581759d41dbdb96",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "802134a8ecaa19a949eb14ed7fd1281b989009d01aeefd435e5ec2b3cb2ac898",
+      "path": "references/evidence.html"
+    },
+    {
+      "sha256": "db224673be4cacb33f258ae76f68b09fc20589007f65cd3002571a5ca278b90b",
+      "path": "scripts/check-ui.mjs"
+    },
+    {
+      "sha256": "bf6320294df3044813546061c0e30e90ec499ee4416355c25c7224560c74c07b",
+      "path": "scripts/color.mjs"
+    },
+    {
+      "sha256": "cf6cc78d2c6432ab06ab05b717ca794566b939bf08361f6268218e1a592965f4",
+      "path": "scripts/audit-system.mjs"
+    },
+    {
+      "sha256": "f94a871cf760c01d5cb112d5105c5be1894bc92f5fe25e0000be26b86a938e7c",
+      "path": "scripts/apply-tokens.mjs"
+    },
+    {
+      "sha256": "e55a868aab0bc28094cebdc7b8eca868c9c8412b29ed638b96e38fbf4730b096",
+      "path": "scripts/rules.json"
+    },
+    {
+      "sha256": "91243a8f6d661bc31e0d6df1f2d27bdc6f3bde65f9eca4d608edb21e6a31e9fc",
+      "path": "scripts/tailwind.mjs"
+    },
+    {
+      "sha256": "83fdaded43a9b32b49e1845289dae45bf7efbd4e7f0220519cc6a2b246245ea7",
+      "path": "scripts/token-bypass.mjs"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

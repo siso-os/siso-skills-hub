@@ -1,6 +1,6 @@
 ---
 name: token-ledger
-description: Answer "where did the tokens go" from a script, not by reading transcripts. Gives Claude spend for any window by seat, main agent vs sub-agents, model, login, top sessions, context size and hour, priced at list price, plus the waste signals (big contexts, cold cache re-writes, Opus reading loops, Opus sub-agents) and the daily ledger. Use when Shaan or Agent Zero asks what used the plan, why usage jumped, what a seat or task cost, or before and after any change meant to save tokens.
+description: Use when asking where Claude tokens or spend went by seat, model, login or time window; run token-ledger and report measured totals and coverage.
 ---
 
 # token-ledger

@@ -1,0 +1,17 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.codex/skills/claude-mini",
+  "original_sha256": [
+    {
+      "sha256": "69bee919c210292dbf4f291bd23721184451964e298827c2f892572f8640cf08",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "01b27a0c0ede75df7e017bc1d2dd1d45791a2cf70eb571f22d715882efb06c1f",
+      "path": "scripts/spawn-herdr-claude-mini.sh"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

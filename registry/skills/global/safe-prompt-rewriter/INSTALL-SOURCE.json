@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/safe-prompt-rewriter",
+  "original_sha256": [
+    {
+      "sha256": "aa73fc8214655410d37ef8197d07fe58b61a92be201c48d78bf893b35f34e4a9",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

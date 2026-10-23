@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/fast-build-loop",
+  "original_sha256": [
+    {
+      "sha256": "054fd7bb8f901f697cd6b67a884a09d23bd8459c41ea72d683964888439e7a2c",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

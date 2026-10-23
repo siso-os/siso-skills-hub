@@ -1,0 +1,21 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/haiku-dispatch",
+  "original_sha256": [
+    {
+      "sha256": "727eb54e4a7ef7e082ec77c93959e3c41b1ce7cd07c71223b610efdea7064a7b",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "2b7c8631658353f652fe13ccd4e59387577f6ff4b82542c9d22d18563806eb8f",
+      "path": "bin/haiku-dispatch-status"
+    },
+    {
+      "sha256": "e990b35498eb7e541eab07906b55363978ca17dbb830abbe0f8e2ec179df08ce",
+      "path": "bin/haiku-dispatch"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

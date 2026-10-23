@@ -1,0 +1,12 @@
+{
+  "kind": "preserved-installed-skill",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/property-engine",
+  "original_sha256": [
+    {
+      "sha256": "e7d29b494da8c540e3590b0141d836eb67f45ac5df5e47e56ad4c05b2fac749d",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; not a new upstream promotion. Home paths in Markdown made portable. Original remains in migration archive."
+}

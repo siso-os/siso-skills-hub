@@ -1,0 +1,4 @@
+interface:
+  display_name: "Source Reference"
+  short_description: "Fetch and use dependency source code as agent context."
+  default_prompt: "Fetch source references for the libraries involved, then use the real code as context before implementing."

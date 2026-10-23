@@ -1,0 +1,25 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/codex-dispatch",
+  "original_sha256": [
+    {
+      "sha256": "d5f6df8b0b2181acd1a29a60fa6fdc84cc3b97896821ee49bbdd8d9875960c7f",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "f6d27047be410b823bf30d9687e6c49ba825a9fa984e06a1378893222112a339",
+      "path": "bin/codex-watch-prompt"
+    },
+    {
+      "sha256": "d39cc386a5ea0651227b7642e968a92272420832624064eb2a1d6106b1eff337",
+      "path": "bin/codex-dispatch-status"
+    },
+    {
+      "sha256": "e01858d896f870225d9a2e9c41e5032f20c0b2865e8bac0ac42e27bbd6e6b09c",
+      "path": "bin/codex-dispatch"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

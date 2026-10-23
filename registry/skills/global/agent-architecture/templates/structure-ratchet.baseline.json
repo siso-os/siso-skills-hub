@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "mode": "ratchet",
+  "generatedAt": "2026-06-26",
+  "rule": "Anti-degradation ratchet (P17, the 'never again' law). Ceilings = max allowed; floors = min allowed. Pre-existing debt does not block; any NEW regression rejects the commit. Recovery lowers ceilings / raises floors via --write-baseline. They must only improve.",
+  "ceilings": {
+    "dupSelectors": 0,
+    "filesOver250": 152,
+    "cssOver300": 13,
+    "godFiles": 0,
+    "brokenImports": 0,
+    "importCycles": 0
+  },
+  "floors": {
+    "structureScore": 72,
+    "contextCoveragePct": 91
+  },
+  "reason": "TEMPLATE / WORKED EXAMPLE — copy to fitness/baseline/structure-ratchet.json, then OVERWRITE it on first run via `node structure-ratchet.mjs --write-baseline` so the numbers reflect YOUR repo's reality on day one. The values here are the live oracle-streaming frozen baseline: filesOver250=152 and cssOver300=13 are TODAY's debt (allowed, not blocking — that is the point), while godFiles/brokenImports/importCycles/dupSelectors are already at 0 (so any NEW one rejects the commit), structureScore floored at 72 and context-coverage floored at 91%. The bar only ever tightens from here: a cleanup wave that drops filesOver250 to 140 should be locked in with --write-baseline so it can never climb back to 152."
+}

@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/page-deep-dive-verify",
+  "original_sha256": [
+    {
+      "sha256": "9c731eb642b2249ff084e2efa4304ba69728de1f29a3fffd7b67909045c96f5d",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

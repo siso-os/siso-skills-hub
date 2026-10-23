@@ -14,7 +14,7 @@ def probe(harness, cwd, expected):
     binary = shutil.which(harness)
     if not binary:
         raise RuntimeError(f'{harness} is not on PATH')
-    command = [binary, 'app-server', '--stdio'] if harness == 'codex' else [
+    command = [binary, '-m', 'gpt-6.1-sol', 'app-server', '--stdio'] if harness == 'codex' else [
         binary, '-p', '--input-format', 'stream-json', '--output-format', 'stream-json',
         '--verbose', '--no-session-persistence', '--tools', '',
         '--settings', '{"disableAllHooks":true}', '--strict-mcp-config',

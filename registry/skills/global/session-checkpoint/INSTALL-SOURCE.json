@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/session-checkpoint",
+  "original_sha256": [
+    {
+      "sha256": "34a68ae3fced76d423c6271d8ba3744b2bae67c1f3aec9dcd8fbc0baae3d9a58",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

@@ -1,0 +1,406 @@
+#!/usr/bin/env python3
+"""
+foundry-corpus — read-only query primitive over the Foundry GitHub corpus.
+
+The corpus is ~1.36M GitHub repo cards (repo_card) with ~328k value-categorized
+rows (repo_category) across 264 human-readable categories (category), living in
+identity.sqlite on the Mac mini (the always-on Foundry ENGINE).
+
+HOUSE LAW (Foundry FOUNDRY.html):
+  - The mini owns + WRITES every canonical bulk DB. Single-writer-per-DB.
+  - Everyone else (laptop agents, sub-agents) opens it READ-ONLY (mode=ro).
+  This tool NEVER writes. It shells `sqlite3 "file:...?mode=ro"` on the mini
+  over Tailscale ssh (or locally if already on the mini).
+
+Query shapes:
+  search    text search across name / description / topics, filterable by
+            category / language / saucy / min-stars  ("give me repos that do X")
+  repo      by-name lookup — full card + every value-category row + why-notes
+  category  list the 264-category taxonomy, or list repos inside one category
+  clone     emit the git clone URL (and canonical mini catalog id) for a repo
+  stats     corpus size + freshness (last categorize write) + saucy count
+
+Machine contract: every subcommand supports --json (stable JSON to stdout,
+exit 0 = ok, exit 3 = NOT FOUND, exit 2 = usage error, exit 4 = engine unreachable).
+
+Usage examples (see `foundry-corpus --help` and each subcommand's -h):
+  foundry-corpus search "agent memory" --saucy --limit 15
+  foundry-corpus search "rust web framework" --lang Rust --min-stars 500
+  foundry-corpus repo microsoft/vscode
+  foundry-corpus category                         # list all categories
+  foundry-corpus category "Agentic Coding" --limit 20
+  foundry-corpus clone karpathy/nanoGPT
+  foundry-corpus stats
+"""
+import argparse
+import json
+import os
+import shlex
+import subprocess
+import sys
+
+# --- canonical engine + DB (from Foundry FOUNDRY.html / FOUNDRY-PLAN.html) ---
+MINI_HOST = os.environ.get("FOUNDRY_MINI_HOST", "mac-mini")
+DB_PATH = os.environ.get(
+    "FOUNDRY_IDENTITY_DB",
+    "$HOME/foundry-data/domains/github/identity/identity.sqlite",
+)
+
+EXIT_OK, EXIT_USAGE, EXIT_NOTFOUND, EXIT_ENGINE = 0, 2, 3, 4
+
+
+def _on_mini() -> bool:
+    """True if we're already running on the engine (skip ssh)."""
+    try:
+        host = subprocess.run(
+            ["hostname"], capture_output=True, text=True, timeout=5
+        ).stdout.strip().lower()
+    except Exception:
+        return False
+    return "mac-mini" in host
+
+
+def _run_sql(sql: str, mode: str = "-json"):
+    """
+    Run one read-only SQL statement against identity.sqlite on the engine.
+    Returns (rows, raw_stdout). mode is an sqlite3 output flag (-json / -list).
+    Raises SystemExit(EXIT_ENGINE) if the engine is unreachable.
+    """
+    db_uri = f'file:{DB_PATH}?mode=ro'
+    # Build the remote command as a single argv passed to sqlite3.
+    remote = (
+        f'sqlite3 {mode} "{db_uri}" {shlex.quote(sql)}'
+    )
+    if _on_mini():
+        cmd = ["bash", "-lc", remote]
+    else:
+        cmd = [
+            "ssh", "-o", "RemoteCommand=none", "-o", "ConnectTimeout=10",
+            "-o", "BatchMode=yes", MINI_HOST, remote,
+        ]
+    try:
+        p = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
+    except subprocess.TimeoutExpired:
+        sys.stderr.write("ENGINE TIMEOUT: query exceeded 90s on the mini\n")
+        raise SystemExit(EXIT_ENGINE)
+    except Exception as e:
+        sys.stderr.write(f"ENGINE UNREACHABLE ({MINI_HOST}): {e}\n")
+        raise SystemExit(EXIT_ENGINE)
+    if p.returncode != 0:
+        err = (p.stderr or "").strip()
+        # ssh connect failure vs sqlite error
+        if "Could not resolve" in err or "Connection" in err or "ssh:" in err:
+            sys.stderr.write(f"ENGINE UNREACHABLE ({MINI_HOST}): {err}\n")
+            raise SystemExit(EXIT_ENGINE)
+        sys.stderr.write(f"QUERY ERROR: {err}\n")
+        raise SystemExit(EXIT_ENGINE)
+    out = p.stdout.strip()
+    if mode == "-json":
+        rows = json.loads(out) if out else []
+        return rows, out
+    return None, out
+
+
+def _emit(obj, as_json: bool, human_fn):
+    if as_json:
+        print(json.dumps(obj, indent=2, ensure_ascii=False))
+    else:
+        human_fn(obj)
+
+
+def _sql_lit(s: str) -> str:
+    """Single-quote a string literal for SQL (double internal quotes)."""
+    return "'" + s.replace("'", "''") + "'"
+
+
+# ----------------------------------------------------------------------------
+# search — "give me repos that do X"
+# ----------------------------------------------------------------------------
+def cmd_search(a):
+    q = a.query.strip()
+    like = _sql_lit(f"%{q}%")
+    where = [
+        f"(c.full_name LIKE {like} OR c.description LIKE {like} "
+        f"OR c.topics_json LIKE {like})"
+    ]
+    if a.lang:
+        where.append(f"c.language = {_sql_lit(a.lang)}")
+    if a.min_stars:
+        where.append(f"c.stars >= {int(a.min_stars)}")
+    join = ""
+    sel_val = ""
+    if a.saucy or a.category:
+        join = "JOIN repo_category rc ON rc.full_name = c.full_name"
+        sel_val = (", rc.overall_value AS value, rc.saucy, rc.why, "
+                   "cat.name AS category")
+        join += " LEFT JOIN category cat ON cat.id = rc.category_id"
+        if a.saucy:
+            where.append("rc.saucy = 1")
+        if a.category:
+            where.append(f"cat.name LIKE {_sql_lit('%'+a.category+'%')}")
+    order = "rc.overall_value DESC, c.stars DESC" if (a.saucy or a.category) else "c.stars DESC"
+    sql = (
+        f"SELECT DISTINCT c.full_name, c.stars, c.language, "
+        f"substr(c.description,1,110) AS description{sel_val} "
+        f"FROM repo_card c {join} "
+        f"WHERE {' AND '.join(where)} "
+        f"ORDER BY {order} LIMIT {int(a.limit)};"
+    )
+    rows, _ = _run_sql(sql)
+    if not rows:
+        hint = ("no repos match this exact substring — search matches the phrase "
+                "VERBATIM, so try fewer / individual keywords "
+                "(e.g. 'web framework' not 'rust web framework'; add --lang Rust instead)")
+        _emit({"query": q, "count": 0, "results": [], "hint": hint}, a.json,
+              lambda o: print(f"NOT FOUND: {hint}"))
+        raise SystemExit(EXIT_NOTFOUND)
+
+    def human(_):
+        print(f"# {len(rows)} repos matching {q!r}"
+              + (f"  [saucy]" if a.saucy else "")
+              + (f"  [category~{a.category}]" if a.category else ""))
+        for r in rows:
+            star = r.get("stars") or 0
+            tag = ""
+            if r.get("saucy"):
+                tag = "  ★SAUCY"
+            elif r.get("value") is not None:
+                tag = f"  val={r['value']}"
+            print(f"  {r['full_name']:<45} {star:>7}★ {r.get('language') or '-':<12}{tag}")
+            desc = r.get("description")
+            if desc:
+                print(f"      {desc}")
+            why = r.get("why")
+            if why:
+                print(f"      why: {why}")
+    _emit({"query": q, "count": len(rows), "results": rows}, a.json, human)
+
+
+# ----------------------------------------------------------------------------
+# repo — by-name lookup, full card + all category rows
+# ----------------------------------------------------------------------------
+def cmd_repo(a):
+    name = a.name.strip()
+    card_sql = (
+        f"SELECT full_name, stars, forks, language, description, url, homepage, "
+        f"license, pushed_at, created_at, topics_json, archived, fork "
+        f"FROM repo_card WHERE full_name = {_sql_lit(name)} LIMIT 1;"
+    )
+    cards, _ = _run_sql(card_sql)
+    if not cards:
+        _emit({"repo": name, "found": False}, a.json,
+              lambda o: print(f"NOT FOUND: {name} is not in the corpus"))
+        raise SystemExit(EXIT_NOTFOUND)
+    card = cards[0]
+    cat_sql = (
+        f"SELECT cat.name AS category, rc.role, rc.confidence, rc.overall_value, "
+        f"rc.reuse_value, rc.info_value, rc.saucy, rc.value_type, rc.legal_lane, "
+        f"rc.unit_class, rc.why "
+        f"FROM repo_category rc LEFT JOIN category cat ON cat.id = rc.category_id "
+        f"WHERE rc.full_name = {_sql_lit(name)} ORDER BY rc.role, rc.overall_value DESC;"
+    )
+    cats, _ = _run_sql(cat_sql)
+    obj = {"repo": name, "found": True, "card": card, "categories": cats}
+
+    def human(_):
+        print(f"# {card['full_name']}")
+        print(f"  {card.get('stars') or 0}★  {card.get('forks') or 0} forks  "
+              f"{card.get('language') or '-'}  {card.get('license') or 'no-license'}")
+        if card.get("description"):
+            print(f"  {card['description']}")
+        if card.get("url"):
+            print(f"  url:  {card['url']}")
+        if card.get("homepage"):
+            print(f"  home: {card['homepage']}")
+        print(f"  pushed: {card.get('pushed_at') or '?'}   created: {card.get('created_at') or '?'}"
+              + ("   [ARCHIVED]" if card.get("archived") else "")
+              + ("   [FORK]" if card.get("fork") else ""))
+        if not cats:
+            print("  (not yet value-categorized)")
+        for c in cats:
+            saucy = " ★SAUCY" if c.get("saucy") else ""
+            print(f"  ── [{c.get('role')}] {c.get('category')}  "
+                  f"val={c.get('overall_value')} reuse={c.get('reuse_value')} "
+                  f"info={c.get('info_value')} conf={c.get('confidence')}{saucy}")
+            meta = " ".join(x for x in [
+                f"type={c['value_type']}" if c.get("value_type") else "",
+                f"legal={c['legal_lane']}" if c.get("legal_lane") else "",
+                f"class={c['unit_class']}" if c.get("unit_class") else "",
+            ] if x)
+            if meta:
+                print(f"        {meta}")
+            if c.get("why"):
+                print(f"        why: {c['why']}")
+    _emit(obj, a.json, human)
+
+
+# ----------------------------------------------------------------------------
+# category — list taxonomy, or repos in a category
+# ----------------------------------------------------------------------------
+def cmd_category(a):
+    if not a.name:
+        sql = (
+            "SELECT cat.id, cat.name, cat.level, COUNT(rc.id) AS repos, "
+            "SUM(rc.saucy) AS saucy "
+            "FROM category cat LEFT JOIN repo_category rc ON rc.category_id = cat.id "
+            "GROUP BY cat.id ORDER BY repos DESC;"
+        )
+        rows, _ = _run_sql(sql)
+
+        def human(_):
+            print(f"# {len(rows)} categories (by repo count)")
+            for r in rows:
+                print(f"  {r['name']:<48} {r.get('repos') or 0:>7} repos  "
+                      f"{r.get('saucy') or 0:>5} saucy")
+        _emit({"count": len(rows), "categories": rows}, a.json, human)
+        return
+
+    # repos within a named category (fuzzy match on name)
+    like = _sql_lit(f"%{a.name}%")
+    sql = (
+        f"SELECT c.full_name, c.stars, c.language, cat.name AS category, "
+        f"rc.overall_value AS value, rc.saucy, "
+        f"substr(rc.why,1,90) AS why "
+        f"FROM repo_category rc "
+        f"JOIN category cat ON cat.id = rc.category_id "
+        f"JOIN repo_card c ON c.full_name = rc.full_name "
+        f"WHERE cat.name LIKE {like} "
+        + ("AND rc.saucy = 1 " if a.saucy else "")
+        + f"ORDER BY rc.overall_value DESC, c.stars DESC LIMIT {int(a.limit)};"
+    )
+    rows, _ = _run_sql(sql)
+    if not rows:
+        _emit({"category": a.name, "count": 0, "results": []}, a.json,
+              lambda o: print(f"NOT FOUND: no category matches {a.name!r}"))
+        raise SystemExit(EXIT_NOTFOUND)
+
+    def human(_):
+        cat_name = rows[0].get("category", a.name)
+        print(f"# {len(rows)} repos in category ~{cat_name!r}"
+              + ("  [saucy only]" if a.saucy else ""))
+        for r in rows:
+            saucy = " ★" if r.get("saucy") else ""
+            print(f"  {r['full_name']:<45} {r.get('stars') or 0:>7}★ "
+                  f"val={r.get('value')}{saucy}  {r.get('language') or '-'}")
+            if r.get("why"):
+                print(f"      {r['why']}")
+    _emit({"category": a.name, "count": len(rows), "results": rows}, a.json, human)
+
+
+# ----------------------------------------------------------------------------
+# clone — emit the git clone URL + canonical id
+# ----------------------------------------------------------------------------
+def cmd_clone(a):
+    name = a.name.strip()
+    sql = (
+        f"SELECT full_name, url, canonical_id, homepage "
+        f"FROM repo_card WHERE full_name = {_sql_lit(name)} LIMIT 1;"
+    )
+    rows, _ = _run_sql(sql)
+    if not rows:
+        _emit({"repo": name, "found": False}, a.json,
+              lambda o: print(f"NOT FOUND: {name} is not in the corpus"))
+        raise SystemExit(EXIT_NOTFOUND)
+    r = rows[0]
+    clone_url = r.get("url") or f"https://github.com/{r['full_name']}"
+    if clone_url and not clone_url.endswith(".git"):
+        clone_git = clone_url.rstrip("/") + ".git"
+    else:
+        clone_git = clone_url
+    obj = {
+        "repo": r["full_name"], "found": True,
+        "clone_url": clone_git, "web_url": clone_url,
+        "canonical_id": r.get("canonical_id"), "homepage": r.get("homepage"),
+    }
+
+    def human(_):
+        print(f"# {r['full_name']}")
+        print(f"  git clone {clone_git}")
+        print(f"  web:  {clone_url}")
+        if r.get("canonical_id"):
+            print(f"  foundry canonical_id: {r['canonical_id']}")
+    _emit(obj, a.json, human)
+
+
+# ----------------------------------------------------------------------------
+# stats — corpus size + freshness
+# ----------------------------------------------------------------------------
+def cmd_stats(a):
+    sql = (
+        "SELECT "
+        "(SELECT COUNT(*) FROM repo_card) AS repo_cards, "
+        "(SELECT COUNT(*) FROM repo_category) AS categorized_rows, "
+        "(SELECT COUNT(DISTINCT full_name) FROM repo_category) AS categorized_repos, "
+        "(SELECT COUNT(*) FROM repo_category WHERE saucy=1) AS saucy, "
+        "(SELECT COUNT(*) FROM category) AS categories, "
+        "(SELECT MAX(built_at) FROM repo_category) AS last_categorize, "
+        "(SELECT MAX(built_at) FROM repo_card) AS last_card_build;"
+    )
+    rows, _ = _run_sql(sql)
+    s = rows[0] if rows else {}
+
+    def human(_):
+        print("# Foundry GitHub corpus (identity.sqlite on the mini, read-only)")
+        print(f"  repo cards (total corpus): {s.get('repo_cards'):>10,}")
+        print(f"  categorized repos:         {s.get('categorized_repos'):>10,}"
+              f"  ({s.get('categorized_rows'):,} rows across {s.get('categories')} categories)")
+        print(f"  saucy (high-value flagged):{s.get('saucy'):>10,}")
+        print(f"  last categorize write:     {s.get('last_categorize')}")
+        print(f"  last card build:           {s.get('last_card_build')}")
+    _emit(s, a.json, human)
+
+
+def build_parser():
+    p = argparse.ArgumentParser(
+        prog="foundry-corpus",
+        description="Read-only query primitive over the Foundry 1.36M-repo GitHub corpus on the Mac mini.",
+        epilog="Read-only (single-writer law). Add --json to any subcommand for a machine contract.",
+    )
+    p.add_argument("--json", action="store_true", help="emit JSON (machine contract) instead of a human table")
+    # a shared parent so --json is accepted before OR after the subcommand
+    common = argparse.ArgumentParser(add_help=False)
+    common.add_argument("--json", action="store_true", help=argparse.SUPPRESS)
+    sub = p.add_subparsers(dest="cmd", required=True, parser_class=argparse.ArgumentParser)
+
+    sp = sub.add_parser("search", parents=[common], help="text search: give me repos that do X")
+    sp.add_argument("query")
+    sp.add_argument("--lang", help="filter by language (e.g. Rust, Python)")
+    sp.add_argument("--category", help="filter by category name (fuzzy)")
+    sp.add_argument("--saucy", action="store_true", help="only high-value (saucy=1) repos")
+    sp.add_argument("--min-stars", type=int, default=0, dest="min_stars")
+    sp.add_argument("--limit", type=int, default=20)
+    sp.set_defaults(fn=cmd_search)
+
+    rp = sub.add_parser("repo", parents=[common], help="by-name lookup: full card + value categories")
+    rp.add_argument("name", help="owner/repo, e.g. karpathy/nanoGPT")
+    rp.set_defaults(fn=cmd_repo)
+
+    cp = sub.add_parser("category", parents=[common], help="list the taxonomy, or repos in a category")
+    cp.add_argument("name", nargs="?", help="category name (fuzzy); omit to list all")
+    cp.add_argument("--saucy", action="store_true", help="only saucy repos in the category")
+    cp.add_argument("--limit", type=int, default=30)
+    cp.set_defaults(fn=cmd_category)
+
+    clp = sub.add_parser("clone", parents=[common], help="emit git clone URL + canonical id")
+    clp.add_argument("name", help="owner/repo")
+    clp.set_defaults(fn=cmd_clone)
+
+    stp = sub.add_parser("stats", parents=[common], help="corpus size + freshness")
+    stp.set_defaults(fn=cmd_stats)
+    return p
+
+
+def main():
+    p = build_parser()
+    a = p.parse_args()
+    # allow --json before or after the subcommand
+    if not getattr(a, "json", False):
+        a.json = "--json" in sys.argv
+    try:
+        a.fn(a)
+    except BrokenPipeError:
+        pass
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,33 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/adversary",
+  "original_sha256": [
+    {
+      "sha256": "96be7e35802119136680fda28aa06c6405e6eb33af4017b4ae20dd5ac62de4c2",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "0ab2c6e6aa8ba8fa311dc8d9936c2b96058b0e21d2aa27c7c92507d1381e0da7",
+      "path": "premises/lenses.md"
+    },
+    {
+      "sha256": "693411e4870cd1f7dcffc44c9ce45de425ce15e165c2857a1540949e64d189bd",
+      "path": "premises/premises.json"
+    },
+    {
+      "sha256": "59deb5c345b59d558d94d4ee724b697103fe1099c7e5df2f94936e2a8243d22f",
+      "path": "workflow/adversary-sweep.js"
+    },
+    {
+      "sha256": "39f32e742df91a2048192416d0e33d7b16a39d96a44c2f707e5d0e49112adbba",
+      "path": "scripts/dispatch-codex-adversary.sh"
+    },
+    {
+      "sha256": "0dd9b3d8e4be5d7575d2a6a86b5ef0676bbdf73a17fedfc790f73b1929751b28",
+      "path": "reports/adversary-rebuild-spec.html"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

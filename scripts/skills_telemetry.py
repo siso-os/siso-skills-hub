@@ -32,19 +32,22 @@ def get_db():
     """)
     conn.execute("CREATE INDEX IF NOT EXISTS idx_skill_id ON skill_events(skill_id)")
     conn.execute("CREATE INDEX IF NOT EXISTS idx_timestamp ON skill_events(timestamp)")
+    conn.execute('''CREATE TABLE IF NOT EXISTS skill_import_cursors (
+        source_hash TEXT PRIMARY KEY, inode INTEGER NOT NULL, byte_offset INTEGER NOT NULL
+    )''')
     return conn
 
 
 def track(skill_id, success=True, agent_id=None, session_id=None,
-          duration_ms=None, error_type=None, context=None):
+          duration_ms=None, error_type=None, context=None, event_id=None, timestamp=None):
     """Log a skill invocation."""
     conn = get_db()
-    event_id = str(uuid.uuid4())
-    timestamp = time.time()
+    event_id = event_id or str(uuid.uuid4())
+    timestamp = time.time() if timestamp is None else timestamp
     context_hash = hashlib.md5(context.encode()).hexdigest() if context else None
 
     conn.execute("""
-        INSERT INTO skill_events
+        INSERT OR IGNORE INTO skill_events
         (event_id, skill_id, agent_id, session_id, timestamp, duration_ms, success, error_type, context_hash)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (event_id, skill_id, agent_id, session_id, timestamp, duration_ms,

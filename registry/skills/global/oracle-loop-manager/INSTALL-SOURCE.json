@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.claude/skills/oracle-loop-manager",
+  "original_sha256": [
+    {
+      "sha256": "5f245bda90a02866c4aed1d44d0f5676c54a232c44950e57a2b17ac556e83f05",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

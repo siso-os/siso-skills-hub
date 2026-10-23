@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Zero"
+  short_description: "Coordinate active multi-lane work with live Herdr agents"
+  default_prompt: "Act as Agent Zero: resolve active lanes, preserve separation, and verify current evidence before reporting."

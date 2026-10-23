@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/pb-orchestration",
+  "original_sha256": [
+    {
+      "sha256": "3aaf5e805cd10b5d3002617926ff4946bbf946c5b1baf49d0760211eded74c93",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

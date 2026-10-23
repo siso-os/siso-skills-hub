@@ -6,6 +6,7 @@ import os
 import subprocess
 import sys
 import tempfile
+import time
 from unittest.mock import patch
 from types import SimpleNamespace
 from pathlib import Path
@@ -139,7 +140,54 @@ except FileExistsError: sys.exit(2)
         assert link.is_symlink() and link.resolve() == src.resolve()
         assert skills._materialize(src, link, link=True) == "unchanged"
 
-    print("SKILLS_INSTALLER_TEST_OK (validation, no-network dry-run, collision, concurrent no-clobber, incomplete-copy retention, idempotence, link)")
+        # --refresh archives an outdated copy of the same skill, then installs current source.
+        # A different skill or a directory that is not a skill copy is refused and left in place.
+        refresh_src = source(root, "refresh-skill")
+        (refresh_src / "SKILL.md").write_text("---\nname: refresh-skill\ndescription: refresh\n---\n# New\n")
+        (refresh_src / "support.txt").write_text("new support")
+        other_target, bare_target, outdated_target = root / "other-target", root / "bare-target", root / "outdated-target"
+        archive_root = root / "refresh-archive"
+        archived = archive_root / f"skills-refresh-{time.strftime('%Y%m%d')}" / "refresh-skill"
+        original_registry, original_find, original_archive = skills.load_registry, skills.find_skill_dir, skills.REFRESH_ARCHIVE
+        skills.load_registry = lambda: {"skills": [entry("refresh-skill")]}
+        skills.find_skill_dir = lambda skill_id: refresh_src
+        skills.REFRESH_ARCHIVE = archive_root
+
+        def install(target, refresh=False, dry_run=False):
+            return skills.cmd_install(SimpleNamespace(skill_id="refresh-skill", target=str(target), agent=None,
+                                                      link=False, dry_run=dry_run, refresh=refresh))
+
+        with patch.object(skills, 'TELEMETRY_ENABLED', False):
+            other = other_target / "refresh-skill"
+            other.mkdir(parents=True)
+            (other / "SKILL.md").write_text("---\nname: other-skill\ndescription: other\n---\n# Other\n")
+            assert install(other_target, refresh=True) == 1
+            assert "# Other" in (other / "SKILL.md").read_text() and not archive_root.exists()
+
+            (bare_target / "refresh-skill").mkdir(parents=True)
+            (bare_target / "refresh-skill" / "notes.txt").write_text("not a skill copy")
+            assert install(bare_target, refresh=True) == 1
+            assert (bare_target / "refresh-skill" / "notes.txt").read_text() == "not a skill copy" and not archive_root.exists()
+
+            old = outdated_target / "refresh-skill"
+            old.mkdir(parents=True)
+            (old / "SKILL.md").write_text("---\nname: refresh-skill\ndescription: refresh\n---\n# Old\n")
+            (old / "support.txt").write_text("old support")
+            assert install(outdated_target) == 1 and "# Old" in (old / "SKILL.md").read_text()
+            assert install(outdated_target, refresh=True, dry_run=True) == 0
+            assert "# Old" in (old / "SKILL.md").read_text() and not archived.exists()
+
+            assert install(outdated_target, refresh=True) == 0
+            assert "# Old" in (archived / "SKILL.md").read_text() and (archived / "support.txt").read_text() == "old support"
+            assert "# New" in (old / "SKILL.md").read_text() and (old / "support.txt").read_text() == "new support"
+
+            # A second outdated copy on the same day never overwrites the first archive.
+            (old / "SKILL.md").write_text("---\nname: refresh-skill\ndescription: refresh\n---\n# Older\n")
+            assert install(outdated_target, refresh=True) == 1
+            assert "# Older" in (old / "SKILL.md").read_text() and "# Old" in (archived / "SKILL.md").read_text()
+        skills.load_registry, skills.find_skill_dir, skills.REFRESH_ARCHIVE = original_registry, original_find, original_archive
+
+    print("SKILLS_INSTALLER_TEST_OK (validation, no-network dry-run, collision, concurrent no-clobber, incomplete-copy retention, idempotence, link, refresh archive)")
 
 
 if __name__ == "__main__":

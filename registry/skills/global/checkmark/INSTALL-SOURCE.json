@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/checkmark",
+  "original_sha256": [
+    {
+      "sha256": "7f0100e2fb508e3371858702beb340d239edf8f4f4c0796f9041c87661c720bb",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

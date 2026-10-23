@@ -384,32 +384,26 @@
     "backups"
   ],
   "install_ids": [
-    "task-commander",
-    "verify_story",
-    "verify-story",
+    "agent-zero",
+    "a0-dispatch",
+    "job-brief",
+    "shaan-report",
+    "research-fleet",
+    "deletion-pass",
+    "haiku-team",
+    "look",
+    "librarian",
+    "codex-run",
+    "land",
+    "show-page",
     "self-compact",
-    "estate-keeper",
-    "adhd-agent-output",
-    "i-have-adhd",
-    "ui-bank",
-    "multisearch",
-    "xsearch",
-    "websearch",
+    "a0-upgrade",
+    "skill-author",
+    "siso-ui",
+    "camofox",
     "machine-reach",
-    "laptop-health",
-    "token-ledger",
-    "agent-builder",
-    "agent-setup",
-    "pm-tasks",
-    "task-manager",
-    "analyzing-video",
-    "siso-owner",
-    "siso-plane-ops",
-    "siso-project-front-door",
-    "siso-project-page",
-    "superapp-forge",
-    "gitsearch",
-    "ui-pick"
+    "fleet-check",
+    "token-ledger"
   ],
   "archive_unavailable": [
     "siso-compute-pool"
@@ -542,5 +536,6 @@
       "status": "implemented",
       "verification": "Hub tests and both-machine projection readback required"
     }
-  ]
+  ],
+  "curation_policy": "curation-20261021.json"
 }

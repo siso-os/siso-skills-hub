@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# codex-dispatch-status — poll headless Codex handoffs for PASS/FAIL.
+# Usage:  codex-dispatch-status [slug]
+#   no arg  -> list every handoff in .orchestrate/handoffs/ with its verdict line
+#   slug    -> print that one handoff in full
+set -euo pipefail
+HANDOFF_DIR="$(pwd -P)/.orchestrate/handoffs"
+[ -d "$HANDOFF_DIR" ] || { echo "(no handoffs dir at $HANDOFF_DIR)"; exit 0; }
+
+if [ "$#" -ge 1 ]; then
+  f="$HANDOFF_DIR/$1.result.html"
+  [ -f "$f" ] || { echo "$1: NO HANDOFF YET (still running or died — check /tmp/codex-$1.log)"; exit 0; }
+  cat "$f"; exit 0
+fi
+
+shopt -s nullglob
+found=0
+for f in "$HANDOFF_DIR"/*.result.html; do
+  found=1
+  slug=$(basename "$f" .result.html)
+  verdict=$(grep -m1 -E '^(PASS|FAIL)$' "$f" 2>/dev/null || echo "?")
+  printf '%-24s %s\n' "$slug" "$verdict"
+done
+[ "$found" -eq 1 ] || echo "(no handoffs yet)"

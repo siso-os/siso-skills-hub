@@ -1,0 +1,33 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/cloudflare-email-service",
+  "original_sha256": [
+    {
+      "sha256": "a62531900a08f9f6c352061d42e8b10a35009f5e1c6f91bbf18752feedad5a79",
+      "path": "SKILL.md"
+    },
+    {
+      "sha256": "db54ef436d72bfa1454a6da95be6a33b29b94266a1e8d1bffe86ffe0e007565c",
+      "path": "references/routing.md"
+    },
+    {
+      "sha256": "906aa333331e080a275a4ba3d4c342281b655afcef25a2081d197a396a3da913",
+      "path": "references/cli-and-mcp.md"
+    },
+    {
+      "sha256": "e7164e0a96c11fcccb0c684695e3c475a81e4f210891b83503bdda392232f47f",
+      "path": "references/sending.md"
+    },
+    {
+      "sha256": "174ff9cafe8e87c98faf2e25b30acb8889cd108caabe55b71c0db2bcb23077a7",
+      "path": "references/deliverability.md"
+    },
+    {
+      "sha256": "edc9da52397ed70db9a0a520d5d7d075d6acd396fd8637e34c6dc1252a3303e7",
+      "path": "references/rest-api.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}

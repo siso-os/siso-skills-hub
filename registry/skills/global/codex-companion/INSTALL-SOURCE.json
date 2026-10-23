@@ -1,0 +1,13 @@
+{
+  "kind": "preserved-installed-skill",
+  "machine": "mini",
+  "observed_at": "2026-10-21",
+  "source": "~/.agents/skills/codex-companion",
+  "original_sha256": [
+    {
+      "sha256": "f047a0d9943676b7b543a3cdf68226e037823aff9675d95b91cba376671a18e6",
+      "path": "SKILL.md"
+    }
+  ],
+  "note": "Preserved installed capability; provisional upstream ownership. Original retained in migration archive."
+}
